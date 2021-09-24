@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+
+
+</head>
+<body>
+    
+<div class="wrapper">
+
+    <header>
+        <div class="logo"><i class="fas fa-check-circle logo__icon"></i>
+            PomodoroFocus
+        </div>
+        <nav>
+            <div class="nav__item report"><i class="far fa-chart-bar"></i></div>
+            <div class="nav__item settings"><i class="fas fa-cog"></i></div>
+            <div class="nav__item  login"><i class="fas fa-user"></i></div>
+        </nav>
+    </header>
+
+    <section class="timer">
+        <div class="clock__options">
+            <button class="clock__button clock__button--active clock__one">Pomodoro</button>
+            <button class="clock__button clock__two">Krótka przerwa</button>
+            <button class="clock__button clock__three">Długa przerwa</button>
+        </div>
+        <div class="clock"><span class="clock__minutes">25</span> : <span class="clock__seconds">00</span></div>
+        <div class = "button__reset--wrapper">
+            <button class="clock__start">Start</button>
+            <div class="reset"><i class="fas fa-pause reset__icon"></i></div>
+        </div>
+    </section>
+
+
+    <div class="task__name">
+        <p class="task__text"> Czas na pracę !</p>
+        <p class="current__task"></p>
+    </div>
+
+    <div class="task__wrapper">
+        <div class="tasks">Zadania: </div>
+        <div class="tasks__options">
+            <i class="fas fa-ellipsis-v"></i>
+            <div class="tasks__options-wrapper tasks__options-wrapper--none">
+                <div class="tasks__options-clear clear__all-tasks"><i class="fas fa-trash-alt trash__icon"></i><p class="clear__text">Wyczyść wszystkie zadania</p></div>
+                <div class="tasks__options-clear clear__finished-tasks"><i class="fas fa-trash-alt trash__icon"></i><p class="clear__text">Wyczyść skończone zadania</p></div>
+                <div class="tasks__options-clear clear__act-pomodoros"><i class="fas fa-check"></i><p class="clear__text"></p>Wyzeruj wszystkie zadania</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="all__tasks">
+        <ul class="all__list">
+            <!-- <li class="all__item">
+                <div class="all__wrapper-one">
+                    <i class="fas fa-check-circle all__icon"></i>
+                    <p class="all__text">asd</p>
+                </div> 
+                <div class="all__wrapper-two">
+                    <div class="all__number-of-tasks">
+                        <span class="all__number-of-tasks-done">0</span> /
+                        <span class="all__number-of-tasks-to-do"></span>
+                    </div>
+                    <div class="all__options">
+                        <div class="all__edit"><i class="far fa-edit"></i> </div>
+                        <div class="all__delete"><i class="fas fa-trash"></i></div>
+                    </div>
+                </div>
+                <div class="all__wrapper-three">
+                    <p class="all__note">
+                        
+                    </p>
+
+                </div>
+            </li> -->
+        </ul>
+    </div>
+
+    <div class="button__wrapper">
+        <button class="add__task"> Dodaj Zadanie</button>
+    </div>
+    <section class="add">
+        <div class="add__wrapper add__wrapper--none">
+            <input class="add__what" placeholder="Nad czym pracujesz?">
+            <p class="add__estimation">Ile pomodoros</p>
+            <div class="add__estimate--wrapper">
+                <input class="add__number-of-pomodoros" type="numer">
+                <button class="add__arrow add__arrow-up"><i class="fas fa-chevron-up add__arrow-icon arrow__up--icon"></i></button>
+                <button class="add__arrow add__arrow-down"><i class="fas fa-chevron-down add__arrow-icon arrow__down--icon"></i></button>
+            </div>
+            <textarea class="add__note" type="text" placeholder="Dodaj notatkę (opcjonalnie)"></textarea>
+            <div class="add__cancel--wrapper">
+                <button class="add__cancel">Anuluj</button>
+                <button class="add__save add__save--active" >Zapisz</button>
+            </div>
+        </div>
+    </section>
+  
+    <section class="info info--active   "> 
+        <div class="info__wrapper--one">
+            <p class="info__estimate-text">Zadania: </p>
+            <span class="info__estimate"></span>
+            <p class="info__complete-text">Zakończone: </p>
+            <span class="info__complete"></span>
+        </div>
+        <div  class="info__wrapper--two">
+            <p class="info__text">Zakończysz o: </p>
+            <span class="info__time">
+
+            </span>
+        </div>
+    </section>
+
+</div>
+
+
+
+
+
+
+
+
+<script src="pomodoro.js"></script>
+</body>
+</html>
