@@ -7,20 +7,24 @@
     const taskText = document.querySelector('.task__text');
     const reset = document.querySelector('.reset');
     const timer = document.querySelector('.timer');
+
+    let pomodoroMinValue = document.querySelector(".settings__time-of-clock-input--pomodoro").value;
+    let shortMinValue = document.querySelector(".settings__time-of-clock-input--short").value
+    let longMinValue = document.querySelector(".settings__time-of-clock-input--long").value
     let buttonActive = false;
-    let timeOfPomodoroClock = 15;
-    let timeOfShortBreakClock = 5;
-    let timeOfLongBreakClock = 15;
-    let clockSecondsPomodoros = 5;
-    let clockMinutesPomodoros = 0;
-    let clockMinutesShort = 0;
-    let clockSecondsShort = 5;
-    let clockMinutesLong = 0;
-    let clockSecondsLong = 5;
-    
+  
+    let clockMinutesPomodoros = pomodoroMinValue - 1 ;
+    let clockMinutesShort = shortMinValue - 1 ;
+    let clockMinutesLong = longMinValue - 1;
+    let clockSecondsPomodoros = 60;
+    let clockSecondsShort = 60;
+    let clockSecondsLong = 60;
+
     let idIntervalPomodoroClock; // ID iNTERWAŁU TIMERA
     let idIntervalShortClock; // ID iNTERWAŁU TIMERA
     let idIntervalLongClock; // ID iNTERWAŁU TIMERA
+
+    let longBreakActivate = 0;
 
 // FUNKCJA ZMIENIAJĄCA  KOLOR PRZYCISKÓW OPCJI POMODORO, KRÓTKA PRZERRWA, DŁUGA PRZERWA
     const removeColorFromClockButtons = function(){
@@ -81,10 +85,12 @@
     }
 // FUNKCJA TIMER POMODORO
     const pomodoroFunction = ()=>{
+        let pomodoroMinValue = document.querySelector(".settings__time-of-clock-input--pomodoro").value;
         clockSecondsPomodoros = 5;
+        // clockMinutesPomodoros = pomodoroMinValue - 1;
         clockMinutesPomodoros = 0;
         clockSec.textContent = "00";
-        clockMin.textContent = "25"
+        clockMin.textContent = (String(pomodoroMinValue)<10 ? "0"+String(pomodoroMinValue): String(pomodoroMinValue))
         clearAllIntervals();
         removeColorFromClockButtons();
         changeBgcColor();
@@ -103,9 +109,11 @@
     pomodoroButton.addEventListener('click', pomodoroFunction)
 // FUNKCJA TIMER KRÓTKA PRZERWA
     const shortBreakFunction = ()=>{
+        let shortMinValue = document.querySelector(".settings__time-of-clock-input--short").value
         clockSecondsShort = 5;
+        // clockMinutesShort = shortMinValue - 1;
         clockMinutesShort = 0;
-        clockMin.textContent = "05"
+        clockMin.textContent = (String(shortMinValue)<10 ? "0"+String(shortMinValue): String(shortMinValue))
         clockSec.textContent = "00";
         clearAllIntervals(); 
         removeColorFromClockButtons();
@@ -124,10 +132,12 @@
     shortBreakButton.addEventListener('click', shortBreakFunction )
 // FUNKCJA TIMER DŁUGA PRZERWA
     const longBreakFunction =  ()=>{
+        let longMinValue = document.querySelector(".settings__time-of-clock-input--long").value
         clockSecondsLong = 5;
+        // clockMinutesLong = longMinValue - 1;
         clockMinutesLong = 0;
         clockSec.textContent = "00";
-        clockMin.textContent = "15"
+        clockMin.textContent = (String(longMinValue)<10 ? "0" + String(longMinValue) : String(longMinValue))
         clearAllIntervals();
         removeColorFromClockButtons();
         changeBgcColor(); 
@@ -145,19 +155,43 @@
     longBreakButton.addEventListener('click', longBreakFunction) 
 // FUNKCJA DOTYCZĄCA SAMEGO LICZNIKA POMODORO
     const pomodoroTimer = ()=>{ 
+        let longIntervalInput = document.querySelector('.settings__long-interval-input').value;
         clockSecondsPomodoros--;
         if(clockSecondsPomodoros === 0){
             clockMinutesPomodoros--;
             clockSecondsPomodoros = 59;
             if(clockMinutesPomodoros === -1 ){
-                alert('Czas się skończył, czas trochę odpocząć');  
+                longBreakActivate++;
+                //Jeśli ma autoStart
+                if(autoStartBreaksBtn.classList.contains('settings__auto-breaks-accept--active')){
+                    //longBreakActive to zmienna globalna liczona od zera, inkrementuje się kiedy pomodoroTimer się zakończy,
+                    // longIntervalInput(long break interval) to wartość inputa w settings
+                    if(longBreakActivate%longIntervalInput == 0 ){
+                        longBreakFunction();
+                        startButtonFunction();
+                        clockMinutesPomodoros = longMinValue;
+                    }
+                    else{
+                        shortBreakFunction();
+                        startButtonFunction();
+                        clockMinutesPomodoros = shortMinValue; 
+                    }
+                }
+                //Jeśli nie ma autoStartu
+                else{
+                    alert('Czas się skończył, czas trochę odpocząć'); 
+                    shortBreakFunction(); 
+                    if(longBreakActivate%longIntervalInput == 0 ){
+                        longBreakFunction();
+                        clockMinutesPomodoros = longMinValue;
+                    }
+                }
+                clockSecondsPomodoros = 0; 
+                //dodawanie i obliczanie skończonych zdań i czasu ukończenia zadań
                 addingCompletedTasks();
-                shortBreakFunction();
                 calculateFinishedTasks();
                 calculatingEstimatedTimeToFinish();
-                clockMinutesPomodoros = 5;
-                clockSecondsPomodoros = 0;
-                     
+                    
             }
         }
         addingZeroToTimerWhileBelowTen(clockSecondsPomodoros, clockMinutesPomodoros );
@@ -170,9 +204,15 @@
             clockSecondsShort = 59;
             if(clockMinutesShort === -1){
                 clockSecondsShort = 0;
-                clockMinutesShort = 25;
-                alert('Czas się skończył, czas trochę popracować')
-                pomodoroFunction();
+                clockMinutesShort = pomodoroMinValue;
+                if(autoStartPomodoroBtn.classList.contains('settings__auto-pomodoro-accept--active')){
+                    pomodoroFunction();
+                    startButtonFunction();
+                }
+                else{
+                    alert('Czas się skończył, czas trochę popracować') 
+                    pomodoroFunction();
+                }   
             }
         }
         addingZeroToTimerWhileBelowTen(clockSecondsShort, clockMinutesShort );         
@@ -185,13 +225,20 @@
             clockSecondsLong = 59;
             if(clockMinutesLong === -1){
                 clockSecondsLong = 0;
-                clockMinutesLong = 25;
-                alert('Czas się skończył, czas trochę popracować')
-                pomodoroFunction();   
+                clockMinutesLong = pomodoroMinValue;
+                if(autoStartPomodoroBtn.classList.contains('settings__auto-pomodoro-accept--active')){
+                    pomodoroFunction();
+                    startButtonFunction();
+                }
+                else{
+                    alert('Czas się skończył, czas trochę popracować') 
+                    pomodoroFunction();
+                }     
             }
         }
         addingZeroToTimerWhileBelowTen(clockSecondsLong, clockMinutesLong );            
     };
+   
 // FUNKCJA STARTUJĄCA TIMER
     const startButtonFunction = () =>{
         if(!buttonActive){
@@ -498,10 +545,12 @@ addButton.addEventListener('click', ()=>{
     }
     taskOptions.addEventListener('click', allOptionsWithTasks)
 //FUNKCJA OBLICZAJĄCA KIEDY ZAKOŃCZYMY WSZYSTKIE ZADANIA
-    const calculatingEstimatedTimeToFinish = ()=>{
+    const calculatingEstimatedTimeToFinish = ()=>{  
+        let pomodoroMinValue = document.querySelector(".settings__time-of-clock-input--pomodoro").value;
+        let shortMinValue = document.querySelector(".settings__time-of-clock-input--short").value
         let tasksLeft = infoEstimate.textContent - infoComplete.textContent;
-        let timeOfWork = tasksLeft * timeOfPomodoroClock;
-        let timeOfBreak = tasksLeft * timeOfShortBreakClock;
+        let timeOfWork = tasksLeft * pomodoroMinValue;
+        let timeOfBreak = tasksLeft * shortMinValue;
         let timeOfEnding = (timeOfWork + timeOfBreak) * 60 * 1000;
         let oldDate = new Date().getTime();
         let newDateInMilisec = oldDate + timeOfEnding;
@@ -550,3 +599,54 @@ addButton.addEventListener('click', ()=>{
     }
     addTaskAndSave.addEventListener('click', addTaskToList);
  
+
+// SETTINGS
+
+// FUNCKJA OTIWERAJĄCA MENU USTAWIEŃ
+    const settings = document.querySelector('.settings');
+    const navIconSettings = document.querySelector('.nav__item-settings');
+    const closeSettings = document.querySelector('.settings__escape-image')
+    const okSettingsButton = document.querySelector('.settings__accept-button')
+    navIconSettings.addEventListener('click', ()=>{
+        settings.classList.add('settings--active');
+    })
+    closeSettings.addEventListener('click', ()=>{
+        settings.classList.remove('settings--active');
+    })
+
+
+    const newSettingsFunction = ()=> {
+        settings.classList.remove('settings--active');
+        longBreakActivate = 0;
+        pomodoroFunction();
+    }
+    okSettingsButton.addEventListener('click', newSettingsFunction)
+
+
+// FUNKCJA ZAZNACZĄJĄCA BUTON I ZMIENIAJĄCA JEGO KOLOR PRZY AUTOMATYCZNYM ZACZYNANIU PRZERW I POMODORO
+    const autoStartBreaksBtn = document.querySelector('.settings__auto-breaks-accept');
+    const autoStartPomodoroBtn = document.querySelector('.settings__auto-pomodoro-accept');
+    let flagOfChangeColorAutoStartBreak = false;
+    autoStartBreaksBtn.addEventListener('click', ()=>{
+        if(!flagOfChangeColorAutoStartBreak){
+            autoStartBreaksBtn.classList.add('settings__auto-breaks-accept--active');
+            flagOfChangeColorAutoStartBreak = !flagOfChangeColorAutoStartBreak;
+        }
+        else{
+            autoStartBreaksBtn.classList.remove('settings__auto-breaks-accept--active');
+            flagOfChangeColorAutoStartBreak = !flagOfChangeColorAutoStartBreak;
+        }
+    })
+    let flagOfChangeColorAutoStartPomodoro = false;
+    autoStartPomodoroBtn.addEventListener('click', ()=>{
+        if(!flagOfChangeColorAutoStartPomodoro){
+            autoStartPomodoroBtn.classList.add('settings__auto-pomodoro-accept--active');
+            flagOfChangeColorAutoStartPomodoro = !flagOfChangeColorAutoStartPomodoro;
+        }
+        else{
+            autoStartPomodoroBtn.classList.remove('settings__auto-pomodoro-accept--active');
+            flagOfChangeColorAutoStartPomodoro = !flagOfChangeColorAutoStartPomodoro;
+        }
+    })
+
+
