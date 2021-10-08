@@ -4,7 +4,7 @@
     localStorage.setItem('shortBreakMinutes', document.querySelector('.settings__time-of-clock-input--short').value)
     localStorage.setItem('longBreakMinutes', document.querySelector('.settings__time-of-clock-input--long').value)
     localStorage.setItem('longBreakInterval', document.querySelector('.settings__long-interval-input').value)
-    localStorage.setItem('autoStartBreaks', document.querySelector('.settings__auto-breaks-accept').className)
+    localStorage.setItem('autoStartBreaks', document.querySelector('.settings__auto-breaks-accept').className )
     localStorage.setItem('autoStartPomodoros', document.querySelector('.settings__auto-pomodoro-accept').className)
     localStorage.setItem('alarmSoundsSelect', document.querySelector('.settings__alarm-sound-select').selectedIndex)
     localStorage.setItem('tickingSoundsSelect', document.querySelector('.settings__ticking-sound-select').selectedIndex)
@@ -16,15 +16,16 @@ const loadLocalStorageOfSettings = ()=> {
     document.querySelector('.settings__time-of-clock-input--short').value = localStorage.getItem('shortBreakMinutes')
     document.querySelector('.settings__time-of-clock-input--long').value = localStorage.getItem('longBreakMinutes')
     document.querySelector('.settings__long-interval-input').value = localStorage.getItem('longBreakInterval')
-    document.querySelector('.settings__auto-breaks-accept').className = localStorage.getItem('autoStartBreaks')
+    document.querySelector('.settings__auto-breaks-accept').className =    localStorage.getItem('autoStartBreaks')
     document.querySelector('.settings__auto-pomodoro-accept').className = localStorage.getItem('autoStartPomodoros')
     document.querySelector('.settings__alarm-sound-select').selectedIndex = localStorage.getItem('alarmSoundsSelect')
     document.querySelector('.settings__ticking-sound-select').selectedIndex = localStorage.getItem('tickingSoundsSelect')
     document.querySelector('.settings__alarm-volume-input').value = localStorage.getItem('alarmSoundsVolume')
     document.querySelector('.settings__ticking-volume-input').value = localStorage.getItem('tickingSoundsVolume')
-
     }
-    loadLocalStorageOfSettings();
+    if(localStorage.length !== 0){
+        loadLocalStorageOfSettings();
+    }
 
     const clockMin = document.querySelector('.clock__minutes');
     const clockSec = document.querySelector('.clock__seconds');
@@ -412,11 +413,13 @@ const loadLocalStorageOfSettings = ()=> {
     let numberOfTasks = 1;
     let completedTasksInTotal = 0;
     
+  
+
     const saveLocalStorageOfToDoList = ()=>{
-        localStorage.setItem('list', JSON.stringify(allTasks))
+        localStorage.setItem('estimatedPomodoros', allEstimatedPomodoros);
     }
     const loadLocalStorageOfToDoList = ()=>{
-        JSON.parse(localStorage.getItem('list'))
+  
     }
     loadLocalStorageOfToDoList();
 
@@ -730,4 +733,5 @@ addButton.addEventListener('click', ()=>{
         }
     })
 
+    
 
