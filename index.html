@@ -15,15 +15,14 @@
 <body>
     
 <div class="wrapper">
-
     <header>
         <div class="logo"><i class="fas fa-check-circle logo__icon"></i>
             PomodoroFocus
         </div>
         <nav>
-            <div class="nav__item report"><i class="far fa-chart-bar"></i></div>
-            <div class="nav__item settings"><i class="fas fa-cog"></i></div>
-            <div class="nav__item  login"><i class="fas fa-user"></i></div>
+            <div class="nav__item nav__item-report"><i class="far fa-chart-bar"></i></div>
+            <div class="nav__item nav__item-settings"><i class="fas fa-cog"></i></div>
+            <div class="nav__item  nav__item-login"><i class="fas fa-user"></i></div>
         </nav>
     </header>
 
@@ -119,7 +118,88 @@
             </span>
         </div>
     </section>
+    
+    <section class="settings">
+        <div class="settings__header">
+            <p class="settings__header-text">Timer Settigns</p>
+            <div class="settings__escape"><i class="fas fa-times settings__escape-image"></i></div>
+        </div>
+        <div class="settings__time">
+            <p class="settings__time-text">Time (minutes)</p>
+            <div class="settings__time-of-clock-wrap">
+                <div class="settings__time-of-clock">
+                    <p class="settings__time-of-clock-text">Pomodoro</p>
+                    <input class="settings__time-of-clock-input settings__time-of-clock-input--pomodoro" type="number" value="25">
+                </div>
+                <div class="settings__time-of-clock">
+                    <p class="settings__time-of-clock-text">Short Break</p>
+                    <input class="settings__time-of-clock-input settings__time-of-clock-input--short" type="number" value="5">
+                </div>
+                <div class="settings__time-of-clock">
+                    <p class="settings__time-of-clock-text">Long Break</p>
+                    <input class="settings__time-of-clock-input settings__time-of-clock-input--long" type="number" value="15">
+                </div>
+            </div>
+        </div>
+        <div class="settings__auto-breaks">
+            <p class="settings__auto-breaks-text">Auto start Breaks ?</p>
+            <div class="settings__auto-breaks-accept ">
+                <div class="settings__auto-breaks-accept-rounded"></div>
+            </div>
+        </div>
+        <div class="settings__auto-pomodoros">
+            <p class="settings__auto-pomodoros-text">Auto start Pomodoros ?</p>
+            <div class="settings__auto-pomodoro-accept">
+                <div class="settings__auto-pomodoro-accept-rounded"></div>
+            </div>
+        </div>
+        <div class="settings__long-interval">
+            <p class="settings__long-interval-text">Long Break Interval</p>
+            <input class="settings__long-interval-input" type="number" value="4">
+        </div>
 
+        <div class="settings__alarm-sound">
+            <p class="settings__alarm-sound-text">Alarm Sound</p>
+            <div class="settings__alarm-sound-wrapper">
+                <select name="alarmSounds" class="settings__alarm-sound-select">
+                    <option class="settings__alarm-sound-option " value="">Alarm</option>
+                    <option class="settings__alarm-sound-option" value="">Arcade</option>
+                    <option class="settings__alarm-sound-option" value="">Cock</option>
+                    <option class="settings__alarm-sound-option" value="">Phone</option>
+                    <option class="settings__alarm-sound-option" value="">Whistle</option>
+                </select>
+            </div>
+        </div>
+        <div class="settings__alarm-volume">
+            <p class="settings__alarm-volume-text">Alarm Volume (0-100)</p>
+            <input  class="settings__alarm-volume-input" value="50" >
+        </div>
+
+        <div class="settings__ticking-sound">
+            <p class="settings__ticking-sound-text">Ticking Sound</p>
+            <div class="settings__ticking-sound-wrapper">
+                <select name="tickingSounds" class="settings__ticking-sound-select">
+                    <option class="settings__ticking-sound-option" value="">None</option>
+                    <option class="settings__ticking-sound-option" value="">Slow Ticking</option>
+                    <option class="settings__ticking-sound-option" value="">Fast Ticking</option>
+                </select>
+            </div>
+        </div>
+        <div class="settings__ticking-volume">
+            <p class="settings__ticking-volume-text">Ticking Volume (0-100)</p>
+            <input  class="settings__ticking-volume-input" value="50" >
+        </div>
+
+
+        <div class="settings__accept">
+            <button class="settings__accept-button">Accept </button>
+        </div>
+
+
+
+
+
+    </section>
 </div>
 
 
