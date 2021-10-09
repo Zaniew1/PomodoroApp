@@ -39,28 +39,28 @@ const loadLocalStorageOfSettings = ()=> {
     let pomodoroMinValue = document.querySelector(".settings__time-of-clock-input--pomodoro").value;
     let shortMinValue = document.querySelector(".settings__time-of-clock-input--short").value
     let longMinValue = document.querySelector(".settings__time-of-clock-input--long").value
-    let buttonActive = false;
+    let buttonActive = false; // button used for timer
     let clockMinutesPomodoros = pomodoroMinValue - 1 ;
     let clockMinutesShort = shortMinValue - 1 ;
     let clockMinutesLong = longMinValue - 1;
     let clockSecondsPomodoros = 60;
     let clockSecondsShort = 60;
     let clockSecondsLong = 60;
-    let idIntervalPomodoroClock; // ID iNTERWAŁU TIMERA
-    let idIntervalShortClock; // ID iNTERWAŁU TIMERA
-    let idIntervalLongClock; // ID iNTERWAŁU TIMERA
+    let idIntervalPomodoroClock; // ID timer interval
+    let idIntervalShortClock; // ID timer interval
+    let idIntervalLongClock; // ID timer interval
 
     let longBreakActivate = 0;
 //Sounds
-    const ticking = new Audio('ticking.m4a');
-    const alarm = new Audio('Alarm.wav');
-    const cock = new Audio('Cock.wav');
-    const arcade = new Audio('Arcade.wav');
-    const whistle = new Audio('Whistle.wav');
-    const phone = new Audio('Phone.wav');
-    const slowTicking = new Audio('slowTicking.mp3');
-    const fastTicking = new Audio('fastTicking.m4a');
-    const startPomodoroClick = new Audio('startPomodoroClick.mp3')
+    const ticking = new Audio('sounds/ticking.m4a');
+    const alarm = new Audio('sounds/Alarm.wav');
+    const cock = new Audio('sounds/Cock.wav');
+    const arcade = new Audio('sounds/Arcade.wav');
+    const whistle = new Audio('sounds/Whistle.wav');
+    const phone = new Audio('sounds/Phone.wav');
+    const slowTicking = new Audio('sounds/slowTicking.mp3');
+    const fastTicking = new Audio('sounds/fastTicking.m4a');
+    const startPomodoroClick = new Audio('sounds/startPomodoroClick.mp3')
     const alarmSoundsSelect = document.querySelector('.settings__alarm-sound-select')
     const tickingSoundsSelect = document.querySelector('.settings__ticking-sound-select')
 // Short sound after finishing task or break
@@ -109,20 +109,20 @@ const loadLocalStorageOfSettings = ()=> {
         slowTicking.pause();
         fastTicking.pause();
     }
-// FUNKCJA ZMIENIAJĄCA  KOLOR PRZYCISKÓW OPCJI POMODORO, KRÓTKA PRZERRWA, DŁUGA PRZERWA
+//  function changing color of buttons(pomodoro, shortbreak, longbreak)
     const removeColorFromClockButtons = function(){
         pomodoroButton.classList.remove('clock__button--active');
         shortBreakButton.classList.remove('clock__button--active');
         longBreakButton.classList.remove('clock__button--active');
         turningOffSoundFunction();
     }
-// FUNKCJA ZATRZYMUJĄCA INTERVAL    
+// FUNCTION STOPING INTERVALS   
     const clearAllIntervals = ()=>{
         clearInterval(idIntervalPomodoroClock)
         clearInterval(idIntervalLongClock)
         clearInterval(idIntervalShortClock)
     }
-// FUNKCJA STARTUJĄCA TIMER
+// FUNCTION STARTING INTERVALS 
     const startTimerAfterStop = ()=>{
         if(pomodoroButton.classList.contains('clock__button--active')){
             idIntervalPomodoroClock = setInterval(pomodoroTimer, 1000)
@@ -134,7 +134,7 @@ const loadLocalStorageOfSettings = ()=> {
             idIntervalLongClock = setInterval(longTimer, 1000)
         }
     }
-// FUNKCJA DODAJĄCA ZERO JEŚLI TIMER BĘDZIE PONIŻEJ 10 
+// FUNCTION ADDING ZERO IF TIMER IS BELOW TEN
     const addingZeroToTimerWhileBelowTen = (seconds, minutes ) =>{
         if(seconds <= 9){
             clockSec.textContent = "0" + seconds; 
@@ -149,31 +149,31 @@ const loadLocalStorageOfSettings = ()=> {
             clockMin.textContent = minutes;
         }
     } 
-//FUNKCJA ZMIENIAJĄCA COLOR startButton 
+//FUNCTION CHANGING COLOR startButton 
     const removeColorFromStartButton = ()=>{
         startButton.classList.remove('clock__start--orange');
         startButton.classList.remove('clock__start--blue');
         startButton.classList.remove('clock__start--green');
     }
-//FUNKCJA ZMIENIAJĄCA BGC SEKCJI TIMER 
+//FUNCTION CHANGING BGC OF SECTION TIMER 
     const removeBgcOfTimer =()=>{
         timer.classList.remove('timer--orange');
         timer.classList.remove('timer--blue');
         timer.classList.remove('timer--green');
     }
-// FUNKCJA ZMIENIAJĄCA BGC
+// FUNCTION CHANGING BGC
     const changeBgcColor = function(){
         document.body.classList.remove('orange');
         document.body.classList.remove('blue');
         document.body.classList.remove('green');
     }
-//FUNKCJA ZMIENIAJĄCA KOLOR SEKCJI INFO
+//FUNCTION CHANGING COLOR OF SECTION INFO
     const changeInfoColor = ()=>{
         infoSection.classList.remove('info--orange') ;   
         infoSection.classList.remove('info--green') ;   
         infoSection.classList.remove('info--blue') ;   
     }
-// FUNKCJA TIMER POMODORO
+// FUNCTION POMODORO
     const pomodoroFunction = ()=>{
         let pomodoroMinValue = document.querySelector(".settings__time-of-clock-input--pomodoro").value;
         clockSecondsPomodoros = 60;
@@ -198,7 +198,7 @@ const loadLocalStorageOfSettings = ()=> {
     }
     pomodoroFunction(); // Wywołanie na początku funkcji, pozwala na uniknięcie bugu z resetowaniem 
     pomodoroButton.addEventListener('click', pomodoroFunction)
-// FUNKCJA TIMER KRÓTKA PRZERWA
+// FUNCTION  SHORT BREAK
     const shortBreakFunction = ()=>{
         let shortMinValue = document.querySelector(".settings__time-of-clock-input--short").value
         clockSecondsShort = 60;
@@ -222,7 +222,7 @@ const loadLocalStorageOfSettings = ()=> {
         reset.classList.remove('reset--visible');
     }
     shortBreakButton.addEventListener('click', shortBreakFunction )
-// FUNKCJA TIMER DŁUGA PRZERWA
+// FUNCTION LONG BREAK
     const longBreakFunction =  ()=>{
         let longMinValue = document.querySelector(".settings__time-of-clock-input--long").value
         clockSecondsLong = 60;
@@ -246,7 +246,7 @@ const loadLocalStorageOfSettings = ()=> {
         reset.classList.remove('reset--visible');
     }
     longBreakButton.addEventListener('click', longBreakFunction) 
-// FUNKCJA DOTYCZĄCA SAMEGO LICZNIKA POMODORO
+// FUNCTION TIMER POMODORO
     const pomodoroTimer = ()=>{ 
         let longIntervalInput = document.querySelector('.settings__long-interval-input').value;
         clockSecondsPomodoros--;
@@ -256,7 +256,7 @@ const loadLocalStorageOfSettings = ()=> {
             if(clockMinutesPomodoros === -1 ){
                 longBreakActivate++;
                 useSoundAfterFinish();
-                //Jeśli ma autoStart
+                //IF HAS AUTOSTART
                 if(autoStartBreaksBtn.classList.contains('settings__auto-breaks-accept--active')){
                     //longBreakActive to zmienna globalna liczona od zera, inkrementuje się kiedy pomodoroTimer się zakończy,
                     // longIntervalInput(long break interval) to wartość inputa w settings
@@ -271,7 +271,7 @@ const loadLocalStorageOfSettings = ()=> {
                         clockMinutesPomodoros = shortMinValue; 
                     }
                 }
-                //Jeśli nie ma autoStartu
+                //IF DOESNT HAVE AUTO START
                 else{
                     turningOffSoundFunction();
                     alert("Time is gone, it's time to rest");
@@ -283,7 +283,7 @@ const loadLocalStorageOfSettings = ()=> {
                     }
                 }
                 clockSecondsPomodoros = 0; 
-                //dodawanie i obliczanie skończonych zdań i czasu ukończenia zadań
+                // ADDING AND CALCULATING FINISHED TASKS AND THIER FINISH TIME
                 addingCompletedTasks();
                 calculateFinishedTasks();
                 calculatingEstimatedTimeToFinish();      
@@ -291,7 +291,7 @@ const loadLocalStorageOfSettings = ()=> {
         }
         addingZeroToTimerWhileBelowTen(clockSecondsPomodoros, clockMinutesPomodoros );
     };
-// FUNKCJA DOTYCZĄCA SAMEGO LICZNIKA SHORT BREAK
+// FUNCTION TIMER SHORT BREAK
     const shortTimer = ()=>{ 
         clockSecondsShort--;
         if(clockSecondsShort === 0){
@@ -300,7 +300,7 @@ const loadLocalStorageOfSettings = ()=> {
             if(clockMinutesShort === -1){
                 clockSecondsShort = 0;
                 clockMinutesShort = pomodoroMinValue;
-                //Jeśli ma autostart
+                //IF HAS AUTOSTART
                 if(autoStartPomodoroBtn.classList.contains('settings__auto-pomodoro-accept--active')){
                     pomodoroFunction();
                     startButtonFunction();
@@ -313,7 +313,7 @@ const loadLocalStorageOfSettings = ()=> {
         }
         addingZeroToTimerWhileBelowTen(clockSecondsShort, clockMinutesShort );         
     };
-// FUNKCJA DOTYCZĄCA SAMEGO LICZNIKA LONG BREAK
+// FUNCTION TIMER LONG BREAK
     const longTimer = ()=>{ 
         clockSecondsLong--;
         if(clockSecondsLong === 0){
@@ -336,7 +336,7 @@ const loadLocalStorageOfSettings = ()=> {
         addingZeroToTimerWhileBelowTen(clockSecondsLong, clockMinutesLong );            
     };
    
-// FUNKCJA STARTUJĄCA TIMER
+// START TIMER FUNCTION
     const startButtonFunction = () =>{
         startPomodoroClick.play();
         startPomodoroClick.volume = 0.1;
@@ -357,12 +357,12 @@ const loadLocalStorageOfSettings = ()=> {
     }
     startButton.addEventListener('click', startButtonFunction)
 
-// FUNKCJA RESETUJĄCA TIMER
+// RESET TIMER FUNCTION
     const resetButton = ()=>{
-        if(confirm("Czy jestes pewny że chcesz zakończyć rundę wcześniej ? ")){
+        if(confirm("Are u sure, you want to finish earlier ? ")){
             buttonActive = false;
             clearAllIntervals();
-            // JEŚLI ANULOWANE PODCZAS WYKONYWANIA ZADANIA, PRZEŁĄCZ NA ODPOCZYNEK
+            // JEŚLI ANULOWANE PODCZAS WYKONYWANIA ZADANIA, PRZEŁĄCZ NA ODPOCZYNEK IF CANCELED DURING TASK, SWITCH TO
             if ( pomodoroButton.classList.contains('clock__button--active')){
                 shortBreakFunction();
                 addingCompletedTasks();
@@ -379,7 +379,7 @@ const loadLocalStorageOfSettings = ()=> {
     }
     reset.addEventListener('click', resetButton)
 
-                    // TO DO LISTA
+                    // TO DO LIST
 // PONIŻEJ MOŻE WYSTĘPOWAĆ WIELOKROTNA DEKLARACJA liList, JEST TO POWIĄZANE ŻE W POSZCZEGÓLNYCH
 // FUNKCJACh LISTA TA MUSI BYĆ NA ŚWIEŻO POBIERANA ABY ZAWSZE SIĘ ZGADZAŁA LICZBA TYCH ELEMENTÓW
     const liList = [...document.querySelectorAll('.all__item')];
@@ -415,11 +415,11 @@ const loadLocalStorageOfSettings = ()=> {
     }
   
 
-// DODAJ ZADANIE PO NACIŚNIĘCIU DODAJ ZADANIE
+// ADD TASK FUNCTION
 addButton.addEventListener('click', ()=>{
     addButton.classList.add('button__wrapper--none');
     addSurvey.classList.remove('add__wrapper--none'); })
-// ANULUJ DODAWANIE ZADANIA 
+// CANCEL ADDING TASK FUNCTION
     cancelAddingTaskButton.addEventListener('click', ()=>{
         addButton.classList.remove('button__wrapper--none');
         addSurvey.classList.add('add__wrapper--none');
@@ -427,7 +427,7 @@ addButton.addEventListener('click', ()=>{
         addInputTasks.value = 1;
         noteInput.value = "";
     })
-// DODAWANIE I ODEJMOWANIE LICZBY (ILE ZAJMIE ZADANIE )
+//  ADDING OR SUBTRACTING NUMBER (HOW LONG TASK WILL TAKE)
     addInputTasks.value= numberOfTasks;
     addArrowUp.addEventListener('mousedown', ()=>{
         addArrowUp.classList.add('add__arrow--none'); })
@@ -453,7 +453,7 @@ addButton.addEventListener('click', ()=>{
             document.querySelector('.info').classList.add('info--active')
         }
     }
-// USUNIĘCIE WSZYSTKICH ZADAN
+// REMOVE ALL TASK FUNCTION
     const removeAllTasks = ()=> {
         allTasks.splice(0, allTasks.length)
         allEstimatedPomodoros.splice(0, allEstimatedPomodoros.length)
@@ -465,7 +465,7 @@ addButton.addEventListener('click', ()=>{
         calculatingEstimatedTimeToFinish();
     }
     clearAllTasksButton.addEventListener('click', removeAllTasks)
-// FUNKCJA WYŚWIETLAJĄCA ILOŚĆ UKOŃCZONYCH ZADAN
+// SHOW NUMBER OF FINISHED TASKS FUNCTION
 // TWORZONY JEST TU NOWY DATASET KTÓRY NA STARCIE ZAWSZE JEST 0, WRAZ Z UKOŃCZENIEM ZADANIA, ZWIĘKSZA SIĘ 
     const addingCompletedTasks = ()=>{
         const liList = [...document.querySelectorAll('.all__item')];
@@ -477,7 +477,7 @@ addButton.addEventListener('click', ()=>{
             }   
         })
     }
-// FUNKCJA ZERUJĄCA NUMER WYŚWIETLANY JAKO ILOŚĆ UKOŃCZONYCH ZADAN
+//  RESET NUMBER OF FINISHED TASKS 
     const resetingCompletedTasks = ()=>{
         const liList = [...document.querySelectorAll('.all__item')];
         liList.forEach(task=>{
@@ -487,20 +487,20 @@ addButton.addEventListener('click', ()=>{
         infoComplete.textContent = "0";
     }
     clearCompletedTasksButton.addEventListener('click', resetingCompletedTasks)
-// FUNKCJA POKAZUJĄCA ILE ZADAŃ (i ICH długość (KAŻDE ZADANIE MA INNĄ)) ZOSTAŁO DO KOŃCA
+//  CALULATE ESTIMATED TIME TILL FINISH
     const setEstimateTime = ()=>{
         let sum = 0;
         for(let i = 0; i < allEstimatedPomodoros.length; i++){sum = sum + allEstimatedPomodoros[i]}
         infoEstimate.textContent = String(sum);  
     }
-// FUNKCJA WYŚWIETLAJĄCA ILOŚĆ UKOŃCZONYCH ZADAŃ
+// SHOW HOW MANY FINISHED TASKS
     const calculateFinishedTasks = ()=>{
         let sum = 0;
         const tasksDone = [...document.querySelectorAll('.all__number-of-tasks-done')];
         tasksDone.forEach(task => sum = sum +  Number(task.textContent))
         infoComplete.textContent = String(sum);  
     }
-// ODŚWIEŻENIE LISTY UL
+// RENDER UL LIST
     const renderLiList = ()=>{
         ulList.innerHTML = "";
         allTasks.forEach((allItem, key)=> {
@@ -513,14 +513,14 @@ addButton.addEventListener('click', ()=>{
         calculatingEstimatedTimeToFinish();
         showSectionInfo();
     }
-// USUWANIE POJEDYNCZEGO ZADANIA 
+// DELETE SINGLE TASK
     const deleteSingleTask = (e)=>{
         const index = e.target.closest(".all__item").dataset.key;
         allTasks.splice(index, 1);
         allEstimatedPomodoros.splice(index, 1);
         renderLiList();  
     }
-// TWORZENIE NOWEGO LI PO NACIŚNIĘCIU 'DODAJ ZADANIE'
+// CREATE NEW LI AFTER PRESSING ADD TASK
     const createNewLi = (e)=>{
         const liText = addWhatText.value;
         if(liText ==="")return;
@@ -554,7 +554,7 @@ addButton.addEventListener('click', ()=>{
         liItem.querySelector(".all__delete").addEventListener('click', deleteSingleTask);
         liItem.querySelector(".all__edit").addEventListener('click', editSingleTask);
     } 
-// FUNKCJA POKAZUJĄCA NOTATKĘ (OPCJONALNĄ)
+// SHOW NOTE (OPTIONAL)
     const showNoteOnTask = ()=>{
         const liList = [...document.querySelectorAll('.all__item')];
         liList.forEach((task, index)=>{
@@ -563,7 +563,7 @@ addButton.addEventListener('click', ()=>{
             } 
         })
     }
-// MOZLIWOŚĆ ZAZNACZANIA CHECKMARKA W KAZDYM ZADANIU  
+// POSIBILITY OF CHECKING CHECKMARK FUCNTION
     const checkCheckMark = ()=>{
         let flag = false;
         const checkIcon = [...document.querySelectorAll('.all__icon')];
@@ -586,13 +586,13 @@ addButton.addEventListener('click', ()=>{
             })
         })
     }
-// FUNKCJA USUWAJĄCA BORDER Z ZADANIA, BĘDZIE WYORZYSTANA W FUNKCJI givingBorderToFirstTask
+// REMOVE BORDER FROM LI ITEM
     const removeBorderLiItem = ()=>{
         [...document.querySelectorAll('.all__item')].forEach(liItem =>{
             liItem.classList.remove('all__item--active');
         })
     }
-//FUNKCJA DAJĄCA BORDER PIERWSZEMU TASKOWI, ORAZ NADAJE NAZWĘ TASKA DO BIEŻĄCEGO TASKA(CURRENT__TASK)
+//GIVE BORDER FOR FIRST LI ITEM, AND GIVE NAME TO CURRENT__TASK
     const givingBorderToFirstTask = ()=>{
         const liFirstItem = document.querySelector('.all__item');
         if(ulList.innerHTML !== ""){
