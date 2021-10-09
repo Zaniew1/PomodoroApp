@@ -26,7 +26,6 @@ const loadLocalStorageOfSettings = ()=> {
     if(localStorage.length !== 0){
         loadLocalStorageOfSettings();
     }
-
     const clockMin = document.querySelector('.clock__minutes');
     const clockSec = document.querySelector('.clock__seconds');
     const pomodoroButton = document.querySelector('.clock__one');
@@ -41,14 +40,12 @@ const loadLocalStorageOfSettings = ()=> {
     let shortMinValue = document.querySelector(".settings__time-of-clock-input--short").value
     let longMinValue = document.querySelector(".settings__time-of-clock-input--long").value
     let buttonActive = false;
-   
     let clockMinutesPomodoros = pomodoroMinValue - 1 ;
     let clockMinutesShort = shortMinValue - 1 ;
     let clockMinutesLong = longMinValue - 1;
     let clockSecondsPomodoros = 60;
     let clockSecondsShort = 60;
     let clockSecondsLong = 60;
-
     let idIntervalPomodoroClock; // ID iNTERWAŁU TIMERA
     let idIntervalShortClock; // ID iNTERWAŁU TIMERA
     let idIntervalLongClock; // ID iNTERWAŁU TIMERA
@@ -112,7 +109,6 @@ const loadLocalStorageOfSettings = ()=> {
         slowTicking.pause();
         fastTicking.pause();
     }
-
 // FUNKCJA ZMIENIAJĄCA  KOLOR PRZYCISKÓW OPCJI POMODORO, KRÓTKA PRZERRWA, DŁUGA PRZERWA
     const removeColorFromClockButtons = function(){
         pomodoroButton.classList.remove('clock__button--active');
@@ -196,7 +192,7 @@ const loadLocalStorageOfSettings = ()=> {
         timer.classList.add('timer--orange');
         startButton.classList.add('clock__start--orange');
         startButton.textContent = "Start";
-        taskText.textContent = "Czas na pracę !";
+        taskText.textContent = "Time to work !";
         buttonActive = false;
         reset.classList.remove('reset--visible');
     }
@@ -221,7 +217,7 @@ const loadLocalStorageOfSettings = ()=> {
         startButton.classList.add('clock__start--blue');
         timer.classList.add('timer--blue');
         startButton.textContent = "Start"
-        taskText.textContent = "Czas na odpoczynek !";
+        taskText.textContent = "Time to rest !";
         buttonActive = false;
         reset.classList.remove('reset--visible');
     }
@@ -245,7 +241,7 @@ const loadLocalStorageOfSettings = ()=> {
         startButton.classList.add('clock__start--green');
         timer.classList.add('timer--green');
         startButton.textContent = "Start"
-        taskText.textContent = "Czas na odpoczynek !";
+        taskText.textContent = "Time to rest !";
         buttonActive = false;
         reset.classList.remove('reset--visible');
     }
@@ -278,8 +274,7 @@ const loadLocalStorageOfSettings = ()=> {
                 //Jeśli nie ma autoStartu
                 else{
                     turningOffSoundFunction();
-                    alert('Czas się skończył, czas trochę odpocząć');
-
+                    alert("Time is gone, it's time to rest");
                     shortBreakFunction();
                     clockMinutesPomodoros = shortMinValue;  
                     if(longBreakActivate%longIntervalInput == 0 ){
@@ -291,8 +286,7 @@ const loadLocalStorageOfSettings = ()=> {
                 //dodawanie i obliczanie skończonych zdań i czasu ukończenia zadań
                 addingCompletedTasks();
                 calculateFinishedTasks();
-                calculatingEstimatedTimeToFinish();
-                    
+                calculatingEstimatedTimeToFinish();      
             }
         }
         addingZeroToTimerWhileBelowTen(clockSecondsPomodoros, clockMinutesPomodoros );
@@ -312,7 +306,7 @@ const loadLocalStorageOfSettings = ()=> {
                     startButtonFunction();
                 }
                 else{
-                    alert('Czas się skończył, czas trochę popracować') 
+                    alert("Time is gone, it's time to work") 
                     pomodoroFunction();
                 }   
             }
@@ -334,7 +328,7 @@ const loadLocalStorageOfSettings = ()=> {
                     startButtonFunction();
                 }
                 else{
-                    alert('Czas się skończył, czas trochę popracować') 
+                    alert("Time is gone, it's time to work") 
                     pomodoroFunction();
                 }     
             }
@@ -369,7 +363,7 @@ const loadLocalStorageOfSettings = ()=> {
             buttonActive = false;
             clearAllIntervals();
             // JEŚLI ANULOWANE PODCZAS WYKONYWANIA ZADANIA, PRZEŁĄCZ NA ODPOCZYNEK
-            if ( taskText.textContent == "Czas na pracę !"){
+            if ( pomodoroButton.classList.contains('clock__button--active')){
                 shortBreakFunction();
                 addingCompletedTasks();
                 calculateFinishedTasks(); 
@@ -413,21 +407,18 @@ const loadLocalStorageOfSettings = ()=> {
     let numberOfTasks = 1;
     let completedTasksInTotal = 0;
     
-  
-
     const saveLocalStorageOfToDoList = ()=>{
         localStorage.setItem('estimatedPomodoros', allEstimatedPomodoros);
     }
     const loadLocalStorageOfToDoList = ()=>{
   
     }
-    loadLocalStorageOfToDoList();
+  
 
 // DODAJ ZADANIE PO NACIŚNIĘCIU DODAJ ZADANIE
 addButton.addEventListener('click', ()=>{
     addButton.classList.add('button__wrapper--none');
     addSurvey.classList.remove('add__wrapper--none'); })
-    
 // ANULUJ DODAWANIE ZADANIA 
     cancelAddingTaskButton.addEventListener('click', ()=>{
         addButton.classList.remove('button__wrapper--none');
@@ -636,16 +627,8 @@ addButton.addEventListener('click', ()=>{
         })}
         clearFinishedTasks.addEventListener('click', deletingCheckedTasks)
 //FUNKCJA ROZWIJAJĄCA MENU DOTYCZĄCA WSZYSTKICH ZADAŃ
-    let taskMenuFlag = false; 
     const allOptionsWithTasks = ()=>{
-            if(!taskMenuFlag){
-                taskMenuFlag = !taskMenuFlag
-                tasksOptionsWrapper.classList.remove("tasks__options-wrapper--none");
-            }
-            else{
-                taskMenuFlag = !taskMenuFlag
-                tasksOptionsWrapper.classList.add("tasks__options-wrapper--none");
-            } 
+        tasksOptionsWrapper.classList.toggle("tasks__options-wrapper--none");
     }
     taskOptions.addEventListener('click', allOptionsWithTasks)
 //FUNKCJA OBLICZAJĄCA KIEDY ZAKOŃCZYMY WSZYSTKIE ZADANIA
@@ -710,27 +693,11 @@ addButton.addEventListener('click', ()=>{
 // FUNKCJA ZAZNACZĄJĄCA BUTON I ZMIENIAJĄCA JEGO KOLOR PRZY AUTOMATYCZNYM ZACZYNANIU PRZERW I POMODORO
     const autoStartBreaksBtn = document.querySelector('.settings__auto-breaks-accept');
     const autoStartPomodoroBtn = document.querySelector('.settings__auto-pomodoro-accept');
-    let flagOfChangeColorAutoStartBreak = false;
     autoStartBreaksBtn.addEventListener('click', ()=>{
-        if(!flagOfChangeColorAutoStartBreak){
-            autoStartBreaksBtn.classList.add('settings__auto-breaks-accept--active');
-            flagOfChangeColorAutoStartBreak = !flagOfChangeColorAutoStartBreak;
-        }
-        else{
-            autoStartBreaksBtn.classList.remove('settings__auto-breaks-accept--active');
-            flagOfChangeColorAutoStartBreak = !flagOfChangeColorAutoStartBreak;
-        }
+        autoStartBreaksBtn.classList.toggle('settings__auto-breaks-accept--active');
     })
-    let flagOfChangeColorAutoStartPomodoro = false;
     autoStartPomodoroBtn.addEventListener('click', ()=>{
-        if(!flagOfChangeColorAutoStartPomodoro){
-            autoStartPomodoroBtn.classList.add('settings__auto-pomodoro-accept--active');
-            flagOfChangeColorAutoStartPomodoro = !flagOfChangeColorAutoStartPomodoro;
-        }
-        else{
-            autoStartPomodoroBtn.classList.remove('settings__auto-pomodoro-accept--active');
-            flagOfChangeColorAutoStartPomodoro = !flagOfChangeColorAutoStartPomodoro;
-        }
+        autoStartPomodoroBtn.classList.toggle('settings__auto-pomodoro-accept--active');
     })
 
     
