@@ -1,0 +1,33 @@
+.info
+    @include flex(center, center, column)
+    width: 95%
+    background-color: $orange-color-lighter
+    color: $white-color-font
+    margin-bottom: 3vh
+    transition: 0.3s ease-in-out
+.info--active
+    display: none
+.info--orange
+    background-color: $orange-color-lighter
+.info--green
+    background-color: $green-color-lighter
+.info--blue
+    background-color: $blue-color-lighter
+    .info__wrapper--one
+        @include flex(center, center, row)
+        width: 100%
+        margin: 20px auto
+        .info__estimate-text
+            padding-right: 5px
+        .info__estimate
+            padding-right: 15px
+        .info__complete-text
+            padding-right: 5px
+        .info__complete
+    .info__wrapper--two
+        @include flex(center, center, row)
+        width: 100%
+        margin: 20px auto
+        .info__text
+        .info__time
+            padding-left: 5px

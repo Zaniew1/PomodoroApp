@@ -1,0 +1,44 @@
+@mixin flex($just, $ali, $dir)
+    display: flex
+    justify-content: $just
+    align-items: $ali
+    flex-direction: $dir
+@mixin clock
+    border: none
+    outline: none
+    background-color: $white-color-font
+    border-radius: 5px
+    text-align: center
+    letter-spacing: 1px
+    font-weight: bold
+    font-family: arial
+    cursor: pointer
+
+@mixin settings-input
+    width: 70px
+    height: 40px
+    background-color: $grey-color
+    border-radius: 5px
+    border: none
+    outline: none
+    opacity: 0.7
+    padding: 10px
+    font-size: 16px
+    font-weight: 300
+@mixin settings-rounded-input
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    width: 70px
+    background-color: $grey-color
+    height: 40px
+    border-radius: 20px
+@mixin settings-switch
+    background-color: $white-color-font
+    border-radius: 50%
+    width: 35px
+    height: 35px
+    margin: 0 2.5px
+@mixin settings-switch-active
+    justify-content: flex-end
+    background-color: rgba(132, 199, 51, 0.8)

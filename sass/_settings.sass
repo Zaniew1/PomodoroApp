@@ -1,0 +1,136 @@
+.settings
+    box-sizing: border-box
+    position: absolute
+    display: none
+    opacity: 0
+    top: 10%
+    left: 50%
+    transform: translate(-50%,0)
+    background-color: $white-color-font
+    width: 95%
+    flex-direction: column
+    padding: 10px 25px
+    border-radius: 10px
+    color: #555
+    z-index: 9
+    margin-bottom: 50px
+    font-size: 14px
+    .settings--active
+        opacity: 1
+        display: flex
+    .settings__header
+        display: flex
+        justify-content: space-between
+        width: 95%
+        border-bottom: 1px solid rgba(182, 165, 166, 0.2)
+        padding: 10px 0
+        align-items: center
+        font-size: 16px
+        .settings__header-text
+            font-family: arial
+            text-transform: uppercase
+            color: $grey-color
+        .settings__escape
+            .settings__escape-image
+                font-size: 26px
+                color: $grey-color
+    .settings__time
+        display: flex
+        flex-grow: 1
+        flex-wrap: wrap
+        width: 95%
+        border-bottom: 1px solid rgba(182, 165, 166, 0.2)
+        .settings__time-text
+            width: 90%
+            padding: 15px 0 0 0
+        .settings__time-of-clock-wrap
+            display: flex
+            justify-content: space-between
+            padding: 10px 0
+            .settings__time-of-clock
+                width: 30%
+                padding: 5px 5px 10px 5px
+                .settings__time-of-clock-text
+                    font-size: 11px
+                    color: $grey-color
+                .settings__time-of-clock-input
+                    @include settings-input
+                    width: 90%
+    .settings__auto-breaks
+        @include flex(space-between, center, row)
+        padding: 20px 0
+        border-bottom: 1px solid rgba(182, 165, 166, 0.2)
+        .settings__auto-breaks-text
+        .settings__auto-breaks-accept
+            @include settings-rounded-input
+        .settings__auto-breaks-accept--active
+            @include settings-switch-active
+            .settings__auto-breaks-accept-rounded
+                @include settings-switch
+    .settings__auto-pomodoros
+        @include flex(space-between, center, row)
+        padding: 20px 0
+        border-bottom: 1px solid rgba(182, 165, 166, 0.2)
+        .settings__auto-pomodoro-text
+        .settings__auto-pomodoro-accept
+            @include settings-rounded-input
+        .settings__auto-pomodoro-accept--active
+            @include settings-switch-active
+            .settings__auto-pomodoros-accept-rounded
+                @include settings-switch
+    .settings__long-interval
+        @include flex(space-between, center, row)
+        padding: 20px 0
+        border-bottom: 1px solid rgba(182, 165, 166, 0.2)
+        .settings__long-interval-text
+        .settings__long-interval-input
+            @include settings-input
+    .settings__alarm-sound
+        @include flex(space-between, center, row)
+        padding: 20px 0
+        border-bottom: 1px solid rgba(182, 165, 166, 0.2)
+        .settings__alarm-sound-text
+        .settings__alarm-sound-wrapper
+            .settings__alarm-sound-select
+               @include settings-input
+                .settings__alarm-sound-option
+                    color: #666
+                    font-size: 12px
+    .settings__alarm-volume
+        @include flex(space-between, center, row)
+        padding: 20px 0
+        border-bottom: 1px solid rgba(182, 165, 166, 0.2)
+        .settings__alarm-volume-text
+        .settings__alarm-volume-input
+            @include settings-input
+    .settings__ticking-sound
+        @include flex(space-between,center,row)
+        padding: 20px 0
+        border-bottom: 1px solid rgba(182, 165, 166, 0.2)
+        .settings__ticking-sound-text
+        .settings__ticking-sound-wrapper
+            .settings__ticking-sound-select
+                @include settings-input
+                .settings__ticking-sound-option
+                    color: #666
+                    font-size: 12px
+    .settings__ticking-volume
+        @include flex(space-between,center,row)
+        padding: 20px 0
+        border-bottom: 1px solid rgba(182, 165, 166, 0.2)
+        .settings__ticking-volume-text
+        .settings__ticking-volume-input
+            @include settings-input
+    .settings__accept
+        display: flex
+        justify-content: end
+        padding: 15px
+        .settings__accept-button
+            width: 80px
+            height: 40px
+            border: none
+            outline: none
+            color: #fff
+            background-color: #222
+            border-radius: 5px
+            padding: 8 12px

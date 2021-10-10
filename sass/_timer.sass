@@ -1,0 +1,64 @@
+.timer
+    @include flex(center, center, column)
+    margin: 5vh auto
+    width: 95%
+    transition: 0.4s ease-in-out
+    border-radius: 15px
+    .timer--orange
+        background-color: $orange-color-lighter
+    .timer--green
+        background-color: $green-color-lighter
+    .timer--blue
+       background-color: $blue-color-lighter
+    .clock__options
+        @include flex(center, center, row)
+        width: 95%
+        .clock__button
+            @include clock
+            margin-top: 3vh
+            background-color: transparent
+            color: $white-color-font
+            width: 33%
+            height: 40px
+            font-size: 12px
+        .clock__button--active
+            background-color: rgba(	51, 51, 51, 0.4)
+        .clock__three
+            margin-right: 0
+    .clock
+        @include flex(center, center, row)
+        font-family: arial
+        margin: 3vh auto
+        color: $white-color
+        font-size: 96px
+        font-weight: bold
+    .button__reset--wrapper
+        @include flex(center, center, row)
+        width: 100%
+        position: relative
+        .clock__start
+            @include clock
+            width: 50%
+            height: 60px
+            margin: 3vh auto 3vh auto
+            font-size: 30px
+        .clock__start--orange
+            color: $orange-color-lighter
+        .clock__start--blue
+            color: $blue-color-lighter
+        .clock__start--green
+            color: $green-color-lighter
+        .reset
+            display: none
+            opacity: 0.6
+            cursor: pointer
+            position: absolute
+            right: 10%
+            &:hover
+                opacity: 1
+            .reset--visible
+                display: block
+            .reset__icon
+                color: $white-color-font
+                font-size: 34px
+            

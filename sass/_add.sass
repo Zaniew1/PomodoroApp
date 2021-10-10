@@ -1,0 +1,90 @@
+.add
+    @include flex(center,center,row)
+    width: 100%
+    margin: 20px auto
+    .add__wrapper
+        @include flex(center,start,column)
+        width: 95%
+        height: 100%
+        border-radius: 10px
+        margin: 20px auto
+        background-color: $white-color-font
+    .add__wrapper--none
+        display: none
+        .add__what
+            border: none
+            outline: none
+            background-color: transparent
+            height: 80px
+            font-size: 24px
+            color: #aaa
+            width: 80%
+            padding-left: 15px
+            &::placeholder
+                color: $grey-color
+                opacity: 0.7
+        .add__estimation
+            font-size: 14px
+            color: #333
+            height: 25px
+            padding-left: 15px
+        .add__estimate--wrapper
+            .add__number-of-pomodoros
+                width: 20%
+                background-color: $grey-color
+                height: 30px
+                border:  none
+                outline: none
+                border-radius: 5px
+                margin: 10px 10px 20px 15px
+                padding: 0 15px
+            .add__arrow
+                height: 30px
+                width: 35px
+                background-color: transparent
+                border: 1px solid $grey-color
+                box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.75)
+                cursor: pointer
+            .add__arrow--none
+                box-shadow: none
+                transform: translate(0, 2px)
+                .add__arrow-icon
+        .add__note
+            background-color: $grey-color
+            border-radius: 5px
+            min-height: 70px
+            border: none
+            min-width: 80%
+            margin: 10px 0 15px 15px
+            padding: 10px 15px
+            resize: vertical
+        .add__cancel--wrapper
+            @include flex(flex-end,center,row)
+            width: 100%
+            background-color: $grey-color
+            height: 80px
+            border-bottom-left-radius: 10px
+            border-bottom-right-radius: 10px
+            .add__cancel
+                width: 30%
+                height: 100%
+                border: none
+                outline: none
+                font-size: 14px
+                color: $dark-color-font
+                background-color: transparent
+                margin-right: 10px
+                cursor: pointer
+            .add__save
+                border: none
+                outline: none
+                background-color: $dark-color-font
+                color: #fff
+                font-size: 14px
+                width: 80px
+                height: 40px
+                margin-right: 15px
+                border-radius: 5px
+                cursor: pointer
+            .add__save--active
+                background-color: #555
