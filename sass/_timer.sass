@@ -10,6 +10,7 @@
         margin: 10vh auto 10vh auto
     @include mq-land(tablet)
         width: 80%
+        margin: 4vh auto 4vh auto
     .clock__options
         @include flex(center, center, row)
         width: 95%
@@ -33,7 +34,7 @@
             margin-right: 0
     .clock
         @include flex(center, center, row)
-        font-family: arial
+        
         margin: 3vh auto
         color: $white-color-font
         font-size: 96px
@@ -44,6 +45,10 @@
         @include mq-land(tablet)
             font-size: 120px
             margin: 1vh auto
+        .clock__minutes
+            font-family: 'Bebas Neue', cursive
+        .clock__seconds
+            font-family: 'Bebas Neue', cursive
     .button__reset--wrapper
         @include flex(center, center, row)
         width: 100%

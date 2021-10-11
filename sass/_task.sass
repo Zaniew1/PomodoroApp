@@ -197,6 +197,10 @@
         opacity: 0.1
         cursor: pointer
         margin: 3vh auto 10vh auto
+        @include mq(tablet)
+            margin: 2vh auto 4vh auto
+        @include mq-land(tablet)
+            margin: 2vh auto 4vh auto
         &:hover
             opacity: 0.2
         .add__task 

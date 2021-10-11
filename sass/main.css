@@ -1,5 +1,5 @@
 * {
-  font-family: arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: bold;
   margin: 0;
   -webkit-box-sizing: border-box;
@@ -272,6 +272,7 @@ body {
 @media only screen and (orientation: landscape) and (min-width: 768px) {
   .timer {
     width: 80%;
+    margin: 4vh auto 4vh auto;
   }
 }
 
@@ -306,7 +307,6 @@ body {
   text-align: center;
   letter-spacing: 1px;
   font-weight: bold;
-  font-family: arial;
   cursor: pointer;
   margin-top: 3vh;
   background-color: transparent;
@@ -350,7 +350,6 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  font-family: arial;
   margin: 3vh auto;
   color: #fff;
   font-size: 96px;
@@ -369,6 +368,14 @@ body {
     font-size: 120px;
     margin: 1vh auto;
   }
+}
+
+.timer .clock .clock__minutes {
+  font-family: 'Bebas Neue', cursive;
+}
+
+.timer .clock .clock__seconds {
+  font-family: 'Bebas Neue', cursive;
 }
 
 .timer .button__reset--wrapper {
@@ -397,7 +404,6 @@ body {
   text-align: center;
   letter-spacing: 1px;
   font-weight: bold;
-  font-family: arial;
   cursor: pointer;
   width: 50%;
   height: 60px;
@@ -963,6 +969,18 @@ body {
   margin: 3vh auto 10vh auto;
 }
 
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .task .button__wrapper {
+    margin: 2vh auto 4vh auto;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .task .button__wrapper {
+    margin: 2vh auto 4vh auto;
+  }
+}
+
 .task .button__wrapper:hover {
   opacity: 0.2;
 }
@@ -1042,9 +1060,9 @@ body {
   outline: none;
   background-color: transparent;
   height: 80px;
-  font-size: 24px;
+  font-size: 20px;
   color: #aaa;
-  width: 80%;
+  width: 90%;
   padding-left: 15px;
 }
 
@@ -1066,6 +1084,12 @@ body {
 .add .add__wrapper .add__what::placeholder {
   color: #ccc;
   opacity: 0.7;
+}
+
+@media only screen and (orientation: landscape) and (min-width: 1024px) {
+  .add .add__wrapper .add__what {
+    font-size: 24px;
+  }
 }
 
 .add .add__wrapper .add__estimation {
@@ -1488,7 +1512,6 @@ body {
 }
 
 .settings--active .settings__header .settings__header-text {
-  font-family: arial;
   text-transform: uppercase;
   color: #ccc;
 }

@@ -25,10 +25,7 @@
             document.querySelector('.settings__ticking-volume-input').value = localStorage.getItem('tickingSoundsVolume')
         }
     }
-
-    
-        loadLocalStorageOfSettings();
-    
+    loadLocalStorageOfSettings();
     const clockMin = document.querySelector('.clock__minutes');
     const clockSec = document.querySelector('.clock__seconds');
     const pomodoroButton = document.querySelector('.clock__one');
@@ -409,15 +406,37 @@
     const allEstimatedPomodoros = [];
     let numberOfTasks = 1;
     let completedTasksInTotal = 0;
+
+
+
+
+
+
+    // LOCAL STORAGE OF UL LIST
+
+
+
     
     const saveLocalStorageOfToDoList = ()=>{
         localStorage.setItem('estimatedPomodoros', allEstimatedPomodoros);
-
+        localStorage.setItem('estimatedPomodoros', JSON.stringify(allTasks));
     }
     const loadLocalStorageOfToDoList = ()=>{
-  
+        allTasks = JSON.parse( localStorage.getItem('allTasks') || '[]');
     }
   
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ADD TASK FUNCTION
 addButton.addEventListener('click', ()=>{
@@ -550,14 +569,6 @@ addButton.addEventListener('click', ()=>{
                 ${noteInput.value}
             </p>
         </div>`;
-        const newli = {
-            text: liText,
-            numberOfTasks: addInputTasks.value,
-            note: noteInput.value,
-            dataKey: e.target.liItem.dataset.key,
-            dataCompletedTask: e.target.liItem.dataset.completedTask
-
-        }
         allTasks.push(liItem);
         allEstimatedPomodoros.push(Number(addInputTasks.value))
         addWhatText.value ="";
@@ -566,6 +577,10 @@ addButton.addEventListener('click', ()=>{
         liItem.querySelector(".all__delete").addEventListener('click', deleteSingleTask);
         liItem.querySelector(".all__edit").addEventListener('click', editSingleTask);
     } 
+
+
+
+
 // SHOW NOTE (OPTIONAL)
     const showNoteOnTask = ()=>{
         const liList = [...document.querySelectorAll('.all__item')];
