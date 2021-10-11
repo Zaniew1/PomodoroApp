@@ -11,21 +11,24 @@
     localStorage.setItem('alarmSoundsVolume', document.querySelector('.settings__alarm-volume-input').value)
     localStorage.setItem('tickingSoundsVolume', document.querySelector('.settings__ticking-volume-input').value)
 }
-const loadLocalStorageOfSettings = ()=> {
-    document.querySelector('.settings__time-of-clock-input--pomodoro').value = localStorage.getItem('pomodoroMinutes')
-    document.querySelector('.settings__time-of-clock-input--short').value = localStorage.getItem('shortBreakMinutes')
-    document.querySelector('.settings__time-of-clock-input--long').value = localStorage.getItem('longBreakMinutes')
-    document.querySelector('.settings__long-interval-input').value = localStorage.getItem('longBreakInterval')
-    document.querySelector('.settings__auto-breaks-accept').className =    localStorage.getItem('autoStartBreaks')
-    document.querySelector('.settings__auto-pomodoro-accept').className = localStorage.getItem('autoStartPomodoros')
-    document.querySelector('.settings__alarm-sound-select').selectedIndex = localStorage.getItem('alarmSoundsSelect')
-    document.querySelector('.settings__ticking-sound-select').selectedIndex = localStorage.getItem('tickingSoundsSelect')
-    document.querySelector('.settings__alarm-volume-input').value = localStorage.getItem('alarmSoundsVolume')
-    document.querySelector('.settings__ticking-volume-input').value = localStorage.getItem('tickingSoundsVolume')
+    const loadLocalStorageOfSettings = ()=> {
+        if(localStorage.length !== 0){
+            document.querySelector('.settings__time-of-clock-input--pomodoro').value = localStorage.getItem('pomodoroMinutes')
+            document.querySelector('.settings__time-of-clock-input--short').value = localStorage.getItem('shortBreakMinutes')
+            document.querySelector('.settings__time-of-clock-input--long').value = localStorage.getItem('longBreakMinutes')
+            document.querySelector('.settings__long-interval-input').value = localStorage.getItem('longBreakInterval')
+            document.querySelector('.settings__auto-breaks-accept').className =    localStorage.getItem('autoStartBreaks')
+            document.querySelector('.settings__auto-pomodoro-accept').className = localStorage.getItem('autoStartPomodoros')
+            document.querySelector('.settings__alarm-sound-select').selectedIndex = localStorage.getItem('alarmSoundsSelect')
+            document.querySelector('.settings__ticking-sound-select').selectedIndex = localStorage.getItem('tickingSoundsSelect')
+            document.querySelector('.settings__alarm-volume-input').value = localStorage.getItem('alarmSoundsVolume')
+            document.querySelector('.settings__ticking-volume-input').value = localStorage.getItem('tickingSoundsVolume')
+        }
     }
-    if(localStorage.length !== 0){
+
+    
         loadLocalStorageOfSettings();
-    }
+    
     const clockMin = document.querySelector('.clock__minutes');
     const clockSec = document.querySelector('.clock__seconds');
     const pomodoroButton = document.querySelector('.clock__one');
@@ -409,6 +412,7 @@ const loadLocalStorageOfSettings = ()=> {
     
     const saveLocalStorageOfToDoList = ()=>{
         localStorage.setItem('estimatedPomodoros', allEstimatedPomodoros);
+
     }
     const loadLocalStorageOfToDoList = ()=>{
   
@@ -546,6 +550,14 @@ addButton.addEventListener('click', ()=>{
                 ${noteInput.value}
             </p>
         </div>`;
+        const newli = {
+            text: liText,
+            numberOfTasks: addInputTasks.value,
+            note: noteInput.value,
+            dataKey: e.target.liItem.dataset.key,
+            dataCompletedTask: e.target.liItem.dataset.completedTask
+
+        }
         allTasks.push(liItem);
         allEstimatedPomodoros.push(Number(addInputTasks.value))
         addWhatText.value ="";

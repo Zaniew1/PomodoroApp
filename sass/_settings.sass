@@ -43,13 +43,10 @@
                 font-size: 26px
                 color: $grey-color
                 cursor: pointer
-                transition: .3s ease-in-out
+                &:hover
+                    color: #555
             @include mq-land(tablet)
                 font-size: 30px
-            &:hover
-                font-size: 30px
-                @include mq-land(tablet)
-                    font-size: 34px
     .settings__time
         display: flex
         flex-grow: 1
@@ -152,6 +149,9 @@
             background-color: #222
             border-radius: 5px
             padding: 8 12px
+            cursor: pointer
+            &:hover
+                background-color: #555
             @include mq(tablet)
                 font-size: 16px
                 width: 90px

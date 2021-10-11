@@ -31,6 +31,8 @@
         @include flex (center, center, row)
         width: 45%
         height: 100%
+        @include mq-land(tablet)
+            width: 50%
         .nav__item
             @include flex (center, center, row)
             width: 30px
@@ -41,10 +43,24 @@
             color: $white-color-font
             cursor: pointer
             text-align: center
-            opacity: 0.8    
+            opacity: 0.8
+            @include mq-land(tablet)
+                width: 120px
+                height: 30px
+                
             &:hover
                 opacity: 1
+            .nav__item-text
+                display: none
+                @include mq-land(tablet)
+                    font-size: 10px
+                    padding-left: 5px
+                    display: block
+                @include mq-land(desktop)
+                    font-size: 12px
             .nav__item-icon
                 font-size: 14px
                 @include mq(tablet)
                     font-size: 16px 
+                @include mq-land(tablet)
+                    padding-left: 5px
