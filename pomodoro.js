@@ -418,7 +418,6 @@
 
     
     const saveLocalStorageOfToDoList = ()=>{
-        localStorage.setItem('estimatedPomodoros', allEstimatedPomodoros);
         localStorage.setItem('estimatedPomodoros', JSON.stringify(allTasks));
     }
     const loadLocalStorageOfToDoList = ()=>{
