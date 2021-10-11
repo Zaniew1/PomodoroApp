@@ -24,6 +24,9 @@
             document.querySelector('.settings__alarm-volume-input').value = localStorage.getItem('alarmSoundsVolume')
             document.querySelector('.settings__ticking-volume-input').value = localStorage.getItem('tickingSoundsVolume')
         }
+        if(document.querySelector('.settings__alarm-volume-input').value == "" || document.querySelector('.settings__auto-breaks-accept').className == ""){
+            localStorage.clear();
+        }
     }
     loadLocalStorageOfSettings();
     const clockMin = document.querySelector('.clock__minutes');
