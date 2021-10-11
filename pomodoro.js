@@ -447,7 +447,6 @@ addButton.addEventListener('click', ()=>{
     const showSectionInfo = ()=>{
         if(ulList.innerHTML != ""){
             document.querySelector('.info').classList.remove('info--active');
-
         }
         else{
             document.querySelector('.info').classList.add('info--active')
@@ -513,12 +512,13 @@ addButton.addEventListener('click', ()=>{
         calculatingEstimatedTimeToFinish();
         showSectionInfo();
     }
+    
 // DELETE SINGLE TASK
     const deleteSingleTask = (e)=>{
         const index = e.target.closest(".all__item").dataset.key;
         allTasks.splice(index, 1);
         allEstimatedPomodoros.splice(index, 1);
-        renderLiList();  
+        renderLiList();
     }
 // CREATE NEW LI AFTER PRESSING ADD TASK
     const createNewLi = (e)=>{
@@ -563,6 +563,9 @@ addButton.addEventListener('click', ()=>{
             } 
         })
     }
+
+
+
 // POSIBILITY OF CHECKING CHECKMARK FUCNTION
     const checkCheckMark = ()=>{
         let flag = false;
@@ -624,6 +627,7 @@ addButton.addEventListener('click', ()=>{
                     }
                 }
                givingBorderToFirstTask(); 
+
         })}
         clearFinishedTasks.addEventListener('click', deletingCheckedTasks)
 //FUNKCJA ROZWIJAJĄCA MENU DOTYCZĄCA WSZYSTKICH ZADAŃ

@@ -5,210 +5,200 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="sass/main.css" type="text/css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-
-
-
 </head>
+
 <body>
-    
-<div class="wrapper">
-    <header>
-        <div class="logo"><i class="fas fa-check-circle logo__icon"></i>
-            PomodoroFocus
-        </div>
-        <nav>
-            <div class="nav__item nav__item-report"><i class="far fa-chart-bar"></i></div>
-            <div class="nav__item nav__item-settings"><i class="fas fa-cog"></i></div>
-            <div class="nav__item  nav__item-login"><i class="fas fa-user"></i></div>
-        </nav>
-    </header>
-
-    <section class="timer">
-        <div class="clock__options">
-            <button class="clock__button clock__button--active clock__one">Pomodoro</button>
-            <button class="clock__button clock__two">Short Break</button>
-            <button class="clock__button clock__three">Long Break</button>
-        </div>
-        <div class="clock"><span class="clock__minutes">25</span> : <span class="clock__seconds">00</span></div>
-        <div class = "button__reset--wrapper">
-            <button class="clock__start">Start</button>
-            <div class="reset"><i class="fas fa-pause reset__icon"></i></div>
-        </div>
-    </section>
-
-
-    <div class="task__name">
-        <p class="task__text">Time to work !</p>
-        <p class="current__task"></p>
-    </div>
-
-    <div class="task__wrapper">
-        <div class="tasks">Tasks: </div>
-        <div class="tasks__options">
-            <i class="fas fa-ellipsis-v"></i>
-            <div class="tasks__options-wrapper tasks__options-wrapper--none">
-                <div class="tasks__options-clear clear__all-tasks"><i class="fas fa-trash-alt trash__icon"></i><p class="clear__text">Clear all tasks</p></div>
-                <div class="tasks__options-clear clear__finished-tasks"><i class="fas fa-trash-alt trash__icon"></i><p class="clear__text">Clear finished tasks</p></div>
-                <div class="tasks__options-clear clear__act-pomodoros"><i class="fas fa-check"></i><p class="clear__text"></p>Reset all tasks</div>
+    <main class="wrapper">
+        <header class="header">
+            <div class="logo"><i class="fas fa-check-circle logo__icon"></i>
+                PomodoroFocus
             </div>
-        </div>
-    </div>
+            <nav class="nav">
+                <div class="nav__item nav__item-report"><i class="far fa-chart-bar nav__item-icon"></i></div>
+                <div class="nav__item nav__item-settings"><i class="fas fa-cog nav__item-icon"></i></div>
+                <div class="nav__item  nav__item-login"><i class="fas fa-user nav__item-icon"></i></div>
+            </nav>
+        </header>
 
-    <div class="all__tasks">
-        <ul class="all__list">
-            <!-- <li class="all__item">
-                <div class="all__wrapper-one">
-                    <i class="fas fa-check-circle all__icon"></i>
-                    <p class="all__text">asd</p>
-                </div> 
-                <div class="all__wrapper-two">
-                    <div class="all__number-of-tasks">
-                        <span class="all__number-of-tasks-done">0</span> /
-                        <span class="all__number-of-tasks-to-do"></span>
-                    </div>
-                    <div class="all__options">
-                        <div class="all__edit"><i class="far fa-edit"></i> </div>
-                        <div class="all__delete"><i class="fas fa-trash"></i></div>
+        <section class="timer">
+            <div class="clock__options">
+                <button class="clock__button clock__button--active clock__one">Pomodoro</button>
+                <button class="clock__button clock__two">Short Break</button>
+                <button class="clock__button clock__three">Long Break</button>
+            </div>
+            <div class="clock"><span class="clock__minutes">25</span> : <span class="clock__seconds">00</span></div>
+            <div class = "button__reset--wrapper">
+                <button class="clock__start">Start</button>
+                <div class="reset"><i class="fas fa-pause reset__icon"></i></div>
+            </div>
+        </section>
+
+        <section class="task">
+            <div class="task__name">
+                <p class="task__text">Time to work !</p>
+                <p class="current__task"></p>
+            </div>
+
+            <div class="task__wrapper">
+                <div class="tasks">Tasks: </div>
+                <div class="tasks__options">
+                    <i class="fas fa-ellipsis-v tasks__options-icon"></i>
+                    <div class="tasks__options-wrapper tasks__options-wrapper--none">
+                        <div class="tasks__options-clear clear__all-tasks"><i class="fas fa-trash-alt trash__icon tasks__options-clear-icon"></i><p class="clear__text">Clear all tasks</p></div>
+                        <div class="tasks__options-clear clear__finished-tasks"><i class="fas fa-trash-alt trash__icon tasks__options-clear-icon"></i><p class="clear__text">Clear finished tasks</p></div>
+                        <div class="tasks__options-clear clear__act-pomodoros"><i class="fas fa-check tasks__options-clear-icon"></i><p class="clear__text">Reset all tasks</p></div>
                     </div>
                 </div>
-                <div class="all__wrapper-three">
-                    <p class="all__note">
-                        
-                    </p>
+            </div>
 
+            <div class="all__tasks">
+                <ul class="all__list">
+                    <!-- <li class="all__item">
+                        <div class="all__wrapper-one">
+                            <i class="fas fa-check-circle all__icon"></i>
+                            <p class="all__text">asd</p>
+                        </div> 
+                        <div class="all__wrapper-two">
+                            <div class="all__number-of-tasks">
+                                <span class="all__number-of-tasks-done">0</span> /
+                                <span class="all__number-of-tasks-to-do"></span>
+                            </div>
+                            <div class="all__options">
+                                <div class="all__edit"><i class="far fa-edit all__edit-icon"></i> </div>
+                                <div class="all__delete"><i class="fas fa-trash all__delete-icon"></i></div>
+                            </div>
+                        </div>
+                        <div class="all__wrapper-three">
+                            <p class="all__note">
+                                
+                            </p>
+
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+
+            <div class="button__wrapper">
+                <button class="add__task"> Add Task</button>
+            </div>
+            
+        </section>
+
+        
+        <section class="add">
+            <div class="add__wrapper add__wrapper--none">
+                <input class="add__what" placeholder="What are you working on?">
+                <p class="add__estimation">Est Pomodoros</p>
+                <div class="add__estimate--wrapper">
+                    <input class="add__number-of-pomodoros" type="numer">
+                    <button class="add__arrow add__arrow-up"><i class="fas fa-chevron-up add__arrow-icon arrow__up--icon"></i></button>
+                    <button class="add__arrow add__arrow-down"><i class="fas fa-chevron-down add__arrow-icon arrow__down--icon"></i></button>
                 </div>
-            </li> -->
-        </ul>
-    </div>
-
-    <div class="button__wrapper">
-        <button class="add__task"> Add Task</button>
-    </div>
-    <section class="add">
-        <div class="add__wrapper add__wrapper--none">
-            <input class="add__what" placeholder="What you working at?">
-            <p class="add__estimation">Est Pomodoros</p>
-            <div class="add__estimate--wrapper">
-                <input class="add__number-of-pomodoros" type="numer">
-                <button class="add__arrow add__arrow-up"><i class="fas fa-chevron-up add__arrow-icon arrow__up--icon"></i></button>
-                <button class="add__arrow add__arrow-down"><i class="fas fa-chevron-down add__arrow-icon arrow__down--icon"></i></button>
+                <textarea class="add__note" type="text" placeholder="Add note (optional)"></textarea>
+                <div class="add__cancel--wrapper">
+                    <button class="add__cancel">Cancel</button>
+                    <button class="add__save add__save--active" >Save</button>
+                </div>
             </div>
-            <textarea class="add__note" type="text" placeholder="Add note (optional)"></textarea>
-            <div class="add__cancel--wrapper">
-                <button class="add__cancel">Cancel</button>
-                <button class="add__save add__save--active" >Save</button>
-            </div>
-        </div>
-    </section>
-  
-    <section class="info info--active   "> 
-        <div class="info__wrapper--one">
-            <p class="info__estimate-text">Tasks: </p>
-            <span class="info__estimate"></span>
-            <p class="info__complete-text">Completed: </p>
-            <span class="info__complete"></span>
-        </div>
-        <div  class="info__wrapper--two">
-            <p class="info__text">Finish at: </p>
-            <span class="info__time">
-
-            </span>
-        </div>
-    </section>
+        </section>
     
-    <section class="settings">
-        <div class="settings__header">
-            <p class="settings__header-text">Timer Settigns</p>
-            <div class="settings__escape"><i class="fas fa-times settings__escape-image"></i></div>
-        </div>
-        <div class="settings__time">
-            <p class="settings__time-text">Time (minutes)</p>
-            <div class="settings__time-of-clock-wrap">
-                <div class="settings__time-of-clock">
-                    <p class="settings__time-of-clock-text">Pomodoro</p>
-                    <input class="settings__time-of-clock-input settings__time-of-clock-input--pomodoro" type="number" value="25">
+        <section class="info info--active   "> 
+            <div class="info__wrapper--one">
+                <p class="info__estimate-text">Tasks: </p>
+                <span class="info__estimate"></span>
+                <p class="info__complete-text">Completed: </p>
+                <span class="info__complete"></span>
+            </div>
+            <div  class="info__wrapper--two">
+                <p class="info__text">Finish at: </p>
+                <span class="info__time">
+
+                </span>
+            </div>
+        </section>
+        
+        <section class="settings">
+            <div class="settings__header">
+                <p class="settings__header-text">Timer Settigns</p>
+                <div class="settings__escape"><i class="fas fa-times settings__escape-image"></i></div>
+            </div>
+            <div class="settings__time">
+                <p class="settings__time-text">Time (minutes)</p>
+                <div class="settings__time-of-clock-wrap">
+                    <div class="settings__time-of-clock">
+                        <p class="settings__time-of-clock-text">Pomodoro</p>
+                        <input class="settings__time-of-clock-input settings__time-of-clock-input--pomodoro" type="number" value="25">
+                    </div>
+                    <div class="settings__time-of-clock">
+                        <p class="settings__time-of-clock-text">Short Break</p>
+                        <input class="settings__time-of-clock-input settings__time-of-clock-input--short" type="number" value="5">
+                    </div>
+                    <div class="settings__time-of-clock">
+                        <p class="settings__time-of-clock-text">Long Break</p>
+                        <input class="settings__time-of-clock-input settings__time-of-clock-input--long" type="number" value="15">
+                    </div>
                 </div>
-                <div class="settings__time-of-clock">
-                    <p class="settings__time-of-clock-text">Short Break</p>
-                    <input class="settings__time-of-clock-input settings__time-of-clock-input--short" type="number" value="5">
-                </div>
-                <div class="settings__time-of-clock">
-                    <p class="settings__time-of-clock-text">Long Break</p>
-                    <input class="settings__time-of-clock-input settings__time-of-clock-input--long" type="number" value="15">
+            </div>
+            <div class="settings__auto-breaks">
+                <p class="settings__auto-breaks-text">Auto start Breaks ?</p>
+                <div class="settings__auto-breaks-accept ">
+                    <div class="settings__auto-breaks-accept-rounded"></div>
                 </div>
             </div>
-        </div>
-        <div class="settings__auto-breaks">
-            <p class="settings__auto-breaks-text">Auto start Breaks ?</p>
-            <div class="settings__auto-breaks-accept ">
-                <div class="settings__auto-breaks-accept-rounded"></div>
+            <div class="settings__auto-pomodoros">
+                <p class="settings__auto-pomodoros-text">Auto start Pomodoros ?</p>
+                <div class="settings__auto-pomodoro-accept ">
+                    <div class="settings__auto-pomodoro-accept-rounded"></div>
+                </div>
             </div>
-        </div>
-        <div class="settings__auto-pomodoros">
-            <p class="settings__auto-pomodoros-text">Auto start Pomodoros ?</p>
-            <div class="settings__auto-pomodoro-accept ">
-                <div class="settings__auto-pomodoro-accept-rounded"></div>
+            <div class="settings__long-interval">
+                <p class="settings__long-interval-text">Long Break Interval</p>
+                <input class="settings__long-interval-input" type="number" value="4">
             </div>
-        </div>
-        <div class="settings__long-interval">
-            <p class="settings__long-interval-text">Long Break Interval</p>
-            <input class="settings__long-interval-input" type="number" value="4">
-        </div>
 
-        <div class="settings__alarm-sound">
-            <p class="settings__alarm-sound-text">Alarm Sound</p>
-            <div class="settings__alarm-sound-wrapper">
-                <select name="alarmSounds" class="settings__alarm-sound-select">
-                    <option class="settings__alarm-sound-option " value="">Alarm</option>
-                    <option class="settings__alarm-sound-option" value="">Arcade</option>
-                    <option class="settings__alarm-sound-option" value="">Cock</option>
-                    <option class="settings__alarm-sound-option" value="">Phone</option>
-                    <option class="settings__alarm-sound-option" value="">Whistle</option>
-                </select>
+            <div class="settings__alarm-sound">
+                <p class="settings__alarm-sound-text">Alarm Sound</p>
+                <div class="settings__alarm-sound-wrapper">
+                    <select name="alarmSounds" class="settings__alarm-sound-select">
+                        <option class="settings__alarm-sound-option " value="">Alarm</option>
+                        <option class="settings__alarm-sound-option" value="">Arcade</option>
+                        <option class="settings__alarm-sound-option" value="">Cock</option>
+                        <option class="settings__alarm-sound-option" value="">Phone</option>
+                        <option class="settings__alarm-sound-option" value="">Whistle</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="settings__alarm-volume">
-            <p class="settings__alarm-volume-text">Alarm Volume (0-100)</p>
-            <input  class="settings__alarm-volume-input" value="50" >
-        </div>
-
-        <div class="settings__ticking-sound">
-            <p class="settings__ticking-sound-text">Ticking Sound</p>
-            <div class="settings__ticking-sound-wrapper">
-                <select name="tickingSounds" class="settings__ticking-sound-select">
-                    <option class="settings__ticking-sound-option" value="">None</option>
-                    <option class="settings__ticking-sound-option" value="">Slow Ticking</option>
-                    <option class="settings__ticking-sound-option" value="">Fast Ticking</option>
-                </select>
+            <div class="settings__alarm-volume">
+                <p class="settings__alarm-volume-text">Alarm Volume (0-100)</p>
+                <input  class="settings__alarm-volume-input" value="50" >
             </div>
-        </div>
-        <div class="settings__ticking-volume">
-            <p class="settings__ticking-volume-text">Ticking Volume (0-100)</p>
-            <input  class="settings__ticking-volume-input" value="50" >
-        </div>
+
+            <div class="settings__ticking-sound">
+                <p class="settings__ticking-sound-text">Ticking Sound</p>
+                <div class="settings__ticking-sound-wrapper">
+                    <select name="tickingSounds" class="settings__ticking-sound-select">
+                        <option class="settings__ticking-sound-option" value="">None</option>
+                        <option class="settings__ticking-sound-option" value="">Slow Ticking</option>
+                        <option class="settings__ticking-sound-option" value="">Fast Ticking</option>
+                    </select>
+                </div>
+            </div>
+            <div class="settings__ticking-volume">
+                <p class="settings__ticking-volume-text">Ticking Volume (0-100)</p>
+                <input  class="settings__ticking-volume-input" value="50" >
+            </div>
 
 
-        <div class="settings__accept">
-            <button class="settings__accept-button">Accept </button>
-        </div>
+            <div class="settings__accept">
+                <button class="settings__accept-button">Accept </button>
+            </div>
+        </section>
 
+    </main>
 
-
-
-
-    </section>
-</div>
-
-
-
-
-
-
-
-
-<script src="pomodoro.js"></script>
+    <script src="pomodoro.js"></script>
 </body>
 </html>

@@ -15,6 +15,7 @@
     cursor: pointer
 
 @mixin settings-input
+    display: block
     width: 70px
     height: 40px
     background-color: $grey-color
@@ -25,6 +26,10 @@
     padding: 10px
     font-size: 16px
     font-weight: 300
+    @include mq(tablet)
+        width: 90px
+    @include mq-land(tablet)
+        width: 90px
 @mixin settings-rounded-input
     display: flex
     justify-content: flex-start

@@ -9,8 +9,10 @@
         border-radius: 10px
         margin: 20px auto
         background-color: $white-color-font
-    .add__wrapper--none
-        display: none
+        @include mq(tablet)
+            width: 85% 
+        @include mq-land(tablet)
+            width: 80%
         .add__what
             border: none
             outline: none
@@ -25,19 +27,27 @@
                 opacity: 0.7
         .add__estimation
             font-size: 14px
-            color: #333
+            color: #555
             height: 25px
             padding-left: 15px
+            @include mq(tablet)
+                font-size: 16px
+            @include mq-land(tablet)
+                font-size: 16px
         .add__estimate--wrapper
             .add__number-of-pomodoros
                 width: 20%
                 background-color: $grey-color
                 height: 30px
-                border:  none
+                border: none
                 outline: none
                 border-radius: 5px
                 margin: 10px 10px 20px 15px
                 padding: 0 15px
+                @include mq(tablet)
+                    font-size: 16px
+                @include mq-land(tablet)
+                    font-size: 16px
             .add__arrow
                 height: 30px
                 width: 35px
@@ -58,6 +68,14 @@
             margin: 10px 0 15px 15px
             padding: 10px 15px
             resize: vertical
+            @include mq(tablet)
+                font-size: 16px
+                min-height: 80px
+                min-width: 70%
+            @include mq-land(tablet)
+                font-size: 16px
+                min-height: 80px
+                min-width: 70%
         .add__cancel--wrapper
             @include flex(flex-end,center,row)
             width: 100%
@@ -75,6 +93,10 @@
                 background-color: transparent
                 margin-right: 10px
                 cursor: pointer
+                @include mq(tablet)
+                    font-size: 16px
+                @include mq-land(tablet)
+                    font-size: 16px
             .add__save
                 border: none
                 outline: none
@@ -86,5 +108,11 @@
                 margin-right: 15px
                 border-radius: 5px
                 cursor: pointer
+                @include mq(tablet)
+                    font-size: 16px
+                @include mq-land(tablet)
+                    font-size: 16px
             .add__save--active
                 background-color: #555
+    .add__wrapper--none
+        display: none

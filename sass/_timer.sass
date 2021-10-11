@@ -4,15 +4,17 @@
     width: 95%
     transition: 0.4s ease-in-out
     border-radius: 15px
-    .timer--orange
-        background-color: $orange-color-lighter
-    .timer--green
-        background-color: $green-color-lighter
-    .timer--blue
-       background-color: $blue-color-lighter
+    @include mq(tablet)
+        width: 80%
+    @include mq-land(phone)
+        margin: 10vh auto 10vh auto
+    @include mq-land(tablet)
+        width: 80%
     .clock__options
         @include flex(center, center, row)
         width: 95%
+        @include mq(tablet)
+            width: 80%
         .clock__button
             @include clock
             margin-top: 3vh
@@ -21,6 +23,10 @@
             width: 33%
             height: 40px
             font-size: 12px
+            @include mq(tablet)
+                font-size: 14px
+            @include mq-land(tablet)
+                font-size: 14px
         .clock__button--active
             background-color: rgba(	51, 51, 51, 0.4)
         .clock__three
@@ -29,9 +35,15 @@
         @include flex(center, center, row)
         font-family: arial
         margin: 3vh auto
-        color: $white-color
+        color: $white-color-font
         font-size: 96px
         font-weight: bold
+        @include mq(tablet)
+            font-size: 120px
+            margin: 1vh auto
+        @include mq-land(tablet)
+            font-size: 120px
+            margin: 1vh auto
     .button__reset--wrapper
         @include flex(center, center, row)
         width: 100%
@@ -40,25 +52,38 @@
             @include clock
             width: 50%
             height: 60px
-            margin: 3vh auto 3vh auto
+            margin: 3vh auto 
             font-size: 30px
-        .clock__start--orange
-            color: $orange-color-lighter
-        .clock__start--blue
-            color: $blue-color-lighter
-        .clock__start--green
-            color: $green-color-lighter
+            @include mq(tablet)
+                margin: 1vh auto 3vh auto
+            @include mq-land(phone)
+                margin: 20px auto 50px auto
         .reset
             display: none
             opacity: 0.6
             cursor: pointer
             position: absolute
             right: 10%
+            @include mq(tablet)
+                bottom: 40%
             &:hover
                 opacity: 1
-            .reset--visible
-                display: block
             .reset__icon
                 color: $white-color-font
                 font-size: 34px
-            
+                @include mq(tablet)
+                    font-size: 44px
+        .reset--visible
+                display: block
+        .clock__start--orange
+            color: $orange-color-lighter
+        .clock__start--blue
+            color: $blue-color-lighter
+        .clock__start--green
+            color: $green-color-lighter
+.timer--orange
+    background-color: $orange-color-lighter
+.timer--green
+    background-color: $green-color-lighter
+.timer--blue
+    background-color: $blue-color-lighter

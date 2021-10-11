@@ -5,6 +5,58 @@
     color: $white-color-font
     margin-bottom: 3vh
     transition: 0.3s ease-in-out
+    border-radius: 5px
+    margin: 2vh auto
+    @include mq(tablet)
+        width: 90%
+        margin: 2vh auto 60px auto
+    @include mq-land(tablet)
+        width: 80%
+        margin: 30px auto 60px auto
+    @include mq-land(desktop)
+        width: 70%
+    .info__wrapper--one
+        @include flex(center, center, row)
+        width: 100%
+        margin: 20px auto
+        .info__estimate-text
+            padding-right: 5px
+            @include mq(tablet)
+                font-size: 20px
+            @include mq-land(tablet)
+                font-size: 16px
+        .info__estimate
+            padding-right: 15px
+            @include mq(tablet)
+                font-size: 24px
+            @include mq-land(tablet)
+                font-size: 24px
+        .info__complete-text
+            padding-right: 5px
+            @include mq(tablet)
+                font-size: 20px
+            @include mq-land(tablet)
+                font-size: 16px
+        .info__complete
+            @include mq(tablet)
+                font-size: 24px
+            @include mq-land(tablet)
+                font-size: 24px
+    .info__wrapper--two
+        @include flex(center, center, row)
+        width: 100%
+        margin: 20px auto
+        .info__text
+            @include mq(tablet)
+                font-size: 20px
+            @include mq-land(tablet)
+                font-size: 16px
+        .info__time
+            padding-left: 5px
+            @include mq(tablet)
+                font-size: 24px
+            @include mq-land(tablet)
+                font-size: 24px
 .info--active
     display: none
 .info--orange
@@ -13,21 +65,3 @@
     background-color: $green-color-lighter
 .info--blue
     background-color: $blue-color-lighter
-    .info__wrapper--one
-        @include flex(center, center, row)
-        width: 100%
-        margin: 20px auto
-        .info__estimate-text
-            padding-right: 5px
-        .info__estimate
-            padding-right: 15px
-        .info__complete-text
-            padding-right: 5px
-        .info__complete
-    .info__wrapper--two
-        @include flex(center, center, row)
-        width: 100%
-        margin: 20px auto
-        .info__text
-        .info__time
-            padding-left: 5px

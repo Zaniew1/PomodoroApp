@@ -3,16 +3,30 @@
     width: 100%
     height: 10vh
     border-bottom: 1px solid $grey-color
+    @include mq(tablet)
+        height: 7vh
+    @include mq-land(phone)
+        height: 60px
+    @include mq-land(tablet-wide)
+        height: 7vh    
     .logo
         @include flex (center, center, row)
-        margin-left:  30px
+        margin-left: 30px
         width: 30%
         height: 100%
         color: $white-color-font
         font-size: 16px
+        @include mq(tablet)
+            font-size: 20px
+            margin-left: 10px
+        @include mq-land(tablet)
+            font-size: 20px
+            margin-left: 10px
         .logo__icon
             font-size: 20px
             padding: 0 5px 0 5px
+            @include mq-land(tablet)
+                font-size: 24px
     .nav
         @include flex (center, center, row)
         width: 45%
@@ -25,11 +39,12 @@
             background-color: rgba(	51, 51, 51, 0.4)
             margin-right: 10px
             color: $white-color-font
-            font-size: 10px
             cursor: pointer
             text-align: center
-            opacity: 0.8
+            opacity: 0.8    
             &:hover
                 opacity: 1
             .nav__item-icon
                 font-size: 14px
+                @include mq(tablet)
+                    font-size: 16px 

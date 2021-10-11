@@ -2,12 +2,23 @@ body
     padding: 0
     margin: 0
     width: 100vw
-    height: 100vh
     background-color: $orange-color
-    transition: background-color 0.4s ease-in-out
-    .orange
-        background-color: $orange-color
-    .blue
-        background-color: $blue-color
-    .green
-        background-color: $green-color
+    transition: background-color 0.4s ease-in-out   
+    @include mq(tablet)
+        width: 70vw
+        margin: 0 auto
+    @include mq-land(phone)
+        width: 90vw
+        margin: 0 auto    
+    @include mq-land(tablet)
+        width: 70vw
+    @include mq-land(tablet-wide)
+        width: 50vw
+    @include mq-land(desktop)
+        width: 35vw
+.orange
+    background-color: $orange-color
+.blue
+    background-color: $blue-color
+.green
+    background-color: $green-color

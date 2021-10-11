@@ -1,0 +1,1909 @@
+* {
+  font-family: arial, sans-serif;
+  font-weight: bold;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  background-color: #DB524D;
+  -webkit-transition: background-color 0.4s ease-in-out;
+  transition: background-color 0.4s ease-in-out;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  body {
+    width: 70vw;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 530px) {
+  body {
+    width: 90vw;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  body {
+    width: 70vw;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 1024px) {
+  body {
+    width: 50vw;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 1248px) {
+  body {
+    width: 35vw;
+  }
+}
+
+.orange {
+  background-color: #DB524D;
+}
+
+.blue {
+  background-color: #437ea8;
+}
+
+.green {
+  background-color: #468e91;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  height: 10vh;
+  border-bottom: 1px solid #ccc;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .header {
+    height: 7vh;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 530px) {
+  .header {
+    height: 60px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 1024px) {
+  .header {
+    height: 7vh;
+  }
+}
+
+.header .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-left: 30px;
+  width: 30%;
+  height: 100%;
+  color: #fff;
+  font-size: 16px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .header .logo {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .header .logo {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+}
+
+.header .logo .logo__icon {
+  font-size: 20px;
+  padding: 0 5px 0 5px;
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .header .logo .logo__icon {
+    font-size: 24px;
+  }
+}
+
+.header .nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 45%;
+  height: 100%;
+}
+
+.header .nav .nav__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: rgba(51, 51, 51, 0.4);
+  margin-right: 10px;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.header .nav .nav__item:hover {
+  opacity: 1;
+}
+
+.header .nav .nav__item .nav__item-icon {
+  font-size: 14px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .header .nav .nav__item .nav__item-icon {
+    font-size: 16px;
+  }
+}
+
+.timer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 5vh auto;
+  width: 95%;
+  -webkit-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
+  border-radius: 15px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .timer {
+    width: 80%;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 530px) {
+  .timer {
+    margin: 10vh auto 10vh auto;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .timer {
+    width: 80%;
+  }
+}
+
+.timer .clock__options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 95%;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .timer .clock__options {
+    width: 80%;
+  }
+}
+
+.timer .clock__options .clock__button {
+  border: none;
+  outline: none;
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: arial;
+  cursor: pointer;
+  margin-top: 3vh;
+  background-color: transparent;
+  color: #fff;
+  width: 33%;
+  height: 40px;
+  font-size: 12px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .timer .clock__options .clock__button {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .timer .clock__options .clock__button {
+    font-size: 14px;
+  }
+}
+
+.timer .clock__options .clock__button--active {
+  background-color: rgba(51, 51, 51, 0.4);
+}
+
+.timer .clock__options .clock__three {
+  margin-right: 0;
+}
+
+.timer .clock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  font-family: arial;
+  margin: 3vh auto;
+  color: #fff;
+  font-size: 96px;
+  font-weight: bold;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .timer .clock {
+    font-size: 120px;
+    margin: 1vh auto;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .timer .clock {
+    font-size: 120px;
+    margin: 1vh auto;
+  }
+}
+
+.timer .button__reset--wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  position: relative;
+}
+
+.timer .button__reset--wrapper .clock__start {
+  border: none;
+  outline: none;
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: bold;
+  font-family: arial;
+  cursor: pointer;
+  width: 50%;
+  height: 60px;
+  margin: 3vh auto;
+  font-size: 30px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .timer .button__reset--wrapper .clock__start {
+    margin: 1vh auto 3vh auto;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 530px) {
+  .timer .button__reset--wrapper .clock__start {
+    margin: 20px auto 50px auto;
+  }
+}
+
+.timer .button__reset--wrapper .reset {
+  display: none;
+  opacity: 0.6;
+  cursor: pointer;
+  position: absolute;
+  right: 10%;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .timer .button__reset--wrapper .reset {
+    bottom: 40%;
+  }
+}
+
+.timer .button__reset--wrapper .reset:hover {
+  opacity: 1;
+}
+
+.timer .button__reset--wrapper .reset .reset__icon {
+  color: #fff;
+  font-size: 34px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .timer .button__reset--wrapper .reset .reset__icon {
+    font-size: 44px;
+  }
+}
+
+.timer .button__reset--wrapper .reset--visible {
+  display: block;
+}
+
+.timer .button__reset--wrapper .clock__start--orange {
+  color: #ec635e;
+}
+
+.timer .button__reset--wrapper .clock__start--blue {
+  color: #548FB9;
+}
+
+.timer .button__reset--wrapper .clock__start--green {
+  color: #579F92;
+}
+
+.timer--orange {
+  background-color: #ec635e;
+}
+
+.timer--green {
+  background-color: #579F92;
+}
+
+.timer--blue {
+  background-color: #548FB9;
+}
+
+.task {
+  width: 100%;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .task {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .task {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+.task .task__name {
+  text-align: center;
+  width: 100%;
+  height: 7%;
+  color: #fff;
+}
+
+.task .task__name .task__text {
+  color: #fff;
+}
+
+.task .task__name .current__task {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  text-align: center;
+  margin: 2vh auto 5vh auto;
+  width: 90%;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .task .task__name .current__task {
+    margin: 1vw auto 2vh auto;
+  }
+}
+
+.task .task__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 95%;
+  color: #fff;
+  border-bottom: 3px solid rgba(51, 51, 51, 0.4);
+  margin: 2vh auto;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .task .task__wrapper {
+    margin: 1vh auto;
+  }
+}
+
+.task .task__wrapper .tasks__options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+  width: 30px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: rgba(51, 51, 51, 0.4);
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  margin: 10px 0;
+  z-index: 9;
+}
+
+.task .task__wrapper .tasks__options .tasks__options-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  width: 220px;
+  height: 120px;
+  background-color: #fff;
+  bottom: -360%;
+  right: 0;
+  border-radius: 5px;
+  z-index: 4;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .task .task__wrapper .tasks__options .tasks__options-wrapper {
+    width: 220px;
+    height: 150px;
+    bottom: -450%;
+  }
+}
+
+.task .task__wrapper .tasks__options .tasks__options-wrapper .tasks__options-clear {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: left;
+  font-size: 12px;
+  color: #000;
+  width: 100%;
+  height: 33%;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .task .task__wrapper .tasks__options .tasks__options-wrapper .tasks__options-clear {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .task .task__wrapper .tasks__options .tasks__options-wrapper .tasks__options-clear {
+    font-size: 14px;
+  }
+}
+
+.task .task__wrapper .tasks__options .tasks__options-wrapper .tasks__options-clear:hover {
+  background-color: #ccc;
+}
+
+.task .task__wrapper .tasks__options .tasks__options-wrapper .tasks__options-clear .tasks__options-clear-icon {
+  padding: 2px 10px;
+  font-size: 14px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .task .task__wrapper .tasks__options .tasks__options-wrapper .tasks__options-clear .tasks__options-clear-icon {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .task .task__wrapper .tasks__options .tasks__options-wrapper .tasks__options-clear .tasks__options-clear-icon {
+    font-size: 18px;
+  }
+}
+
+.task .task__wrapper .tasks__options .tasks__options-wrapper--none {
+  display: none;
+}
+
+.task .all__tasks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.task .all__tasks .all__list {
+  width: 100%;
+  list-style-type: none;
+  padding: 0;
+}
+
+.task .all__tasks .all__list .all__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  width: 100%;
+  min-height: 60px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 5px auto;
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-one {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding-right: 10px;
+  width: 65%;
+  height: 100%;
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-one .all__icon {
+  padding: 0 15px 0 15px;
+  font-size: 24px;
+  color: #ccc;
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-one .all__text {
+  font-family: arial, sans-serif;
+  width: 80%;
+  color: #555;
+  font-size: 12px;
+  text-align: left;
+  padding-right: 5px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .task .all__tasks .all__list .all__item .all__wrapper-one .all__text {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .task .all__tasks .all__list .all__item .all__wrapper-one .all__text {
+    font-size: 16px;
+  }
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-one .all__text--active {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-one .all__icon--active {
+  color: #DB524D;
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-two {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-two .all__number-of-tasks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding-right: 10px;
+  padding-left: 5px;
+  color: #555;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .task .all__tasks .all__list .all__item .all__wrapper-two .all__number-of-tasks {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .task .all__tasks .all__list .all__item .all__wrapper-two .all__number-of-tasks {
+    font-size: 18px;
+  }
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-two .all__options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  position: relative;
+  width: 60px;
+  height: 40px;
+  margin-right: 5px;
+  font-size: 16px;
+  border-radius: 5px;
+  color: #888;
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-two .all__options .all__edit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  color: #555;
+  font-size: 16px;
+  cursor: pointer;
+  height: 100%;
+  width: 50%;
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-two .all__options .all__edit .all__edit-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-two .all__options .all__delete {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 50%;
+  height: 100%;
+  color: #555;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-three {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin: 10px 10%;
+  border-radius: 5px;
+  background-color: #fcf8de;
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-three .all__note {
+  color: #605515;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 90%;
+  margin: 10px auto;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.task .all__tasks .all__list .all__item .all__wrapper-three--active {
+  display: none;
+}
+
+.task .all__tasks .all__list .all__item--active {
+  border-left: 5px solid #000;
+}
+
+.task .button__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 95%;
+  border: 3px dashed #ec635e;
+  height: 7%;
+  border-radius: 5px;
+  background-color: #000;
+  opacity: 0.1;
+  cursor: pointer;
+  margin: 3vh auto 10vh auto;
+}
+
+.task .button__wrapper:hover {
+  opacity: 0.2;
+}
+
+.task .button__wrapper .add__task {
+  border: none;
+  outline: none;
+  opacity: 0.8;
+  color: #fff;
+  font-size: 24px;
+  background-color: transparent;
+  margin: 15px auto;
+}
+
+.task .button__wrapper .add__task--none {
+  display: none;
+  visibility: hidden;
+}
+
+.task .button__wrapper--none {
+  display: none;
+}
+
+.add {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.add .add__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 95%;
+  height: 100%;
+  border-radius: 10px;
+  margin: 20px auto;
+  background-color: #fff;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .add .add__wrapper {
+    width: 85%;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .add .add__wrapper {
+    width: 80%;
+  }
+}
+
+.add .add__wrapper .add__what {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  height: 80px;
+  font-size: 24px;
+  color: #aaa;
+  width: 80%;
+  padding-left: 15px;
+}
+
+.add .add__wrapper .add__what::-webkit-input-placeholder {
+  color: #ccc;
+  opacity: 0.7;
+}
+
+.add .add__wrapper .add__what:-ms-input-placeholder {
+  color: #ccc;
+  opacity: 0.7;
+}
+
+.add .add__wrapper .add__what::-ms-input-placeholder {
+  color: #ccc;
+  opacity: 0.7;
+}
+
+.add .add__wrapper .add__what::placeholder {
+  color: #ccc;
+  opacity: 0.7;
+}
+
+.add .add__wrapper .add__estimation {
+  font-size: 14px;
+  color: #555;
+  height: 25px;
+  padding-left: 15px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .add .add__wrapper .add__estimation {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .add .add__wrapper .add__estimation {
+    font-size: 16px;
+  }
+}
+
+.add .add__wrapper .add__estimate--wrapper .add__number-of-pomodoros {
+  width: 20%;
+  background-color: #ccc;
+  height: 30px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  margin: 10px 10px 20px 15px;
+  padding: 0 15px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .add .add__wrapper .add__estimate--wrapper .add__number-of-pomodoros {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .add .add__wrapper .add__estimate--wrapper .add__number-of-pomodoros {
+    font-size: 16px;
+  }
+}
+
+.add .add__wrapper .add__estimate--wrapper .add__arrow {
+  height: 30px;
+  width: 35px;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.75);
+  cursor: pointer;
+}
+
+.add .add__wrapper .add__estimate--wrapper .add__arrow--none {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transform: translate(0, 2px);
+          transform: translate(0, 2px);
+}
+
+.add .add__wrapper .add__note {
+  background-color: #ccc;
+  border-radius: 5px;
+  min-height: 70px;
+  border: none;
+  min-width: 80%;
+  margin: 10px 0 15px 15px;
+  padding: 10px 15px;
+  resize: vertical;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .add .add__wrapper .add__note {
+    font-size: 16px;
+    min-height: 80px;
+    min-width: 70%;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .add .add__wrapper .add__note {
+    font-size: 16px;
+    min-height: 80px;
+    min-width: 70%;
+  }
+}
+
+.add .add__wrapper .add__cancel--wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  background-color: #ccc;
+  height: 80px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.add .add__wrapper .add__cancel--wrapper .add__cancel {
+  width: 30%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #888;
+  background-color: transparent;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .add .add__wrapper .add__cancel--wrapper .add__cancel {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .add .add__wrapper .add__cancel--wrapper .add__cancel {
+    font-size: 16px;
+  }
+}
+
+.add .add__wrapper .add__cancel--wrapper .add__save {
+  border: none;
+  outline: none;
+  background-color: #888;
+  color: #fff;
+  font-size: 14px;
+  width: 80px;
+  height: 40px;
+  margin-right: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .add .add__wrapper .add__cancel--wrapper .add__save {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .add .add__wrapper .add__cancel--wrapper .add__save {
+    font-size: 16px;
+  }
+}
+
+.add .add__wrapper .add__cancel--wrapper .add__save--active {
+  background-color: #555;
+}
+
+.add .add__wrapper--none {
+  display: none;
+}
+
+.info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 95%;
+  background-color: #ec635e;
+  color: #fff;
+  margin-bottom: 3vh;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  border-radius: 5px;
+  margin: 2vh auto;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .info {
+    width: 90%;
+    margin: 2vh auto 60px auto;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .info {
+    width: 80%;
+    margin: 30px auto 60px auto;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 1248px) {
+  .info {
+    width: 70%;
+  }
+}
+
+.info .info__wrapper--one {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  margin: 20px auto;
+}
+
+.info .info__wrapper--one .info__estimate-text {
+  padding-right: 5px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .info .info__wrapper--one .info__estimate-text {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .info .info__wrapper--one .info__estimate-text {
+    font-size: 16px;
+  }
+}
+
+.info .info__wrapper--one .info__estimate {
+  padding-right: 15px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .info .info__wrapper--one .info__estimate {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .info .info__wrapper--one .info__estimate {
+    font-size: 24px;
+  }
+}
+
+.info .info__wrapper--one .info__complete-text {
+  padding-right: 5px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .info .info__wrapper--one .info__complete-text {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .info .info__wrapper--one .info__complete-text {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .info .info__wrapper--one .info__complete {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .info .info__wrapper--one .info__complete {
+    font-size: 24px;
+  }
+}
+
+.info .info__wrapper--two {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  margin: 20px auto;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .info .info__wrapper--two .info__text {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .info .info__wrapper--two .info__text {
+    font-size: 16px;
+  }
+}
+
+.info .info__wrapper--two .info__time {
+  padding-left: 5px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .info .info__wrapper--two .info__time {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .info .info__wrapper--two .info__time {
+    font-size: 24px;
+  }
+}
+
+.info--active {
+  display: none;
+}
+
+.info--orange {
+  background-color: #ec635e;
+}
+
+.info--green {
+  background-color: #579F92;
+}
+
+.info--blue {
+  background-color: #548FB9;
+}
+
+.settings {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: absolute;
+  display: none;
+  opacity: 0;
+  top: 10%;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  background-color: #fff;
+  width: 95%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 10px 25px;
+  border-radius: 10px;
+  color: #555;
+  z-index: 99;
+  margin-bottom: 50px;
+  font-size: 14px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .settings {
+    width: 50%;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 530px) {
+  .settings {
+    width: 70%;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .settings {
+    width: 50%;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 1024px) {
+  .settings {
+    width: 30%;
+  }
+}
+
+.settings--active {
+  opacity: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.settings--active .settings__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 95%;
+  border-bottom: 1px solid rgba(182, 165, 166, 0.2);
+  padding: 10px 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 16px;
+}
+
+.settings--active .settings__header .settings__header-text {
+  font-family: arial;
+  text-transform: uppercase;
+  color: #ccc;
+}
+
+.settings--active .settings__header .settings__escape .settings__escape-image {
+  font-size: 26px;
+  color: #ccc;
+  cursor: pointer;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .settings--active .settings__header .settings__escape {
+    font-size: 30px;
+  }
+}
+
+.settings--active .settings__header .settings__escape:hover {
+  font-size: 30px;
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .settings--active .settings__header .settings__escape:hover {
+    font-size: 34px;
+  }
+}
+
+.settings--active .settings__time {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 95%;
+  border-bottom: 1px solid rgba(182, 165, 166, 0.2);
+}
+
+.settings--active .settings__time .settings__time-text {
+  width: 90%;
+  padding: 15px 0 0 0;
+}
+
+.settings--active .settings__time .settings__time-of-clock-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px 0;
+}
+
+.settings--active .settings__time .settings__time-of-clock-wrap .settings__time-of-clock {
+  width: 30%;
+  padding: 5px 5px 10px 5px;
+}
+
+.settings--active .settings__time .settings__time-of-clock-wrap .settings__time-of-clock .settings__time-of-clock-text {
+  font-size: 11px;
+  color: #ccc;
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .settings--active .settings__time .settings__time-of-clock-wrap .settings__time-of-clock .settings__time-of-clock-text {
+    padding-bottom: 10px;
+  }
+}
+
+.settings--active .settings__time .settings__time-of-clock-wrap .settings__time-of-clock .settings__time-of-clock-input {
+  display: block;
+  width: 70px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  opacity: 0.7;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 300;
+  width: 90%;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .settings--active .settings__time .settings__time-of-clock-wrap .settings__time-of-clock .settings__time-of-clock-input {
+    width: 90px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .settings--active .settings__time .settings__time-of-clock-wrap .settings__time-of-clock .settings__time-of-clock-input {
+    width: 90px;
+  }
+}
+
+.settings--active .settings__auto-breaks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(182, 165, 166, 0.2);
+}
+
+.settings--active .settings__auto-breaks .settings__auto-breaks-accept {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 70px;
+  background-color: #ccc;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.settings--active .settings__auto-breaks .settings__auto-breaks-accept .settings__auto-breaks-accept-rounded {
+  background-color: #fff;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  margin: 0 2.5px;
+}
+
+.settings--active .settings__auto-breaks .settings__auto-breaks-accept--active {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  background-color: rgba(132, 199, 51, 0.8);
+}
+
+.settings--active .settings__auto-pomodoros {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(182, 165, 166, 0.2);
+}
+
+.settings--active .settings__auto-pomodoros .settings__auto-pomodoro-accept {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 70px;
+  background-color: #ccc;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.settings--active .settings__auto-pomodoros .settings__auto-pomodoro-accept .settings__auto-pomodoro-accept-rounded {
+  background-color: #fff;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  margin: 0 2.5px;
+}
+
+.settings--active .settings__auto-pomodoros .settings__auto-pomodoro-accept--active {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  background-color: rgba(132, 199, 51, 0.8);
+}
+
+.settings--active .settings__long-interval {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(182, 165, 166, 0.2);
+}
+
+.settings--active .settings__long-interval .settings__long-interval-input {
+  display: block;
+  width: 70px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  opacity: 0.7;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .settings--active .settings__long-interval .settings__long-interval-input {
+    width: 90px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .settings--active .settings__long-interval .settings__long-interval-input {
+    width: 90px;
+  }
+}
+
+.settings--active .settings__alarm-sound {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(182, 165, 166, 0.2);
+}
+
+.settings--active .settings__alarm-sound .settings__alarm-sound-wrapper .settings__alarm-sound-select {
+  display: block;
+  width: 70px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  opacity: 0.7;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .settings--active .settings__alarm-sound .settings__alarm-sound-wrapper .settings__alarm-sound-select {
+    width: 90px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .settings--active .settings__alarm-sound .settings__alarm-sound-wrapper .settings__alarm-sound-select {
+    width: 90px;
+  }
+}
+
+.settings--active .settings__alarm-sound .settings__alarm-sound-wrapper .settings__alarm-sound-select .settings__alarm-sound-option {
+  color: #666;
+  font-size: 12px;
+}
+
+.settings--active .settings__alarm-volume {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(182, 165, 166, 0.2);
+}
+
+.settings--active .settings__alarm-volume .settings__alarm-volume-input {
+  display: block;
+  width: 70px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  opacity: 0.7;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .settings--active .settings__alarm-volume .settings__alarm-volume-input {
+    width: 90px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .settings--active .settings__alarm-volume .settings__alarm-volume-input {
+    width: 90px;
+  }
+}
+
+.settings--active .settings__ticking-sound {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(182, 165, 166, 0.2);
+}
+
+.settings--active .settings__ticking-sound .settings__ticking-sound-wrapper .settings__ticking-sound-select {
+  display: block;
+  width: 70px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  opacity: 0.7;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .settings--active .settings__ticking-sound .settings__ticking-sound-wrapper .settings__ticking-sound-select {
+    width: 90px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .settings--active .settings__ticking-sound .settings__ticking-sound-wrapper .settings__ticking-sound-select {
+    width: 90px;
+  }
+}
+
+.settings--active .settings__ticking-sound .settings__ticking-sound-wrapper .settings__ticking-sound-select .settings__ticking-sound-option {
+  color: #666;
+  font-size: 12px;
+}
+
+.settings--active .settings__ticking-volume {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(182, 165, 166, 0.2);
+}
+
+.settings--active .settings__ticking-volume .settings__ticking-volume-input {
+  display: block;
+  width: 70px;
+  height: 40px;
+  background-color: #ccc;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  opacity: 0.7;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .settings--active .settings__ticking-volume .settings__ticking-volume-input {
+    width: 90px;
+  }
+}
+
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  .settings--active .settings__ticking-volume .settings__ticking-volume-input {
+    width: 90px;
+  }
+}
+
+.settings--active .settings__accept {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  padding: 15px;
+}
+
+.settings--active .settings__accept .settings__accept-button {
+  width: 80px;
+  height: 40px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background-color: #222;
+  border-radius: 5px;
+  padding: 8 12px;
+}
+
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  .settings--active .settings__accept .settings__accept-button {
+    font-size: 16px;
+    width: 90px;
+  }
+}
+/*# sourceMappingURL=main.css.map */
