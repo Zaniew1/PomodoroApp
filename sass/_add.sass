@@ -14,8 +14,8 @@
         @include mq-land(tablet)
             width: 80%
         .add__what
-            border: none
             outline: none
+            border: none
             background-color: transparent
             height: 80px
             font-size: 20px
@@ -23,7 +23,7 @@
             width: 90%
             padding-left: 15px
             &::placeholder
-                color: $grey-color
+                color: #aaa
                 opacity: 0.7
             @include mq-land(tablet-wide)
                 font-size: 24px
@@ -51,16 +51,19 @@
                 @include mq-land(tablet)
                     font-size: 16px
             .add__arrow
+                font-size: 10px
                 height: 30px
                 width: 35px
                 background-color: transparent
                 border: 1px solid $grey-color
-                box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.75)
+                box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2)
                 cursor: pointer
             .add__arrow--none
                 box-shadow: none
                 transform: translate(0, 2px)
                 .add__arrow-icon
+                    
+                    @include flex(start,center, row)
         .add__note
             background-color: $grey-color
             border-radius: 5px
