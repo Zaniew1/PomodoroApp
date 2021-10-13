@@ -70,6 +70,14 @@ const showSectionInfo = ()=>{
         document.querySelector('.info').classList.add('info--active')
     }
 }
+// FUCNTION ADDING COLOR TO ADD__SAVE BUTTON WHEN ADD__WHAT INPUT HAS VALUE != 0
+const giveColorToAddButton = ()=>{
+    addTaskAndSave.classList.add('add__save--active');
+    if(addWhatText.value == 0){
+        addTaskAndSave.classList.remove('add__save--active');
+    } 
+}
+addWhatText.addEventListener('keyup', ()=>{giveColorToAddButton()})
 // REMOVE ALL TASK FUNCTION
 const removeAllTasks = ()=> {
     allTasks.splice(0, allTasks.length)
