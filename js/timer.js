@@ -89,10 +89,8 @@
     // FUNCTION POMODORO
         const pomodoroFunction = ()=>{
             let pomodoroMinValue = document.querySelector(".settings__time-of-clock-input--pomodoro").value;
-            // clockSecondsPomodoros = 60;
-            clockSecondsPomodoros = 2;
-            // clockMinutesPomodoros = pomodoroMinValue - 1;
-            clockMinutesPomodoros = 0;
+            clockSecondsPomodoros = 60;
+            clockMinutesPomodoros = pomodoroMinValue - 1;
             clockSec.textContent = "00";
             clockMin.textContent = (String(pomodoroMinValue)<10 ? "0"+String(pomodoroMinValue): String(pomodoroMinValue))
             clearAllIntervals();
