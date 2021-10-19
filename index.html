@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PomodoroFocus</title>
     <meta name="author" content="Mateusz Zaniewski">
-	
 	<meta name="description" content="If u want to increase your productivity, this app is for you!">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 	<meta name="keywords" content="productivity, pomodoro, app, work, focus,">
@@ -16,11 +15,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-
 <body >
-    
     <main class="wrapper" >
         <div class="blur"></div>
+<!-- HEADER SECTION -->
         <header class="header">
             <div class="logo"><i class="fas fa-check-circle logo__icon"></i>
                 PomodoroFocus
@@ -31,7 +29,7 @@
                 <div class="nav__item  nav__item-login"><i class="fas fa-user nav__item-icon"></i><p class="nav__item-text">Login</p></div>
             </nav>
         </header>
-
+<!--TIMER SECTION -->
         <section class="timer">
             <div class="clock__options">
                 <button class="clock__button clock__button--active clock__one">Pomodoro</button>
@@ -44,13 +42,12 @@
                 <div class="reset"><i class="fas fa-step-forward reset__icon"></i></div>
             </div>
         </section>
-
+<!-- TASK SECTION -->
         <section class="task">
             <div class="task__name">
                 <p class="task__text">Time to work !</p>
                 <p class="current__task"></p>
             </div>
-
             <div class="task__wrapper">
                 <div class="tasks">Tasks: </div>
                 <div class="tasks__options">
@@ -62,41 +59,16 @@
                     </div>
                 </div>
             </div>
-
             <div class="all__tasks">
                 <ul class="all__list">
-                    <!-- <li class="all__item">
-                        <div class="all__wrapper-one">
-                            <i class="fas fa-check-circle all__icon"></i>
-                            <p class="all__text">asd</p>
-                        </div> 
-                        <div class="all__wrapper-two">
-                            <div class="all__number-of-tasks">
-                                <span class="all__number-of-tasks-done">0</span> /
-                                <span class="all__number-of-tasks-to-do"></span>
-                            </div>
-                            <div class="all__options">
-                                <div class="all__edit"><i class="far fa-edit all__edit-icon"></i> </div>
-                                <div class="all__delete"><i class="fas fa-trash all__delete-icon"></i></div>
-                            </div>
-                        </div>
-                        <div class="all__wrapper-three">
-                            <p class="all__note">
-                                
-                            </p>
-
-                        </div>
-                    </li> -->
+                
                 </ul>
             </div>
-
             <div class="button__wrapper">
                 <button class="add__task"> Add Task</button>
-            </div>
-            
+            </div>  
         </section>
-
-        
+<!-- ADD SECTION -->
         <section class="add">
             <div class="add__wrapper add__wrapper--none">
                 <input class="add__what" placeholder="What are you working on?" required>
@@ -113,7 +85,7 @@
                 </div>
             </div>
         </section>
-    
+<!-- INFO SECTION -->    
         <section class="info info--active   "> 
             <div class="info__wrapper--one">
                 <p class="info__estimate-text">Tasks: </p>
@@ -128,7 +100,7 @@
                 </span>
             </div>
         </section>
-        
+<!-- SETTINGS SECTION -->       
         <section class="settings">
             <div class="settings__header">
                 <p class="settings__header-text">Timer Settigns</p>
@@ -167,7 +139,6 @@
                 <p class="settings__long-interval-text">Long Break Interval</p>
                 <input class="settings__long-interval-input" type="number" value="4">
             </div>
-
             <div class="settings__alarm-sound">
                 <p class="settings__alarm-sound-text">Alarm Sound</p>
                 <div class="settings__alarm-sound-wrapper">
@@ -184,7 +155,6 @@
                 <p class="settings__alarm-volume-text">Alarm Volume (0-100)</p>
                 <input  class="settings__alarm-volume-input" value="50" type="number" >
             </div>
-
             <div class="settings__ticking-sound">
                 <p class="settings__ticking-sound-text">Ticking Sound</p>
                 <div class="settings__ticking-sound-wrapper">
@@ -199,18 +169,14 @@
                 <p class="settings__ticking-volume-text">Ticking Volume (0-100)</p>
                 <input  class="settings__ticking-volume-input" value="50" type="number">
             </div>
-
-
             <div class="settings__accept">
                 <button class="settings__accept-button">Accept </button>
             </div>
         </section>
-
     </main>
     <script src="js/localStorage.js"></script>
     <script src="js/sounds.js"></script>
     <script src="js/timer.js"></script>
     <script src="js/toDoList.js"></script>
-    
 </body>
 </html>

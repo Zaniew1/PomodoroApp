@@ -1,4 +1,3 @@
-    //TIMER
         const clockMin = document.querySelector('.clock__minutes');
         const clockSec = document.querySelector('.clock__seconds');
         const pomodoroButton = document.querySelector('.clock__one');
@@ -13,20 +12,16 @@
         let shortMinValue = document.querySelector(".settings__time-of-clock-input--short").value
         let longMinValue = document.querySelector(".settings__time-of-clock-input--long").value
         let buttonActive = false; // button used for timer
-
         let clockMinutesPomodoros = pomodoroMinValue - 1 ; // Minutes of Timer = number of minutes saved in settings - 1
         let clockMinutesShort = shortMinValue - 1 ; // Minutes of Timer = number of minutes saved in settings - 1
         let clockMinutesLong = longMinValue - 1; // Minutes of Timer = number of minutes saved in settings - 1
         let clockSecondsPomodoros = 60;
         let clockSecondsShort = 60;
         let clockSecondsLong = 60;
-
         let idIntervalPomodoroClock; // ID timer interval
         let idIntervalShortClock; // ID timer interval
         let idIntervalLongClock; // ID timer interval
-    
         let longBreakActivate = 0;
-   
     //  function changing color of buttons(pomodoro, shortbreak, longbreak)
         const removeColorFromClockButtons = function(){
             pomodoroButton.classList.remove('clock__button--active');
@@ -94,8 +89,10 @@
     // FUNCTION POMODORO
         const pomodoroFunction = ()=>{
             let pomodoroMinValue = document.querySelector(".settings__time-of-clock-input--pomodoro").value;
-            clockSecondsPomodoros = 60;
-            clockMinutesPomodoros = pomodoroMinValue - 1;
+            // clockSecondsPomodoros = 60;
+            clockSecondsPomodoros = 2;
+            // clockMinutesPomodoros = pomodoroMinValue - 1;
+            clockMinutesPomodoros = 0;
             clockSec.textContent = "00";
             clockMin.textContent = (String(pomodoroMinValue)<10 ? "0"+String(pomodoroMinValue): String(pomodoroMinValue))
             clearAllIntervals();
@@ -275,6 +272,7 @@
         startButton.addEventListener('click', startButtonFunction)  
     // RESET TIMER FUNCTION
         const resetButton = ()=>{
+            //stop counting timer and stop sound
             clearAllIntervals();
             turningOffSoundFunction();
             if(confirm("Are u sure, you want to finish earlier ? ")){
@@ -290,6 +288,7 @@
                     pomodoroFunction();
                 }    
             }
+            //if not want to stop earlier
             else{
                 startTimerAfterStop();
                 tickingSoundFunction();
