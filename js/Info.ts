@@ -1,3 +1,3 @@
-class StoragedData {
+export class Info {
   constructor() {}
 }

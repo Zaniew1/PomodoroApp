@@ -1,3 +1,3 @@
-class Tasks {
+export class Tasks {
   constructor() {}
 }
