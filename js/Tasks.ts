@@ -30,9 +30,13 @@ export class Tasks {
     this.estimatedPomodorosInput.value = String(Number(this.estimatedPomodorosInput.value) - 1);
   }
   public saveNewTask() {
-    console.log("123");
     this.createNewTask(this.addWhatText.value, this.estimatedPomodorosInput.value, this.addWhatDescription.value);
     this.setAddWhatInputsToDefault();
+  }
+  public deleteTask(event: Event) {
+    var liElement = (event.target as HTMLElement).closest(".all__item");
+    var ulElement = liElement?.parentElement;
+    ulElement && liElement ? ulElement.removeChild(liElement) : "";
   }
   private setAddWhatInputsToDefault() {
     this.addWhatText.value = "";
@@ -44,8 +48,76 @@ export class Tasks {
     li.classList.add("all__item");
     li.dataset.key = String(this.tasksList.children.length);
     li.dataset.completedTask = String(0);
+    li.appendChild(this.createTextWrapperOfLi(text));
+    li.appendChild(this.createEstimatesOfLi(estimatedPomodoros));
+    description ? li.appendChild(this.createDescriptionOfLi(description ?? "")) : "";
     this.tasksList.appendChild(li);
   }
+  private createTextWrapperOfLi(text: string): HTMLDivElement {
+    const addTextWrapper = document.createElement("div");
+    addTextWrapper.classList.add("all__wrapper-one");
+    const icon = document.createElement("i");
+    icon.classList.add("fas");
+    icon.classList.add("fa-check-circle");
+    icon.classList.add("all__icon");
+    const textOfTask = document.createElement("p");
+    textOfTask.textContent = text;
+    addTextWrapper.appendChild(icon);
+    addTextWrapper.appendChild(textOfTask);
+    return addTextWrapper;
+  }
+  private createEstimatesOfLi(estimatedPomodoros: string): HTMLDivElement {
+    const wrapperTwo = document.createElement("div");
+    wrapperTwo.classList.add("all__wrapper-two");
+
+    const allNumberOfTasks = document.createElement("div");
+    wrapperTwo.classList.add("all__number-of-tasks");
+
+    const spanTasksDone = document.createElement("span");
+    spanTasksDone.textContent = String(0);
+    spanTasksDone.classList.add("all__number-of-tasks-done");
+
+    const spanTasksToDo = document.createElement("span");
+    spanTasksToDo.textContent = estimatedPomodoros;
+    spanTasksToDo.classList.add("all__number-of-tasks-to-do");
+
+    allNumberOfTasks.appendChild(spanTasksDone);
+    allNumberOfTasks.textContent += " / ";
+    allNumberOfTasks.appendChild(spanTasksToDo);
+    wrapperTwo.appendChild(allNumberOfTasks);
+    wrapperTwo.appendChild(this.createSettingsOfLi());
+    return wrapperTwo;
+  }
+  private createSettingsOfLi(): HTMLDivElement {
+    const allOptions = document.createElement("div");
+    allOptions.classList.add("all__options");
+    const Edit = document.createElement("div");
+    Edit.classList.add("all__edit");
+    const EditIcon = document.createElement("i");
+    EditIcon.classList.add("far");
+    EditIcon.classList.add("fa-edit");
+    Edit.appendChild(EditIcon);
+    const Delete = document.createElement("div");
+    Delete.classList.add("all__delete");
+    const DeleteIcon = document.createElement("i");
+    DeleteIcon.classList.add("fas");
+    DeleteIcon.classList.add("fa-trash");
+    Delete.appendChild(DeleteIcon);
+    allOptions.appendChild(Edit);
+    allOptions.appendChild(Delete);
+    return allOptions;
+  }
+  private createDescriptionOfLi(description: string): HTMLDivElement {
+    const descriptionWrapper = document.createElement("div");
+    descriptionWrapper.classList.add("all__wrapper-three");
+    const descriptionText = document.createElement("p");
+    descriptionText.classList.add("all__note");
+
+    descriptionText.textContent = description;
+    descriptionWrapper.appendChild(descriptionText);
+    return descriptionWrapper;
+  }
+
   private setEstimatedPomodorosDefaultValue(value: number) {
     this.estimatedPomodorosInput.value = String(value);
   }
@@ -88,3 +160,10 @@ document.querySelector(".add__arrow-down")?.addEventListener("click", function (
 document.querySelector(".add__save")?.addEventListener("click", function () {
   TaskClass.saveNewTask();
 });
+document.querySelector(".all__tasks")?.addEventListener(
+  "click",
+  function (event) {
+    TaskClass.deleteTask(event);
+  },
+  true
+);
