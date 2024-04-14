@@ -28,6 +28,8 @@
                 <div class="nav__item nav__item-settings"><i class="fas fa-cog nav__item-icon"></i><p class="nav__item-text">Settings</p></div>
                 <div class="nav__item  nav__item-login"><i class="fas fa-user nav__item-icon"></i><p class="nav__item-text">Login</p></div>
             </nav>
+            <span class="header__span"></span>
+            <span class="header__span__progress"></span>
         </header>
 <!--TIMER SECTION -->
         <section class="timer">
@@ -38,8 +40,8 @@
             </div>
             <div class="clock"><span class="clock__minutes">25</span> : <span class="clock__seconds">00</span></div>
             <div class = "button__reset--wrapper">
-                <button class="clock__start" data-start=false >Start</button>
-                <div class="reset"><i class="fas fa-step-forward reset__icon"></i></div>
+                <button class="clock__start" data-work="work" data-start=false >Start</button>
+                <div class="reset" data-work="work"><i class="fas fa-step-forward reset__icon"></i></div>
             </div>
         </section>
 <!-- TASK SECTION -->
@@ -175,6 +177,7 @@
         </section>
     </main>
     <script  type="module" src="js/Main.ts"></script>
+    <script  type="module" src="js/Tasks.ts"></script>
 
 </body>
 </html>
