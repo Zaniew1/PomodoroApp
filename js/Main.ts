@@ -11,10 +11,8 @@ class Timer {
     protected clockMinutes: HTMLSpanElement,
     protected clockSeconds: HTMLSpanElement
   ) {}
-  protected start(timerTime: number, color: string) {
+  protected start(timerTime: number) {
     this.startTimer(timerTime);
-    this.changeButtonColor(color);
-    this.changeBackgroundColor(color);
     this.showResetButton();
     this.buttonTextContent("Stop");
     this.buttonStartDataset("true");
@@ -31,16 +29,31 @@ class Timer {
     this.intervalMinutes = undefined;
     this.initialMinutes = 0;
     this.initialSeconds = 0;
-    this.clockMinutes.textContent = String(timerTime);
+    this.clockMinutes.textContent = timerTime < 10 ? `0${timerTime}` : String(timerTime);
     this.clockSeconds.textContent = "00";
   }
   protected setButtonReady(button: HTMLButtonElement) {
     button.classList.add("clock__button--active");
     button.dataset.active = "true";
   }
+  protected startButtonSetTimerType(typeOfTimer: string) {
+    this.startButton.dataset.work = typeOfTimer;
+  }
+  protected resetSetTimerType(typeOfTimer: string) {
+    this.resetButton.dataset.work = typeOfTimer;
+  }
   protected unsetButtonReady(button: HTMLButtonElement) {
     button.classList.remove("clock__button--active");
     button.dataset.active = "false";
+  }
+  protected changeBackgroundColor(color: string) {
+    this.background.style.backgroundColor = color;
+  }
+  protected changeButtonColor(color: string) {
+    this.startButton.style.color = color;
+  }
+  protected setTimeOnTimer(time: number) {
+    this.clockMinutes.textContent = time < 10 ? `0${time}` : String(time);
   }
   private startTimer(minutes: number) {
     if (this.initialMinutes === 0 && this.initialSeconds === 0) {
@@ -80,12 +93,6 @@ class Timer {
   private hideResetButton() {
     this.resetButton.classList.remove("reset--visible");
   }
-  private changeBackgroundColor(color: string) {
-    this.background.style.backgroundColor = color;
-  }
-  private changeButtonColor(color: string) {
-    this.background.style.backgroundColor = color;
-  }
 }
 
 class WorkTimer extends Timer {
@@ -100,11 +107,9 @@ class WorkTimer extends Timer {
     private workColor: string
   ) {
     super(background, startButton, resetButton, clockMinutes, clockSeconds);
-    this.workButton = workButton;
-    this.workTime = workTime;
   }
   public start() {
-    super.start(this.workTime, this.workColor);
+    super.start(this.workTime);
   }
   public stop() {
     super.stop();
@@ -113,7 +118,12 @@ class WorkTimer extends Timer {
     super.reset(this.workTime);
   }
   public initialize() {
+    super.setTimeOnTimer(this.workTime);
+    super.resetSetTimerType("work");
     super.setButtonReady(this.workButton);
+    super.startButtonSetTimerType("work");
+    super.changeButtonColor(this.workColor);
+    super.changeBackgroundColor(this.workColor);
   }
   public deinitialize() {
     super.unsetButtonReady(this.workButton);
@@ -133,11 +143,9 @@ class ShortTimer extends Timer {
     private shortColor: string
   ) {
     super(background, startButton, resetButton, clockMinutes, clockSeconds);
-    this.shortButton = shortButton;
-    this.shortTime = shortTime;
   }
   public start() {
-    super.start(this.shortTime, this.shortColor);
+    super.start(this.shortTime);
   }
   public stop() {
     super.stop();
@@ -146,7 +154,12 @@ class ShortTimer extends Timer {
     super.reset(this.shortTime);
   }
   public initialize() {
+    super.setTimeOnTimer(this.shortTime);
+    super.resetSetTimerType("short");
+    super.startButtonSetTimerType("short");
     super.setButtonReady(this.shortButton);
+    super.changeButtonColor(this.shortColor);
+    super.changeBackgroundColor(this.shortColor);
   }
   public deinitialize() {
     super.unsetButtonReady(this.shortButton);
@@ -166,12 +179,9 @@ class LongTimer extends Timer {
     private longColor: string
   ) {
     super(background, startButton, resetButton, clockMinutes, clockSeconds);
-    this.longButton = longButton;
-    this.longTime = longTime;
-    this.longColor = longColor;
   }
   public start() {
-    super.start(this.longTime, this.longColor);
+    super.start(this.longTime);
   }
   public stop() {
     super.stop();
@@ -180,7 +190,12 @@ class LongTimer extends Timer {
     super.reset(this.longTime);
   }
   public initialize() {
+    super.setTimeOnTimer(this.longTime);
+    super.resetSetTimerType("long");
+    super.startButtonSetTimerType("long");
     super.setButtonReady(this.longButton);
+    super.changeButtonColor(this.longColor);
+    super.changeBackgroundColor(this.longColor);
   }
   public deinitialize() {
     super.unsetButtonReady(this.longButton);
@@ -217,27 +232,20 @@ const long = new LongTimer(
   15,
   "rgb(70, 142, 145)"
 );
+
+document.addEventListener("DOMContentLoaded", () => {
+  work.initialize();
+});
+
 document.querySelector(".clock__start")?.addEventListener("click", function () {
-  const clockOne = document.querySelector(".clock__one");
-  const clockTwo = document.querySelector(".clock__two");
-  const clockOneActive = clockOne instanceof HTMLElement && clockOne.dataset.active === "true";
-  const clockTwoActive = clockTwo instanceof HTMLElement && clockTwo.dataset.active === "true";
-  if (this.dataset.start == "false") {
-    if (clockOneActive) {
-      work.start();
-    } else if (clockTwoActive) {
-      short.start();
-    } else {
-      long.start();
-    }
-  } else {
-    work.stop();
-  }
+  if (this.dataset.work === "work") this.dataset.start === "false" ? work.start() : work.stop();
+  else if (this.dataset.work === "short") this.dataset.start === "false" ? short.start() : short.stop();
+  else if (this.dataset.work === "long") this.dataset.start === "false" ? long.start() : long.stop();
 });
 document.querySelector(".reset")?.addEventListener("click", function () {
-  work.reset();
-  short.reset();
-  long.reset();
+  if (this.dataset.work === "work") work.reset();
+  else if (this.dataset.work === "short") short.reset();
+  else if (this.dataset.work === "long") long.reset();
 });
 document.querySelector(".clock__one")?.addEventListener("click", function () {
   short.deinitialize();
