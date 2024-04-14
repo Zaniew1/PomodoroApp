@@ -10,6 +10,7 @@ body {
   margin: 0;
   width: 100vw;
   background-color: #DB524D;
+  min-width: 320px;
   transition: background-color 0.4s ease-in-out;
 }
 @media only screen and (orientation: portrait) and (min-width: 768px) {
@@ -36,7 +37,7 @@ body {
 }
 @media only screen and (orientation: landscape) and (min-width: 1248px) {
   body {
-    width: 35vw;
+    width: 45vw;
   }
 }
 
@@ -73,9 +74,9 @@ body {
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+  flex-wrap: wrap;
   width: 100%;
   height: 10vh;
-  border-bottom: 1px solid #efefef;
 }
 @media only screen and (orientation: portrait) and (min-width: 768px) {
   .header {
@@ -99,6 +100,7 @@ body {
   flex-direction: row;
   margin-left: 30px;
   width: 30%;
+  flex-grow: 1;
   height: 100%;
   color: #fff;
   font-size: 16px;
@@ -129,7 +131,8 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  width: 45%;
+  width: 60%;
+  flex-grow: 1;
   height: 100%;
 }
 @media only screen and (orientation: landscape) and (min-width: 768px) {
@@ -188,6 +191,16 @@ body {
   .header .nav .nav__item .nav__item-icon {
     padding-left: 5px;
   }
+}
+.header .header__span {
+  height: 1px;
+  width: 2px;
+  background-color: #efefef;
+}
+.header .header__span::before {
+  height: 1px;
+  width: 100%;
+  background-color: #efefef;
 }
 
 .timer {
@@ -443,7 +456,7 @@ body {
 .task .task__wrapper .tasks__options .tasks__options-wrapper {
   display: flex;
   justify-content: space-around;
-  align-items: start;
+  align-items: flex-start;
   flex-direction: column;
   position: absolute;
   width: 220px;
@@ -690,6 +703,7 @@ body {
   border: none;
   outline: none;
   opacity: 0.8;
+  cursor: pointer;
   color: #fff;
   font-size: 24px;
   background-color: transparent;
@@ -714,7 +728,7 @@ body {
 .add .add__wrapper {
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start;
   flex-direction: column;
   width: 95%;
   height: 100%;
@@ -806,7 +820,7 @@ body {
 }
 .add .add__wrapper .add__estimate--wrapper .add__arrow--none .add__arrow-icon {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: row;
 }
@@ -1380,7 +1394,7 @@ body {
 }
 .settings--active .settings__accept {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   padding: 15px;
 }
 .settings--active .settings__accept .settings__accept-button {
