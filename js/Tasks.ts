@@ -30,11 +30,20 @@ export class Tasks {
     this.estimatedPomodorosInput.value = String(Number(this.estimatedPomodorosInput.value) - 1);
   }
   public saveNewTask() {
+    console.log("123");
     this.createNewTask(this.addWhatText.value, this.estimatedPomodorosInput.value, this.addWhatDescription.value);
+    this.setAddWhatInputsToDefault();
+  }
+  private setAddWhatInputsToDefault() {
+    this.addWhatText.value = "";
+    this.addWhatDescription.value = "";
+    this.estimatedPomodorosInput.value = "1";
   }
   private createNewTask(text: string, estimatedPomodoros: string, description?: string) {
     const li = document.createElement("li");
-    // li.classList=""
+    li.classList.add("all__item");
+    li.dataset.key = String(this.tasksList.children.length);
+    li.dataset.completedTask = String(0);
     this.tasksList.appendChild(li);
   }
   private setEstimatedPomodorosDefaultValue(value: number) {
