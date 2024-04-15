@@ -6,7 +6,8 @@ export class Tasks {
     protected addWhatText: HTMLInputElement,
     protected estimatedPomodorosInput: HTMLInputElement,
     protected addWhatDescription: HTMLTextAreaElement,
-    protected tasksList: HTMLElement
+    protected tasksList: HTMLElement,
+    protected saveTaskButton: HTMLElement
   ) {}
   public showSurvey() {
     this.setEstimatedPomodorosDefaultValue(1);
@@ -30,13 +31,36 @@ export class Tasks {
     this.estimatedPomodorosInput.value = String(Number(this.estimatedPomodorosInput.value) - 1);
   }
   public saveNewTask() {
-    this.createNewTask(this.addWhatText.value, this.estimatedPomodorosInput.value, this.addWhatDescription.value);
+    this.estimatedPomodorosInput;
+    this.addWhatDescription;
+    this.createNewTask(
+      this.validateAddedText(this.addWhatText.value),
+      String(this.validateAddedEstimatedPomodoros(+this.estimatedPomodorosInput.value)),
+      this.validateAddedDescription(this.addWhatDescription.value)
+    );
     this.setAddWhatInputsToDefault();
   }
   public deleteTask(event: Event) {
+    console.log(event.target);
     var liElement = (event.target as HTMLElement).closest(".all__item");
     var ulElement = liElement?.parentElement;
     ulElement && liElement ? ulElement.removeChild(liElement) : "";
+  }
+  public highlightSaveTaskButton() {
+    console.log(this.addWhatText.value);
+    if (+String(this.addWhatText.value).length > 3) {
+      this.enableSaveTaskButton();
+    } else {
+      this.disableSaveTaskButton();
+    }
+  }
+  public disableSaveTaskButton() {
+    this.saveTaskButton.classList.remove("add__save--active");
+    this.saveTaskButton.setAttribute("disabled", "true");
+  }
+  private enableSaveTaskButton() {
+    this.saveTaskButton.classList.add("add__save--active");
+    this.saveTaskButton.removeAttribute("disabled");
   }
   private setAddWhatInputsToDefault() {
     this.addWhatText.value = "";
@@ -121,14 +145,29 @@ export class Tasks {
   private setEstimatedPomodorosDefaultValue(value: number) {
     this.estimatedPomodorosInput.value = String(value);
   }
-  private validateAddedText() {
-    console.log("valText");
+  private validateAddedText(text: string) {
+    if (text.length > 200) {
+      throw new Error("Nazwa zadania może mieć maksymalnie 200 znaków");
+    } else if (text.length < 4) {
+      throw new Error("Nazwa zadania musi mieć minimum 4 znaki");
+    }
+    return text.trim();
   }
-  private validateAddedDescription() {
-    console.log("valDesc");
+  private validateAddedDescription(description: string) {
+    if (description.length > 300) {
+      throw new Error("Opis zadanie może mieć maksymalnie 300 znaków");
+    }
+    return description.trim();
   }
-  private validateAddedEstimatedPomodoros() {
-    console.log("valEst");
+  private validateAddedEstimatedPomodoros(number: number) {
+    if (number > 50) {
+      number = 50;
+      throw new Error("Szacowane zadania nie mogą być większe od 50");
+    } else if (number < 0) {
+      number = 1;
+      throw new Error("Szacowane zadania muszą być większe niż 0");
+    }
+    return number;
   }
 }
 
@@ -139,7 +178,8 @@ const TaskClass = new Tasks(
   document.querySelector(".add__what") as HTMLInputElement,
   document.querySelector(".add__number-of-pomodoros") as HTMLInputElement,
   document.querySelector(".add__note") as HTMLTextAreaElement,
-  document.querySelector(".all__list") as HTMLElement
+  document.querySelector(".all__list") as HTMLElement,
+  document.querySelector(".add__save") as HTMLButtonElement
 );
 document.querySelector(".button__wrapper")?.addEventListener("click", function () {
   TaskClass.showSurvey();
@@ -150,7 +190,10 @@ document.querySelector(".add__cancel")?.addEventListener("click", function () {
 document.querySelector(".tasks__options")?.addEventListener("click", function () {
   TaskClass.toggleOptions();
 });
-
+document.querySelector(".add__what")?.addEventListener("input", function () {
+  console.log("123");
+  TaskClass.highlightSaveTaskButton();
+});
 document.querySelector(".add__arrow-up")?.addEventListener("click", function () {
   TaskClass.incrementEstimatedPomodoros();
 });
@@ -159,8 +202,9 @@ document.querySelector(".add__arrow-down")?.addEventListener("click", function (
 });
 document.querySelector(".add__save")?.addEventListener("click", function () {
   TaskClass.saveNewTask();
+  TaskClass.disableSaveTaskButton();
 });
-document.querySelector(".all__tasks")?.addEventListener(
+document.querySelector(".all__delete")?.addEventListener(
   "click",
   function (event) {
     TaskClass.deleteTask(event);

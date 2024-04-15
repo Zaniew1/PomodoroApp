@@ -83,7 +83,7 @@
                 <textarea class="add__note" type="text" placeholder="Add note (optional)"></textarea>
                 <div class="add__cancel--wrapper">
                     <button class="add__cancel">Cancel</button>
-                    <button class="add__save " >Save</button>
+                    <button class="add__save " disabled >Save</button>
                 </div>
             </div>
         </section>
@@ -113,15 +113,15 @@
                 <div class="settings__time-of-clock-wrap">
                     <div class="settings__time-of-clock">
                         <p class="settings__time-of-clock-text">Pomodoro</p>
-                        <input class="settings__time-of-clock-input settings__time-of-clock-input--pomodoro" type="number" value="25">
+                        <input class="settings__time-of-clock-input settings__time-of-clock-input--pomodoro" type="number" value="25" min="1" max="180">
                     </div>
                     <div class="settings__time-of-clock">
                         <p class="settings__time-of-clock-text">Short Break</p>
-                        <input class="settings__time-of-clock-input settings__time-of-clock-input--short" type="number" value="5">
+                        <input class="settings__time-of-clock-input settings__time-of-clock-input--short" type="number" value="5" min="1" max="30">
                     </div>
                     <div class="settings__time-of-clock">
                         <p class="settings__time-of-clock-text">Long Break</p>
-                        <input class="settings__time-of-clock-input settings__time-of-clock-input--long" type="number" value="15">
+                        <input class="settings__time-of-clock-input settings__time-of-clock-input--long" type="number" value="15" min="1" max="120">
                     </div>
                 </div>
             </div>
@@ -139,7 +139,7 @@
             </div>
             <div class="settings__long-interval">
                 <p class="settings__long-interval-text">Long Break Interval</p>
-                <input class="settings__long-interval-input" type="number" value="4">
+                <input class="settings__long-interval-input" type="number" min="1" max="10" value="4">
             </div>
             <div class="settings__alarm-sound">
                 <p class="settings__alarm-sound-text">Alarm Sound</p>
@@ -155,7 +155,7 @@
             </div>
             <div class="settings__alarm-volume">
                 <p class="settings__alarm-volume-text">Alarm Volume (0-100)</p>
-                <input  class="settings__alarm-volume-input" value="50" type="number" >
+                <input  class="settings__alarm-volume-input" value="50" min="0" max="100" type="number" >
             </div>
             <div class="settings__ticking-sound">
                 <p class="settings__ticking-sound-text">Ticking Sound</p>
@@ -169,7 +169,7 @@
             </div>
             <div class="settings__ticking-volume">
                 <p class="settings__ticking-volume-text">Ticking Volume (0-100)</p>
-                <input  class="settings__ticking-volume-input" value="50" type="number">
+                <input  class="settings__ticking-volume-input" value="50" min="0" max="100" type="number">
             </div>
             <div class="settings__accept">
                 <button class="settings__accept-button">Accept </button>
@@ -178,6 +178,8 @@
     </main>
     <script  type="module" src="js/Main.ts"></script>
     <script  type="module" src="js/Tasks.ts"></script>
+    <script  type="module" src="js/SettingsUI.ts"></script>
+    <script  type="module" src="js/Settings.ts"></script>
 
 </body>
 </html>

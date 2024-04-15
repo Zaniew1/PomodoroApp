@@ -451,7 +451,7 @@ body {
   font-size: 14px;
   cursor: pointer;
   margin: 10px 0;
-  z-index: 9;
+  z-index: 3;
 }
 .task .task__wrapper .tasks__options .tasks__options-wrapper {
   display: flex;
@@ -465,7 +465,7 @@ body {
   bottom: -360%;
   right: 0;
   border-radius: 5px;
-  z-index: 4;
+  z-index: 8;
 }
 @media only screen and (orientation: portrait) and (min-width: 768px) {
   .task .task__wrapper .tasks__options .tasks__options-wrapper {
@@ -646,7 +646,7 @@ body {
   color: #555;
   font-size: 16px;
   cursor: pointer;
-  z-index: 5;
+  z-index: 2;
 }
 .task .all__tasks .all__list .all__item .all__wrapper-three {
   display: flex;
