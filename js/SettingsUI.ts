@@ -28,7 +28,7 @@ const settings = document.querySelector(".settings") as HTMLDivElement;
 const blurBackground = document.querySelector(".blur") as HTMLDivElement;
 const autoBreakAccept = document.querySelector(".settings__auto-breaks-accept") as HTMLDivElement;
 const autoWorkAccept = document.querySelector(".settings__auto-pomodoro-accept") as HTMLDivElement;
-const SettingsUIClass = new SettingsUI(settings, blurBackground, autoBreakAccept, autoWorkAccept);
+export const SettingsUIClass = new SettingsUI(settings, blurBackground, autoBreakAccept, autoWorkAccept);
 
 document.querySelector(".nav__item-settings")?.addEventListener("click", () => {
   SettingsUIClass.showSettings();
@@ -43,7 +43,10 @@ document.querySelector(".blur")?.addEventListener("click", () => {
   SettingsUIClass.hideSettings();
   SettingsUIClass.removeBlurToBackground();
 });
-
+document.querySelector(".settings__accept-button")?.addEventListener("click", function () {
+  SettingsUIClass.hideSettings();
+  SettingsUIClass.removeBlurToBackground();
+});
 document.querySelector(".settings__auto-breaks-accept")?.addEventListener("click", function () {
   SettingsUIClass.toggleAutoBreak();
 });

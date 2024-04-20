@@ -1,4 +1,19 @@
+import { StorageData } from "./Storage";
+import { SettingsUIClass } from "./SettingsUI";
+export type SettingsType = {
+  workTime: string;
+  shortTime: string;
+  longTime: string;
+  autoBreakStart: boolean;
+  autoWorkStart: boolean;
+  longBreakInterval: string;
+  alarmSound: string;
+  alarmVolume: string;
+  tickingSound: string;
+  tickingVolume: string;
+};
 class Settings {
+  private storage = new StorageData();
   constructor(
     protected workTime: HTMLInputElement,
     protected shortTime: HTMLInputElement,
@@ -13,7 +28,6 @@ class Settings {
   ) {}
 
   saveSettings() {
-    console.log("12");
     this.validateWorkTime();
     this.validateShortTime();
     this.validateLongTime();
@@ -24,6 +38,37 @@ class Settings {
     this.validateAlarmVolume();
     this.validateTickingSound();
     this.validateTickingVolume();
+    const settings: SettingsType = {
+      workTime: this.workTime.value,
+      shortTime: this.shortTime.value,
+      longTime: this.longTime.value,
+      autoBreakStart: this.autoBreakStart.classList.contains("settings__auto-breaks-accept--active") ? true : false,
+      autoWorkStart: this.autoWorkStart.classList.contains("settings__auto-pomodoro-accept--active") ? true : false,
+      longBreakInterval: this.longBreakInterval.value,
+      alarmSound: this.alarmSound.value,
+      alarmVolume: this.alarmVolume.value,
+      tickingSound: this.tickingSound.value,
+      tickingVolume: this.tickingVolume.value,
+    };
+    this.storage.saveSettings(settings);
+  }
+  loadSettings() {
+    const settings = this.storage.loadSettings();
+    console.log(settings);
+    settings?.workTime ? (this.workTime.value = settings?.workTime) : "";
+    settings?.shortTime ? (this.shortTime.value = settings?.shortTime) : "";
+    settings?.longTime ? (this.longTime.value = settings?.longTime) : "";
+    settings?.autoBreakStart === true
+      ? this.autoBreakStart.classList.add(".settings__auto-breaks-accept--active")
+      : this.autoBreakStart.classList.remove(".settings__auto-breaks-accept--active");
+    settings?.autoWorkStart === true
+      ? this.autoWorkStart.classList.add(".settings__auto-pomodoro-accept--active")
+      : this.autoBreakStart.classList.remove(".settings__auto-pomodoro-accept--active");
+    settings?.longBreakInterval ? (this.longBreakInterval.value = settings?.longBreakInterval) : "";
+    settings?.alarmSound ? (this.alarmSound.value = settings?.alarmSound) : "";
+    settings?.alarmVolume ? (this.alarmVolume.value = settings?.alarmVolume) : "";
+    settings?.tickingSound ? (this.tickingSound.value = settings?.tickingSound) : "";
+    settings?.tickingVolume ? (this.tickingVolume.value = settings?.tickingVolume) : "";
   }
   validateWorkTime() {
     if (+this.workTime < 1) {
@@ -99,4 +144,9 @@ const SettingsClass = new Settings(
 );
 document.querySelector(".settings__accept-button")?.addEventListener("click", function () {
   SettingsClass.saveSettings();
+  console.log(SettingsUIClass);
+  SettingsUIClass.hideSettings();
+});
+document.addEventListener("DOMContentLoaded", function () {
+  SettingsClass.loadSettings();
 });

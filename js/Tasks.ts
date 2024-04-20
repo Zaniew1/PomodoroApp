@@ -1,4 +1,7 @@
+import { StorageData } from "./Storage";
 export class Tasks {
+  private currentTaskText: HTMLDivElement = document.querySelector(".tasks__text") as HTMLDivElement;
+  private storage = new StorageData();
   constructor(
     protected addButton: HTMLDivElement,
     protected taskOptions: HTMLDivElement,
@@ -6,7 +9,7 @@ export class Tasks {
     protected addWhatText: HTMLInputElement,
     protected estimatedPomodorosInput: HTMLInputElement,
     protected addWhatDescription: HTMLTextAreaElement,
-    protected tasksList: HTMLElement,
+    protected tasksList: HTMLUListElement,
     protected saveTaskButton: HTMLElement
   ) {}
   public showSurvey() {
@@ -31,32 +34,72 @@ export class Tasks {
     this.estimatedPomodorosInput.value = String(Number(this.estimatedPomodorosInput.value) - 1);
   }
   public saveNewTask() {
-    this.estimatedPomodorosInput;
-    this.addWhatDescription;
     this.createNewTask(
       this.validateAddedText(this.addWhatText.value),
       String(this.validateAddedEstimatedPomodoros(+this.estimatedPomodorosInput.value)),
       this.validateAddedDescription(this.addWhatDescription.value)
     );
     this.setAddWhatInputsToDefault();
+    this.storage.saveTasks(this.tasksList);
   }
-  public deleteTask(event: Event) {
-    console.log(event.target);
-    var liElement = (event.target as HTMLElement).closest(".all__item");
+  public deleteTask(element: HTMLElement) {
+    var liElement = element.closest(".all__item");
     var ulElement = liElement?.parentElement;
     ulElement && liElement ? ulElement.removeChild(liElement) : "";
   }
+  public editTask(element: HTMLElement) {
+    this.deleteTask(element);
+    const parentTask = element.closest(".all__item ");
+    const text = parentTask?.querySelector(".task__text")?.textContent;
+    const description = parentTask?.querySelector(".all__note")?.textContent;
+    const estimatedWork = parentTask?.querySelector(".all__number-of-tasks-to-do")?.textContent;
+    this.showSurvey();
+    this.enableSaveTaskButton();
+    this.addWhatText.value = String(text);
+    this.addWhatDescription.value = description ? description : "";
+    this.estimatedPomodorosInput.value = String(estimatedWork);
+  }
+  public setTaskAsFinished(element: HTMLElement) {
+    element.classList.add("all__icon--active");
+  }
+  public unsetTaskAsFinished(element: HTMLElement) {
+    element.classList.remove("all__icon--active");
+  }
+
+  public setTaskTextCrossedOut(element) {
+    element.nextSibling.classList.add("all__text--active");
+  }
+  public unsetTaskTextCrossedOut(element) {
+    element.nextSibling.classList.remove("all__text--active");
+  }
+
   public highlightSaveTaskButton() {
-    console.log(this.addWhatText.value);
     if (+String(this.addWhatText.value).length > 3) {
       this.enableSaveTaskButton();
     } else {
       this.disableSaveTaskButton();
     }
   }
+  public createTasksFromDatabase() {
+    const tasks = this.storage.loadTasks();
+    if (tasks && tasks.length > 0) {
+      tasks.forEach((task) => {
+        this.createNewTask(task.text, task.estimatedTasks, task.descriptionTasks, task.finishedTasks);
+      });
+    }
+  }
+  public clearAllTasks() {
+    this.tasksList.innerHTML = "";
+    this.storage.clearTasks();
+    this.currentTaskText.textContent = "";
+  }
   public disableSaveTaskButton() {
     this.saveTaskButton.classList.remove("add__save--active");
     this.saveTaskButton.setAttribute("disabled", "true");
+  }
+  public setItemAsActive(item: HTMLLIElement) {
+    this.setTaskAsActive(item);
+    this.setCurrentTaskText(item.querySelector(".task__text")?.textContent ?? "");
   }
   private enableSaveTaskButton() {
     this.saveTaskButton.classList.add("add__save--active");
@@ -67,13 +110,17 @@ export class Tasks {
     this.addWhatDescription.value = "";
     this.estimatedPomodorosInput.value = "1";
   }
-  private createNewTask(text: string, estimatedPomodoros: string, description?: string) {
+  private createNewTask(text: string, estimatedPomodoros: string, description?: string, finishedPomodoros?: string) {
     const li = document.createElement("li");
     li.classList.add("all__item");
+    if (this.tasksList.getElementsByTagName("li").length === 0) {
+      this.setTaskAsActive(li);
+      this.setCurrentTaskText(text);
+    }
     li.dataset.key = String(this.tasksList.children.length);
     li.dataset.completedTask = String(0);
     li.appendChild(this.createTextWrapperOfLi(text));
-    li.appendChild(this.createEstimatesOfLi(estimatedPomodoros));
+    li.appendChild(this.createEstimatesOfLi(estimatedPomodoros, finishedPomodoros));
     description ? li.appendChild(this.createDescriptionOfLi(description ?? "")) : "";
     this.tasksList.appendChild(li);
   }
@@ -85,12 +132,13 @@ export class Tasks {
     icon.classList.add("fa-check-circle");
     icon.classList.add("all__icon");
     const textOfTask = document.createElement("p");
+    textOfTask.classList.add("task__text");
     textOfTask.textContent = text;
     addTextWrapper.appendChild(icon);
     addTextWrapper.appendChild(textOfTask);
     return addTextWrapper;
   }
-  private createEstimatesOfLi(estimatedPomodoros: string): HTMLDivElement {
+  private createEstimatesOfLi(estimatedPomodoros: string, finishedPomodoros?: string): HTMLDivElement {
     const wrapperTwo = document.createElement("div");
     wrapperTwo.classList.add("all__wrapper-two");
 
@@ -98,16 +146,19 @@ export class Tasks {
     wrapperTwo.classList.add("all__number-of-tasks");
 
     const spanTasksDone = document.createElement("span");
-    spanTasksDone.textContent = String(0);
+    spanTasksDone.textContent = finishedPomodoros ?? "0";
     spanTasksDone.classList.add("all__number-of-tasks-done");
+    const spanTasksSlash = document.createElement("span");
+    spanTasksSlash.textContent = " / ";
 
     const spanTasksToDo = document.createElement("span");
     spanTasksToDo.textContent = estimatedPomodoros;
     spanTasksToDo.classList.add("all__number-of-tasks-to-do");
 
     allNumberOfTasks.appendChild(spanTasksDone);
-    allNumberOfTasks.textContent += " / ";
+    allNumberOfTasks.appendChild(spanTasksSlash);
     allNumberOfTasks.appendChild(spanTasksToDo);
+
     wrapperTwo.appendChild(allNumberOfTasks);
     wrapperTwo.appendChild(this.createSettingsOfLi());
     return wrapperTwo;
@@ -141,7 +192,18 @@ export class Tasks {
     descriptionWrapper.appendChild(descriptionText);
     return descriptionWrapper;
   }
-
+  public unsetItemAsActive() {
+    [...document.querySelectorAll(".all__item")].forEach((el) => {
+      el.classList.contains("all__item--active") ? el.classList.remove("all__item--active") : "";
+    });
+  }
+  private setTaskAsActive(element: HTMLLIElement) {
+    element.classList.add("all__item--active");
+  }
+  private setCurrentTaskText(text: string) {
+    console.log(text);
+    this.currentTaskText.textContent = text;
+  }
   private setEstimatedPomodorosDefaultValue(value: number) {
     this.estimatedPomodorosInput.value = String(value);
   }
@@ -178,9 +240,10 @@ const TaskClass = new Tasks(
   document.querySelector(".add__what") as HTMLInputElement,
   document.querySelector(".add__number-of-pomodoros") as HTMLInputElement,
   document.querySelector(".add__note") as HTMLTextAreaElement,
-  document.querySelector(".all__list") as HTMLElement,
+  document.querySelector(".all__list") as HTMLUListElement,
   document.querySelector(".add__save") as HTMLButtonElement
 );
+
 document.querySelector(".button__wrapper")?.addEventListener("click", function () {
   TaskClass.showSurvey();
 });
@@ -191,7 +254,6 @@ document.querySelector(".tasks__options")?.addEventListener("click", function ()
   TaskClass.toggleOptions();
 });
 document.querySelector(".add__what")?.addEventListener("input", function () {
-  console.log("123");
   TaskClass.highlightSaveTaskButton();
 });
 document.querySelector(".add__arrow-up")?.addEventListener("click", function () {
@@ -204,10 +266,37 @@ document.querySelector(".add__save")?.addEventListener("click", function () {
   TaskClass.saveNewTask();
   TaskClass.disableSaveTaskButton();
 });
-document.querySelector(".all__delete")?.addEventListener(
+
+document.querySelector(".all__list")?.addEventListener(
   "click",
   function (event) {
-    TaskClass.deleteTask(event);
+    const target = event.target as HTMLLIElement;
+    if (target.classList.contains("fa-trash")) {
+      TaskClass.deleteTask(target);
+    }
+    if (target.classList.contains("fa-edit")) {
+      TaskClass.editTask(target);
+    }
+    if (target.classList.contains("all__icon")) {
+      if (target.classList.contains("all__icon--active")) {
+        TaskClass.unsetTaskAsFinished(target);
+        TaskClass.unsetTaskTextCrossedOut(target);
+      } else {
+        TaskClass.setTaskTextCrossedOut(target);
+        TaskClass.setTaskAsFinished(target);
+      }
+    }
+    if (target.classList.contains("all__item")) {
+      console.log("123");
+      TaskClass.unsetItemAsActive();
+      TaskClass.setItemAsActive(target);
+    }
   },
   true
 );
+document.addEventListener("DOMContentLoaded", function () {
+  TaskClass.createTasksFromDatabase();
+});
+document.querySelector(".clear__all-tasks")?.addEventListener("click", function () {
+  TaskClass.clearAllTasks();
+});

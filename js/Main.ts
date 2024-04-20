@@ -1,9 +1,14 @@
+import { StorageData } from "./Storage";
+
 class Timer {
   private seconds: number = 60;
   private intervalSeconds: number | undefined = undefined;
   private intervalMinutes: number | undefined = undefined;
   private initialMinutes: number = 0;
   private initialSeconds: number = 0;
+  private progressBar: HTMLSpanElement = document.querySelector(".header__span__progress--child") as HTMLSpanElement;
+  private storage = new StorageData();
+
   constructor(
     protected background: HTMLBodyElement,
     protected startButton: HTMLButtonElement,
@@ -11,6 +16,9 @@ class Timer {
     protected clockMinutes: HTMLSpanElement,
     protected clockSeconds: HTMLSpanElement
   ) {}
+  public loadDataFromDatabase() {
+    this.storage.loadSettings();
+  }
   protected start(timerTime: number) {
     this.startTimer(timerTime);
     this.showResetButton();
@@ -31,6 +39,7 @@ class Timer {
     this.initialSeconds = 0;
     this.clockMinutes.textContent = timerTime < 10 ? `0${timerTime}` : String(timerTime);
     this.clockSeconds.textContent = "00";
+    this.clearProgressBar();
   }
   protected setButtonReady(button: HTMLButtonElement) {
     button.classList.add("clock__button--active");
@@ -64,6 +73,7 @@ class Timer {
     this.clockSeconds.textContent = this.initialSeconds < 10 ? `0${this.initialSeconds}` : String(this.initialSeconds);
 
     this.intervalSeconds = setInterval(() => {
+      this.runProgressBar(this.initialMinutes, this.initialSeconds);
       this.initialSeconds -= 1;
       this.clockSeconds.textContent = this.initialSeconds < 10 ? `0${this.initialSeconds}` : String(this.initialSeconds);
       if (this.initialSeconds === 0) {
@@ -80,7 +90,15 @@ class Timer {
     clearInterval(this.intervalMinutes);
     clearInterval(this.intervalSeconds);
   }
-
+  private runProgressBar(minutes: number, seconds: number) {
+    const currentDurationInSeconds = minutes * 60 + seconds;
+    const totalDurationTimeInSeconds = (this.initialMinutes + 1) * 60;
+    const progressPercentage = (currentDurationInSeconds / totalDurationTimeInSeconds) * 100;
+    this.progressBar.style.width = `${100 - progressPercentage}%`;
+  }
+  private clearProgressBar() {
+    this.progressBar.style.width = `0%`;
+  }
   private buttonTextContent(text: string) {
     this.startButton.textContent = text;
   }

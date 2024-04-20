@@ -30,6 +30,9 @@
         @include mq(tablet)
             margin: 1vh auto
         .tasks
+            display: flex
+            .tasks__text
+                padding-left: 10px
         .tasks__options
             @include flex(center,center,row)
             position: relative
@@ -92,6 +95,7 @@
             padding: 0
             .all__item
                 @include flex(space-between, center, row)
+                cursor: pointer
                 flex-wrap: wrap
                 flex-grow: 1
                 width: 100%
@@ -105,6 +109,7 @@
                     width: 65%
                     height: 100%
                     .all__icon
+                        cursor: pointer
                         padding: 0 15px 0 15px 
                         font-size: 24px
                         color: $grey-color
