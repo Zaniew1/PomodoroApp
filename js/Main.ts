@@ -1,5 +1,5 @@
 import { StorageData } from "./Storage";
-
+import { Settings } from "./Settings";
 class Timer {
   private seconds: number = 60;
   private intervalSeconds: number | undefined = undefined;
@@ -8,16 +8,15 @@ class Timer {
   private initialSeconds: number = 0;
   private progressBar: HTMLSpanElement = document.querySelector(".header__span__progress--child") as HTMLSpanElement;
   private storage = new StorageData();
-
-  constructor(
-    protected background: HTMLBodyElement,
-    protected startButton: HTMLButtonElement,
-    protected resetButton: HTMLButtonElement,
-    protected clockMinutes: HTMLSpanElement,
-    protected clockSeconds: HTMLSpanElement
-  ) {}
+  protected background = document.body as HTMLBodyElement;
+  protected startButton = document.querySelector(".clock__start") as HTMLButtonElement;
+  protected resetButton = document.querySelector(".reset") as HTMLButtonElement;
+  protected clockMinutes = document.querySelector(".clock__minutes") as HTMLSpanElement;
+  protected clockSeconds = document.querySelector(".clock__seconds") as HTMLSpanElement;
+  protected textTimeTo = document.querySelector(".task__text") as HTMLParagraphElement;
+  constructor() {}
   public loadDataFromDatabase() {
-    this.storage.loadSettings();
+    return this.storage.loadSettings();
   }
   protected start(timerTime: number) {
     this.startTimer(timerTime);
@@ -60,6 +59,9 @@ class Timer {
   }
   protected changeButtonColor(color: string) {
     this.startButton.style.color = color;
+  }
+  protected setTextTimeTo(text: string) {
+    this.textTimeTo.textContent = text;
   }
   protected setTimeOnTimer(time: number) {
     this.clockMinutes.textContent = time < 10 ? `0${time}` : String(time);
@@ -114,17 +116,9 @@ class Timer {
 }
 
 class WorkTimer extends Timer {
-  constructor(
-    protected background: HTMLBodyElement,
-    protected startButton: HTMLButtonElement,
-    protected resetButton: HTMLButtonElement,
-    protected clockMinutes: HTMLSpanElement,
-    protected clockSeconds: HTMLSpanElement,
-    private workButton: HTMLButtonElement,
-    private workTime: number,
-    private workColor: string
-  ) {
-    super(background, startButton, resetButton, clockMinutes, clockSeconds);
+  constructor(private workButton: HTMLButtonElement, private workTime: number, private workColor: string) {
+    super();
+    this.loadDataFromDB();
   }
   public start() {
     super.start(this.workTime);
@@ -142,25 +136,23 @@ class WorkTimer extends Timer {
     super.startButtonSetTimerType("work");
     super.changeButtonColor(this.workColor);
     super.changeBackgroundColor(this.workColor);
+    super.setTextTimeTo("Time to work !");
   }
   public deinitialize() {
     super.unsetButtonReady(this.workButton);
     super.reset(this.workTime);
   }
+  public loadDataFromDB() {
+    const settings = super.loadDataFromDatabase();
+    if (settings) {
+      this.workTime = +settings?.workTime;
+    }
+  }
 }
 
 class ShortTimer extends Timer {
-  constructor(
-    protected background: HTMLBodyElement,
-    protected startButton: HTMLButtonElement,
-    protected resetButton: HTMLButtonElement,
-    protected clockMinutes: HTMLSpanElement,
-    protected clockSeconds: HTMLSpanElement,
-    private shortButton: HTMLButtonElement,
-    private shortTime: number,
-    private shortColor: string
-  ) {
-    super(background, startButton, resetButton, clockMinutes, clockSeconds);
+  constructor(private shortButton: HTMLButtonElement, private shortTime: number, private shortColor: string) {
+    super();
   }
   public start() {
     super.start(this.shortTime);
@@ -178,25 +170,23 @@ class ShortTimer extends Timer {
     super.setButtonReady(this.shortButton);
     super.changeButtonColor(this.shortColor);
     super.changeBackgroundColor(this.shortColor);
+    super.setTextTimeTo("Time for a short break !");
   }
   public deinitialize() {
     super.unsetButtonReady(this.shortButton);
     super.reset(this.shortTime);
   }
+  public loadDataFromDB() {
+    const settings = super.loadDataFromDatabase();
+    if (settings) {
+      this.shortTime = +settings?.shortTime;
+    }
+  }
 }
 
 class LongTimer extends Timer {
-  constructor(
-    protected background: HTMLBodyElement,
-    protected startButton: HTMLButtonElement,
-    protected resetButton: HTMLButtonElement,
-    protected clockMinutes: HTMLSpanElement,
-    protected clockSeconds: HTMLSpanElement,
-    private longButton: HTMLButtonElement,
-    private longTime: number,
-    private longColor: string
-  ) {
-    super(background, startButton, resetButton, clockMinutes, clockSeconds);
+  constructor(private longButton: HTMLButtonElement, private longTime: number, private longColor: string) {
+    super();
   }
   public start() {
     super.start(this.longTime);
@@ -214,44 +204,28 @@ class LongTimer extends Timer {
     super.setButtonReady(this.longButton);
     super.changeButtonColor(this.longColor);
     super.changeBackgroundColor(this.longColor);
+    super.setTextTimeTo("Time for a long break !");
   }
   public deinitialize() {
     super.unsetButtonReady(this.longButton);
     super.reset(this.longTime);
   }
+  public loadDataFromDB() {
+    const settings = super.loadDataFromDatabase();
+    if (settings) {
+      this.longTime = +settings?.longTime;
+    }
+  }
 }
-const work = new WorkTimer(
-  document.body as HTMLBodyElement,
-  document.querySelector(".clock__start") as HTMLButtonElement,
-  document.querySelector(".reset") as HTMLButtonElement,
-  document.querySelector(".clock__minutes") as HTMLSpanElement,
-  document.querySelector(".clock__seconds") as HTMLSpanElement,
-  document.querySelector(".clock__one") as HTMLButtonElement,
-  25,
-  "#DB524D"
-);
-const short = new ShortTimer(
-  document.body as HTMLBodyElement,
-  document.querySelector(".clock__start") as HTMLButtonElement,
-  document.querySelector(".reset") as HTMLButtonElement,
-  document.querySelector(".clock__minutes") as HTMLSpanElement,
-  document.querySelector(".clock__seconds") as HTMLSpanElement,
-  document.querySelector(".clock__two") as HTMLButtonElement,
-  5,
-  "rgb(67, 126, 168)"
-);
-const long = new LongTimer(
-  document.body as HTMLBodyElement,
-  document.querySelector(".clock__start") as HTMLButtonElement,
-  document.querySelector(".reset") as HTMLButtonElement,
-  document.querySelector(".clock__minutes") as HTMLSpanElement,
-  document.querySelector(".clock__seconds") as HTMLSpanElement,
-  document.querySelector(".clock__three") as HTMLButtonElement,
-  15,
-  "rgb(70, 142, 145)"
-);
+
+const work = new WorkTimer(document.querySelector(".clock__one") as HTMLButtonElement, 25, "#DB524D");
+const short = new ShortTimer(document.querySelector(".clock__two") as HTMLButtonElement, 5, "rgb(67, 126, 168)");
+const long = new LongTimer(document.querySelector(".clock__three") as HTMLButtonElement, 15, "rgb(70, 142, 145)");
 
 document.addEventListener("DOMContentLoaded", () => {
+  work.loadDataFromDB();
+  short.loadDataFromDB();
+  long.loadDataFromDB();
   work.initialize();
 });
 

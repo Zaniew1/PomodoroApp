@@ -1,18 +1,8 @@
 import { StorageData } from "./Storage";
 import { SettingsUIClass } from "./SettingsUI";
-export type SettingsType = {
-  workTime: string;
-  shortTime: string;
-  longTime: string;
-  autoBreakStart: boolean;
-  autoWorkStart: boolean;
-  longBreakInterval: string;
-  alarmSound: string;
-  alarmVolume: string;
-  tickingSound: string;
-  tickingVolume: string;
-};
-class Settings {
+import { SettingsType } from "../types/types";
+
+export class Settings {
   private storage = new StorageData();
   constructor(
     protected workTime: HTMLInputElement,
@@ -54,16 +44,15 @@ class Settings {
   }
   loadSettings() {
     const settings = this.storage.loadSettings();
-    console.log(settings);
     settings?.workTime ? (this.workTime.value = settings?.workTime) : "";
     settings?.shortTime ? (this.shortTime.value = settings?.shortTime) : "";
     settings?.longTime ? (this.longTime.value = settings?.longTime) : "";
     settings?.autoBreakStart === true
-      ? this.autoBreakStart.classList.add(".settings__auto-breaks-accept--active")
-      : this.autoBreakStart.classList.remove(".settings__auto-breaks-accept--active");
+      ? this.autoBreakStart.classList.add("settings__auto-breaks-accept--active")
+      : this.autoBreakStart.classList.remove("settings__auto-breaks-accept--active");
     settings?.autoWorkStart === true
-      ? this.autoWorkStart.classList.add(".settings__auto-pomodoro-accept--active")
-      : this.autoBreakStart.classList.remove(".settings__auto-pomodoro-accept--active");
+      ? this.autoWorkStart.classList.add("settings__auto-pomodoro-accept--active")
+      : this.autoBreakStart.classList.remove("settings__auto-pomodoro-accept--active");
     settings?.longBreakInterval ? (this.longBreakInterval.value = settings?.longBreakInterval) : "";
     settings?.alarmSound ? (this.alarmSound.value = settings?.alarmSound) : "";
     settings?.alarmVolume ? (this.alarmVolume.value = settings?.alarmVolume) : "";
@@ -130,7 +119,7 @@ class Settings {
   }
 }
 
-const SettingsClass = new Settings(
+export const SettingsClass = new Settings(
   document.querySelector(".settings__time-of-clock-input--pomodoro") as HTMLInputElement,
   document.querySelector(".settings__time-of-clock-input--short") as HTMLInputElement,
   document.querySelector(".settings__time-of-clock-input--long") as HTMLInputElement,
@@ -144,7 +133,6 @@ const SettingsClass = new Settings(
 );
 document.querySelector(".settings__accept-button")?.addEventListener("click", function () {
   SettingsClass.saveSettings();
-  console.log(SettingsUIClass);
   SettingsUIClass.hideSettings();
 });
 document.addEventListener("DOMContentLoaded", function () {

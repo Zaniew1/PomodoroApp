@@ -556,7 +556,6 @@ body {
   align-items: center;
   flex-direction: row;
   padding-right: 10px;
-  width: 65%;
   height: 100%;
 }
 .task .all__tasks .all__list .all__item .all__wrapper-one .all__icon {

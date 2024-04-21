@@ -46,6 +46,7 @@ export class Tasks {
     var liElement = element.closest(".all__item");
     var ulElement = liElement?.parentElement;
     ulElement && liElement ? ulElement.removeChild(liElement) : "";
+    this.storage.saveTasks(this.tasksList);
   }
   public editTask(element: HTMLElement) {
     this.deleteTask(element);
@@ -90,8 +91,25 @@ export class Tasks {
   }
   public clearAllTasks() {
     this.tasksList.innerHTML = "";
-    this.storage.clearTasks();
     this.currentTaskText.textContent = "";
+    this.storage.saveTasks(this.tasksList);
+  }
+  public clearFinishedTasks() {
+    [...this.tasksList.getElementsByTagName("li")].forEach((el, index) => {
+      const tasksDone = Number(el.querySelector(".all__number-of-tasks-done")?.textContent);
+      const tasksToDo = Number(el.querySelector(".all__number-of-tasks-to-do")?.textContent);
+      if (tasksDone && tasksToDo && tasksDone > tasksToDo) {
+        this.tasksList.removeChild(el);
+      }
+      this.storage.saveTasks(this.tasksList);
+    });
+  }
+  public resetAllTasks() {
+    [...this.tasksList.getElementsByTagName("li")].forEach((el) => {
+      const tasksDone = el.querySelector(".all__number-of-tasks-done");
+      tasksDone ? (tasksDone.textContent = "0") : "";
+      this.storage.saveTasks(this.tasksList);
+    });
   }
   public disableSaveTaskButton() {
     this.saveTaskButton.classList.remove("add__save--active");
@@ -201,7 +219,6 @@ export class Tasks {
     element.classList.add("all__item--active");
   }
   private setCurrentTaskText(text: string) {
-    console.log(text);
     this.currentTaskText.textContent = text;
   }
   private setEstimatedPomodorosDefaultValue(value: number) {
@@ -287,7 +304,6 @@ document.querySelector(".all__list")?.addEventListener(
       }
     }
     if (target.classList.contains("all__item")) {
-      console.log("123");
       TaskClass.unsetItemAsActive();
       TaskClass.setItemAsActive(target);
     }
@@ -299,4 +315,10 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 document.querySelector(".clear__all-tasks")?.addEventListener("click", function () {
   TaskClass.clearAllTasks();
+});
+document.querySelector(".clear__finished-tasks")?.addEventListener("click", function () {
+  TaskClass.clearFinishedTasks();
+});
+document.querySelector(".clear__act-pomodoros")?.addEventListener("click", function () {
+  TaskClass.resetAllTasks();
 });

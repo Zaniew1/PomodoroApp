@@ -1,25 +1,9 @@
-type singleTaskType = {
-  text: string;
-  finishedTasks: string;
-  estimatedTasks: string;
-  descriptionTasks?: string;
-};
-import { SettingsType } from "./Settings";
+import { SettingsType, SingleTaskType } from "../types/types";
 export class StorageData {
-  private pomodoroTime: number;
-  private shortBreakTime: number;
-  private LongBreakTime: number;
-  private autoBreakStart: boolean;
-  private autoPomoStart: boolean;
-  private longBreakInterval: number;
-  private alarmSound: string;
-  private alarmvolume: number;
-  private tickingSound: string;
-  private tickingVolume: number;
   constructor() {}
 
-  saveTasks(ulList: HTMLUListElement) {
-    const tasks: singleTaskType[] = [];
+  public saveTasks(ulList: HTMLUListElement) {
+    const tasks: SingleTaskType[] = [];
     const liElements = [...ulList.getElementsByTagName("li")];
     liElements.forEach((li, index) => {
       const text = li.querySelector(".task__text")?.textContent;
@@ -27,7 +11,7 @@ export class StorageData {
       const estimatedTasks = li.querySelector(".all__number-of-tasks-to-do")?.textContent;
       const descriptionTasks = li.querySelector(".all__note")?.textContent ?? "";
 
-      const task: singleTaskType = {
+      const task: SingleTaskType = {
         text: text ? text : "",
         finishedTasks: finishedTasks ? finishedTasks : "0",
         estimatedTasks: estimatedTasks ? estimatedTasks : "1",
@@ -38,30 +22,20 @@ export class StorageData {
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }
-  saveSettings(settings: any) {
+  public saveSettings(settings: SettingsType) {
+    console.log(settings);
     localStorage.setItem("settings", JSON.stringify(settings));
   }
-  loadSettings(): SettingsType | undefined {
+  public loadSettings(): SettingsType | undefined {
     const settings = localStorage.getItem("settings");
-    console.log(settings);
     if (settings) {
       return JSON.parse(settings);
     }
   }
-  loadTasks(): singleTaskType[] | undefined {
+  public loadTasks(): SingleTaskType[] | undefined {
     const tasks = localStorage.getItem("tasks");
     if (tasks) {
       return JSON.parse(tasks);
     }
-  }
-  clearTasks() {
-    localStorage.setItem("tasks", "");
-  }
-
-  get getPomodoroTime() {
-    return this.pomodoroTime;
-  }
-  set setPomodoroTime(PomodoroTime: number) {
-    this.pomodoroTime = PomodoroTime;
   }
 }
