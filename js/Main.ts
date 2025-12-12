@@ -1,5 +1,4 @@
 import { StorageData } from "./Storage";
-import { Settings } from "./Settings";
 class Timer {
   private seconds: number = 60;
   private intervalSeconds: number | undefined = undefined;
@@ -116,8 +115,10 @@ class Timer {
 }
 
 class WorkTimer extends Timer {
-  constructor(private workButton: HTMLButtonElement, private workTime: number, private workColor: string) {
+  private workTime: number;
+  constructor(private workButton: HTMLButtonElement, private pomodoroTime: number, private workColor: string) {
     super();
+    this.workTime = this.pomodoroTime;
     this.loadDataFromDB();
   }
   public start() {
@@ -128,6 +129,9 @@ class WorkTimer extends Timer {
   }
   public reset() {
     super.reset(this.workTime);
+  }
+  set setTime(time: number) {
+    this.workTime = time;
   }
   public initialize() {
     super.setTimeOnTimer(this.workTime);

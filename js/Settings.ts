@@ -4,18 +4,18 @@ import { SettingsType } from "../types/types";
 
 export class Settings {
   private storage = new StorageData();
-  constructor(
-    protected workTime: HTMLInputElement,
-    protected shortTime: HTMLInputElement,
-    protected longTime: HTMLInputElement,
-    protected autoBreakStart: HTMLDivElement,
-    protected autoWorkStart: HTMLDivElement,
-    protected longBreakInterval: HTMLInputElement,
-    protected alarmSound: HTMLSelectElement,
-    protected alarmVolume: HTMLInputElement,
-    protected tickingSound: HTMLSelectElement,
-    protected tickingVolume: HTMLInputElement
-  ) {}
+  protected workTime: HTMLInputElement = document.querySelector(".settings__time-of-clock-input--pomodoro");
+  protected shortTime: HTMLInputElement = document.querySelector(".settings__time-of-clock-input--short");
+  protected longTime: HTMLInputElement = document.querySelector(".settings__time-of-clock-input--long");
+  protected autoBreakStart: HTMLDivElement = document.querySelector(".settings__auto-breaks-accept");
+  protected autoWorkStart: HTMLDivElement = document.querySelector(".settings__auto-pomodoro-accept");
+  protected longBreakInterval: HTMLInputElement = document.querySelector(".settings__long-interval-input");
+  protected alarmSound: HTMLSelectElement = document.querySelector(".settings__alarm-sound-select");
+  protected alarmVolume: HTMLInputElement = document.querySelector(".settings__alarm-volume-input");
+  protected tickingSound: HTMLSelectElement = document.querySelector(".settings__ticking-sound-select");
+  protected tickingVolume: HTMLInputElement = document.querySelector(".settings__ticking-volume-input");
+
+  constructor() {}
 
   saveSettings() {
     this.validateWorkTime();
@@ -119,18 +119,7 @@ export class Settings {
   }
 }
 
-export const SettingsClass = new Settings(
-  document.querySelector(".settings__time-of-clock-input--pomodoro") as HTMLInputElement,
-  document.querySelector(".settings__time-of-clock-input--short") as HTMLInputElement,
-  document.querySelector(".settings__time-of-clock-input--long") as HTMLInputElement,
-  document.querySelector(".settings__auto-breaks-accept") as HTMLDivElement,
-  document.querySelector(".settings__auto-pomodoro-accept") as HTMLDivElement,
-  document.querySelector(".settings__long-interval-input") as HTMLInputElement,
-  document.querySelector(".settings__alarm-sound-select") as HTMLSelectElement,
-  document.querySelector(".settings__alarm-volume-input") as HTMLInputElement,
-  document.querySelector(".settings__ticking-sound-select") as HTMLSelectElement,
-  document.querySelector(".settings__ticking-volume-input") as HTMLInputElement
-);
+export const SettingsClass = new Settings();
 document.querySelector(".settings__accept-button")?.addEventListener("click", function () {
   SettingsClass.saveSettings();
   SettingsUIClass.hideSettings();

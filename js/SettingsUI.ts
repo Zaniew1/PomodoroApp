@@ -1,3 +1,4 @@
+import { SettingsClass } from "./Settings";
 class SettingsUI {
   constructor(
     protected settings: HTMLDivElement,
@@ -44,6 +45,7 @@ document.querySelector(".blur")?.addEventListener("click", () => {
   SettingsUIClass.removeBlurToBackground();
 });
 document.querySelector(".settings__accept-button")?.addEventListener("click", function () {
+  console.log(SettingsClass.getSettings);
   SettingsUIClass.hideSettings();
   SettingsUIClass.removeBlurToBackground();
 });
