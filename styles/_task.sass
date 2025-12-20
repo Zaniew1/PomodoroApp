@@ -1,0 +1,218 @@
+.task
+    width: 100%
+    @include mq(tablet)
+        width: 90%
+        margin: 0 auto
+    @include mq-land(tablet)
+        width: 80%
+        margin: 0 auto
+    .task__name
+        text-align: center
+        width: 100%
+        height: 7%
+        color: $white-color-font
+        .task__text
+            color: $white-color-font
+        .current__task
+            @include flex(center,center, row)
+            text-align: center
+            margin: 2vh auto 5vh auto
+            width: 90%
+            @include mq(tablet)
+                margin: 1vw auto 2vh auto
+    .task__wrapper
+        @include flex(space-between, center, row)
+        width: 95%
+        color: $white-color-font
+        border-bottom: 3px solid  rgba(	51, 51, 51, 0.4)
+        margin: 2vh auto
+        @include mq(tablet)
+            margin: 1vh auto
+        .tasks
+        .tasks__options
+            @include flex(center,center,row)
+            position: relative
+            width: 30px
+            height: 35px
+            border-radius: 5px
+            background-color: rgba(	51, 51, 51, 0.4)
+            color: #fff
+            text-align: center
+            font-size: 14px
+            cursor: pointer
+            margin: 10px 0
+            z-index: 9
+            .task__options-icon
+            .tasks__options-wrapper
+                @include flex(space-around, start, column)
+                position: absolute
+                width: 220px
+                height: 120px
+                background-color: $white-color-font
+                bottom: -360%
+                right: 0
+                border-radius: 5px
+                z-index: 4
+                @include mq(tablet)
+                    width: 220px
+                    height: 150px
+                    bottom: -450%
+                .tasks__options-clear
+                    display: flex
+                    align-items: center
+                    text-align: left
+                    font-size: 12px
+                    color: $black-color-font
+                    width: 100%
+                    height: 33%
+                    @include mq(tablet)
+                        font-size: 14px
+                    @include mq-land(tablet)
+                        font-size: 14px
+                    &:hover
+                        background-color: $grey-color
+                    .tasks__options-clear-icon
+                        padding: 2px 10px
+                        font-size: 14px
+                        @include mq(tablet)
+                            font-size: 18px
+                        @include mq-land(tablet)
+                            font-size: 18px
+                    .clear__text
+            .tasks__options-wrapper--none
+                display: none
+    .all__tasks
+        @include flex(center, center, row)
+        width: 95%
+        margin: 0 auto
+        .all__list
+            width: 100%
+            list-style-type: none
+            padding: 0
+            .all__item
+                @include flex(space-between, center, row)
+                flex-wrap: wrap
+                flex-grow: 1
+                width: 100%
+                min-height: 60px
+                background-color: $white-color-font
+                border-radius: 5px
+                margin: 5px auto
+                .all__wrapper-one
+                    @include flex(flex-start, center, row)
+                    padding-right: 10px
+                    width: 65%
+                    height: 100%
+                    .all__icon
+                        padding: 0 15px 0 15px 
+                        font-size: 24px
+                        color: $grey-color
+                    
+                    .all__text
+                        font-family: arial, sans-serif
+                        width: 80%
+                        color: #555
+                        font-size: 12px
+                        text-align: left
+                        padding-right: 5px
+                        @include mq(tablet)
+                            font-size: 16px
+                        @include mq-land(tablet)
+                            font-size: 16px
+                            
+                    .all__text--active
+                        text-decoration: line-through
+                        color: $dark-color-font
+                    .all__icon--active
+                        color: $orange-color
+                .all__wrapper-two
+                    width: 30%
+                    @include flex(center,center,row)
+                    .all__number-of-tasks
+                        @include flex(center,center,row)
+                        padding-right: 10px
+                        padding-left: 5px
+                        color: #555
+                        @include mq(tablet)
+                            font-size: 18px
+                        @include mq-land(tablet)
+                            font-size: 18px
+                        .all__number-of-tasks-done
+                        .all__number-of-tasks-to-do
+                    .all__options
+                        @include flex(center,center,row)
+                        position: relative
+                        width: 60px
+                        height: 40px
+                        margin-right: 5px
+                        font-size: 16px
+                        border-radius: 5px
+                        color: $dark-color-font
+                        
+                        .all__edit
+                            @include flex(center,center,row)
+                            color: #555
+                            font-size: 16px
+                            cursor: pointer
+                            height: 100%
+                            width: 50%
+                            .all__edit-icon
+                                @include flex(center,center,row)
+                                width: 100%
+                                height: 100%
+                        .all__delete
+                            @include flex(center,center,row)
+                            width: 50%
+                            height: 100%
+                            color: #555
+                            font-size: 16px
+                            cursor: pointer
+                            z-index: 5
+                            .all__delete-icon
+                .all__wrapper-three
+                    display: flex
+                    width: 100%
+                    margin: 10px 10%
+                    border-radius: 5px
+                    background-color: rgb(252, 248, 222)
+                
+                    .all__note
+                        color: rgb(96, 85, 21)
+                        @include flex(flex-start, center, row)
+                        width: 90%
+                        margin: 10px auto
+                        font-size: 14px
+                        font-weight: 300
+                .all__wrapper-three--active
+                    display: none
+            .all__item--active
+                border-left: 5px solid $black-color-font
+    .button__wrapper
+        @include flex(center, center, row)
+        width: 95%
+        border: 3px dashed $orange-color-lighter
+        height: 7%
+        border-radius: 5px
+        background-color: $black-color-font
+        opacity: 0.1
+        cursor: pointer
+        margin: 3vh auto 10vh auto
+        @include mq(tablet)
+            margin: 2vh auto 4vh auto
+        @include mq-land(tablet)
+            margin: 2vh auto 4vh auto
+        &:hover
+            opacity: 0.2
+        .add__task 
+            border: none
+            outline: none
+            opacity: 0.8
+            color: $white-color-font
+            font-size: 24px
+            background-color: transparent
+            margin: 15px auto
+        .add__task--none
+            display: none
+            visibility: hidden
+    .button__wrapper--none
+        display: none

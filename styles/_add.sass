@@ -1,0 +1,123 @@
+.add
+    @include flex(center,center,row)
+    width: 100%
+    margin: 20px auto
+    .add__wrapper
+        @include flex(center,start,column)
+        width: 95%
+        height: 100%
+        border-radius: 10px
+        margin: 20px auto
+        background-color: $white-color-font
+        @include mq(tablet)
+            width: 85% 
+        @include mq-land(tablet)
+            width: 80%
+        .add__what
+            outline: none
+            border: none
+            background-color: transparent
+            height: 80px
+            font-size: 20px
+            color: #555
+            width: 90%
+            padding-left: 15px
+            &::placeholder
+                color: #aaa
+                opacity: 0.7
+            @include mq-land(tablet-wide)
+                font-size: 24px
+        .add__estimation
+            font-size: 14px
+            color: #555
+            height: 25px
+            padding-left: 15px
+            @include mq(tablet)
+                font-size: 16px
+            @include mq-land(tablet)
+                font-size: 16px
+        .add__estimate--wrapper
+            .add__number-of-pomodoros
+                width: 20%
+                background-color: $grey-color
+                height: 30px
+                border: none
+                outline: none
+                border-radius: 5px
+                margin: 10px 10px 20px 15px
+                padding: 0 15px
+                @include mq(tablet)
+                    font-size: 16px
+                @include mq-land(tablet)
+                    font-size: 16px
+            .add__arrow
+                font-size: 10px
+                height: 30px
+                width: 35px
+                background-color: transparent
+                border: 1px solid $grey-color
+                box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2)
+                cursor: pointer
+            .add__arrow--none
+                box-shadow: none
+                transform: translate(0, 2px)
+                .add__arrow-icon
+                    
+                    @include flex(start,center, row)
+        .add__note
+            background-color: $grey-color
+            border-radius: 5px
+            min-height: 70px
+            border: none
+            min-width: 80%
+            margin: 10px 0 15px 15px
+            padding: 10px 15px
+            resize: vertical
+            @include mq(tablet)
+                font-size: 16px
+                min-height: 80px
+                min-width: 70%
+            @include mq-land(tablet)
+                font-size: 16px
+                min-height: 80px
+                min-width: 70%
+        .add__cancel--wrapper
+            @include flex(flex-end,center,row)
+            width: 100%
+            background-color: $grey-color
+            height: 80px
+            border-bottom-left-radius: 10px
+            border-bottom-right-radius: 10px
+            .add__cancel
+                width: 30%
+                height: 100%
+                border: none
+                outline: none
+                font-size: 14px
+                color: $dark-color-font
+                background-color: transparent
+                margin-right: 10px
+                cursor: pointer
+                @include mq(tablet)
+                    font-size: 16px
+                @include mq-land(tablet)
+                    font-size: 16px
+            .add__save
+                border: none
+                outline: none
+                background-color: $dark-color-font
+                color: #fff
+                font-size: 14px
+                width: 80px
+                height: 40px
+                margin-right: 15px
+                border-radius: 5px
+                cursor: pointer
+                @include mq(tablet)
+                    font-size: 16px
+                @include mq-land(tablet)
+                    font-size: 16px
+            .add__save--active
+                background-color: #555
+    .add__wrapper--none
+        display: none
