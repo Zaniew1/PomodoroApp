@@ -1,3 +1,15 @@
+
+export type SettingsType = {
+    workTime: number,
+    shortBreakTime: number,
+    longBreakTime: number,
+    autoBreak: boolean,
+    autoWork: boolean,
+    longBreakInterval: number,
+    darkMode: boolean
+
+}
+
 interface SettingsInterface{
     set WorkTime(workTime: number )
     get WorkTime() : number

@@ -1,5 +1,5 @@
 import { settingsInstance } from './ts/Settings';
-import { liElementInstance } from './ts/Elements';
+import { liTaskInstance } from './ts/Tasks';
 import { soundInstance } from './ts/Sounds';
 import { storageInstance } from './ts/Storage';
 import { Timer, Work } from './ts/Timer';
