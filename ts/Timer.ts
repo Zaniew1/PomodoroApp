@@ -1,16 +1,25 @@
-export class Timer{
+import { SettingsType, SubscriberInterface } from "./Settings";
+
+export class Timer implements Clocks,SubscriberInterface{
     protected minutesSpan = document.querySelector('.clock__minutes');
     protected secondsSpan = document.querySelector('.clock__seconds');
+    private settings: SettingsType | null = null;
     constructor(private timerInstance: Clocks){
     }
-    start(){
+    setTime(){
+    }
+    startClock(){
         this.timerInstance.startClock()
     }
-    stop(){
+    stopClock(){
         this.timerInstance.stopClock()
     }
-    reset(){
+    resetClock(){
          this.timerInstance.resetClock()
+    }
+    update(settings: SettingsType){
+        this.settings = settings;
+        console.log(this.settings)
     }
 }
 interface Clocks {
@@ -18,20 +27,29 @@ interface Clocks {
     startClock() : void
     stopClock() : void
     resetClock() : void
-    set newColor(color: string)
-
 }
 export class Work implements Clocks{
-    protected minutes: number = 25;
-    protected color: string = "red";
-    constructor(){}
+    private interval: number = 0;
+    constructor( ){}
     setTime(){}
     startClock(){}
     stopClock(){}
     resetClock(){}
-    set newColor(color:string){
-        this.color = color;
+    clear(){
+        clearInterval(this.interval)
     }
 }
-class ShortBreak{}
-class LongBreak{}
+class ShortBreak implements Clocks{
+    constructor( ){}
+    setTime(){}
+    startClock(){}
+    stopClock(){}
+    resetClock(){}
+}
+class LongBreak implements Clocks{
+    constructor( ){}
+    setTime(){}
+    startClock(){}
+    stopClock(){}
+    resetClock(){}
+}

@@ -1,4 +1,4 @@
-type ElementType = "div" | "ul" | "li" | "span" | "p" | "button"
+type ElementType = "div" | "ul" | "li" | "span" | "p" | "button" | "i" | "section"
 type DatasetsType = Record<string, string|number|boolean>
 
 interface BuilderInterface {
@@ -12,6 +12,7 @@ interface BuilderInterface {
 }
 
 //// "div" | "ul" | "li" | "span" | "p" | "button" ///////
+// Builder pattern
 export class BuilderClass implements BuilderInterface{
     private element: HTMLElement | null = null;
     constructor(){}
@@ -78,10 +79,10 @@ interface InputBuilderInterface{
     addPlaceholder(placeholder:string): InputBuilderClass
     addName(name: string): InputBuilderClass
 }
-
+// Builder pattern
 export class InputBuilderClass implements InputBuilderInterface{
     private input : HTMLInputElement | null = null
-     constructor(){}
+    constructor(){}
     create(){
         this.input = null;
         this.input = document.createElement("input");

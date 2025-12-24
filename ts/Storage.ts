@@ -1,18 +1,24 @@
 import { TaskInterface } from "./Tasks"
-import { SettingsType } from "./Settings"
+import { SettingsType, SubscriberInterface } from "./Settings"
 
 export interface StorageInterface{
-    getSettingsData(): any
+    getSettingsData(): SettingsType
     saveSettingsData(settings :SettingsType): void
     getTasksData(): TaskInterface[] | []
     saveTasksData(tasks: TaskInterface[]): void
     getUserData(): any
     saveUserData(): void
 }
-class StorageClass implements StorageInterface{
-    constructor(private storageInstace: StorageInterface){}
+export class StorageClass implements StorageInterface, SubscriberInterface{
+    private settings: SettingsType | null = null;
+    constructor(protected storageInstace: StorageInterface){
+        this.settings = this.getSettingsData()
+    }
+    update(settings: SettingsType){
+        this.settings = settings;
+    }
     getSettingsData(){
-        this.storageInstace.getSettingsData();
+        return this.storageInstace.getSettingsData();
     }
     saveSettingsData(settings :SettingsType){
         this.storageInstace.saveSettingsData(settings);
@@ -24,23 +30,28 @@ class StorageClass implements StorageInterface{
         this.storageInstace.saveTasksData(tasks);
     }
     getUserData(){
-        this.storageInstace.getUserData();
+        return this.storageInstace.getUserData();
     }
     saveUserData(){
         this.storageInstace.saveUserData();
     }
   
 }
-class LocalStorage implements StorageInterface{
+export class LocalStorage implements StorageInterface{
     constructor(){}
     getSettingsData(){
        return { workTime: 25,
                 shortBreakTime: 5,
-                longBreakTim: 15,
+                longBreakTime: 15,
                 autoBreak: false,
                 autoWork: false,
                 longBreakInterval: 4,
-                darkMode: false}
+                darkMode: false,
+                alarmSound: "Alarm.wav",
+                alarmVolume: 25,
+                tickingSound: "slowTicking.mp3",
+                tickingVolume: 25
+             }
     }
     saveSettingsData(settings: SettingsType ){
         localStorage.setItem('settings', JSON.stringify(settings));
@@ -60,7 +71,7 @@ class LocalStorage implements StorageInterface{
                 ]
     }
     saveTasksData(task: TaskInterface[] ){
-        localStorage.setItem('task', JSON.stringify(task));
+        localStorage.setItem('tasks', JSON.stringify(task));
 
     }
     getUserData(){
@@ -69,5 +80,3 @@ class LocalStorage implements StorageInterface{
     }
 
 }
-const localStorageInstance = new LocalStorage();
-export const storageInstance = new StorageClass(localStorageInstance)
