@@ -1,4 +1,4 @@
-import { SettingsInterface } from './Settings';
+import { SettingsType, SubscriberInterface } from './Settings';
 import { StorageInterface } from './Storage';
 type TasksIdInterface = {
     id: number
@@ -22,7 +22,7 @@ type EditTaskInterface = {
     currentWorkTime?: number
 }
 interface TasksClassInterface {
-    render(): void
+    renderTask(): void
     addTask(properties: AddTaskInterface) : void
     editTask(id: number, properties: EditTaskInterface) : void
     deleteTask(id: number) : void
@@ -32,15 +32,25 @@ interface TasksClassInterface {
     resetAllTasks() : void
     refresh() : void
     highlightTask(id: number) : void
+    highlightTasksName(id: number) : void
+    dragTask(target: EventTarget) : void
+    calculateTasksEstimatedTime() : Date
+    showTasksEstimatedTime() : void
+    showNumberOfTasksToDoInTotal(): number
+    showNumberOfTasksCompletedInTotal() : number
 }
 
-export class Tasks implements TasksClassInterface{
+export class Tasks implements TasksClassInterface, SubscriberInterface{
     private ESTIMATED_TASK_TIME = 30;
     protected tasks: TaskInterface[] = [];
-    constructor(private storage: StorageInterface, private settings: SettingsInterface){
+    private settings: SettingsType | null = null;
+    constructor(private storage: StorageInterface,){
         
     }
-    render(){
+    update(settings: SettingsType){
+        this.settings = settings;
+    }
+    renderTask(){
 
     }
     addTask(properties: AddTaskInterface ){
@@ -53,7 +63,7 @@ export class Tasks implements TasksClassInterface{
         this.saveToDatabase();
     }
     saveToDatabase(){
-        this.storage.saveTasksData(this.tasks)
+        this.storage.saveTasksData(this.tasks);
     }
     editTask(id: number, properties: EditTaskInterface){
 
@@ -84,7 +94,9 @@ export class Tasks implements TasksClassInterface{
     highlightTask(id:number){
         
     }
-    highlightTasksName(){}
+    highlightTasksName(id:number){
+
+    }
     dragTask(target: EventTarget){
 
     }
@@ -95,11 +107,26 @@ export class Tasks implements TasksClassInterface{
         }).reduce((acc, curr)=> acc+curr, 0);
         if(sumedTime === 0){return newDate;}
         const estimatedTimeInMinutes = sumedTime * this.ESTIMATED_TASK_TIME;
-        return newDate.getMinutes() + estimatedTimeInMinutes;
+        newDate.setMinutes(newDate.getMinutes() + estimatedTimeInMinutes);
+        return newDate;
        
     }
     showTasksEstimatedTime(){
 
     }
-
+    showNumberOfTasksToDoInTotal(){
+        return this.tasks.map(task => {
+            return task.time
+        }).reduce((acc, curr)=> acc+curr, 0);
+    }
+     showNumberOfTasksCompletedInTotal(){
+        return this.tasks.map(task => {
+            return task.currentWorkTime
+        }).reduce((acc, curr)=> acc+curr, 0);
+    }
+    showTasksEditor(){}
+    cancelTasksEditor(){}
+    disableTasksEditorSaveButton(){}
+    enableTasksEditorSaveButton(){}
+    finishOneEstimatedTask(id: number){}
 }
