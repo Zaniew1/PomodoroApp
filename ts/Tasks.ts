@@ -1,4 +1,5 @@
-import { StorageInterface, storageInstance } from './Storage';
+import { SettingsInterface } from './Settings';
+import { StorageInterface } from './Storage';
 type TasksIdInterface = {
     id: number
 }
@@ -24,7 +25,7 @@ interface TasksClassInterface {
     render(): void
     addTask(properties: AddTaskInterface) : void
     editTask(id: number, properties: EditTaskInterface) : void
-    removeTask(id: number) : void
+    deleteTask(id: number) : void
     getNewId() : number
     clearAllTasks() : void
     clearFinishedTasks() : void
@@ -33,9 +34,10 @@ interface TasksClassInterface {
     highlightTask(id: number) : void
 }
 
-class Tasks implements TasksClassInterface{
+export class Tasks implements TasksClassInterface{
+    private ESTIMATED_TASK_TIME = 30;
     protected tasks: TaskInterface[] = [];
-    constructor(private storage: StorageInterface ){
+    constructor(private storage: StorageInterface, private settings: SettingsInterface){
         
     }
     render(){
@@ -62,7 +64,7 @@ class Tasks implements TasksClassInterface{
         this.tasks.forEach(el=> el.id > highestId ? highestId = el.id : "");
         return highestId +1;
     }
-    removeTask(id: number){
+    deleteTask(id: number){
         const indexToDelete = this.tasks.findIndex(el=> el.id === id);
         this.tasks.splice(indexToDelete, 1 );
         this.refresh();
@@ -82,6 +84,22 @@ class Tasks implements TasksClassInterface{
     highlightTask(id:number){
         
     }
-}
+    highlightTasksName(){}
+    dragTask(target: EventTarget){
 
-export const liTaskInstance = new Tasks(storageInstance)
+    }
+    calculateTasksEstimatedTime(){
+        const newDate = new Date();
+        const sumedTime = this.tasks.map(task => {
+            return task.time - task.currentWorkTime
+        }).reduce((acc, curr)=> acc+curr, 0);
+        if(sumedTime === 0){return newDate;}
+        const estimatedTimeInMinutes = sumedTime * this.ESTIMATED_TASK_TIME;
+        return newDate.getMinutes() + estimatedTimeInMinutes;
+       
+    }
+    showTasksEstimatedTime(){
+
+    }
+
+}
