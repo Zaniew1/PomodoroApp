@@ -21,7 +21,7 @@ type EditTaskInterface = {
     order?:number,
     currentWorkTime?: number
 }
-interface TasksClassInterface {
+export interface TasksClassInterface {
     renderTask(): void
     addTask(properties: AddTaskInterface) : void
     editTask(id: number, properties: EditTaskInterface) : void

@@ -9,7 +9,7 @@ export type TimerSettingsType = {
     darkMode: boolean,
 }
 export type  SoundsSettingsType = {
-     alarmSound: string,
+    alarmSound: string,
     alarmVolume: number,
     tickingSound: string,
     tickingVolume: number
@@ -52,7 +52,8 @@ interface SoundsSettingsInterface{
     get TickingVolume() : number
 }
 // Observer pattern
-export class Settings implements TimerSettingsInterface,SoundsSettingsInterface,PublisherInterface{
+export type SettingsInterface = TimerSettingsInterface&SoundsSettingsInterface&PublisherInterface
+export class Settings implements SettingsInterface{
     private settings: SettingsType = {
         workTime : 25,
         shortBreakTime : 5,

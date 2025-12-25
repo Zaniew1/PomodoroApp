@@ -1,7 +1,7 @@
 type ElementType = "div" | "ul" | "li" | "span" | "p" | "button" | "i" | "section"
 type DatasetsType = Record<string, string|number|boolean>
 
-interface BuilderInterface {
+export interface BuilderInterface {
     create(element: ElementType) : BuilderClass
     addClass(className:string):BuilderClass
     addId(id:string):BuilderClass
@@ -69,7 +69,7 @@ export class BuilderClass implements BuilderInterface{
 
 
 ///// INPUTS /////
-interface InputBuilderInterface{
+export interface InputBuilderInterface{
     create(): InputBuilderClass
     addClass(className:string): InputBuilderClass
     addId(id:string): InputBuilderClass
@@ -127,6 +127,68 @@ export class InputBuilderClass implements InputBuilderInterface{
         if(!this.input){throw new Error("No input, start with create method")}
         const input = this.input;
         this.input = null;
+        return input;
+    }
+}
+
+///// INPUTS /////
+interface SelectBuilderInterface{
+    create(): SelectBuilderClass
+    addClass(className:string): SelectBuilderClass
+    addId(id:string): SelectBuilderClass
+    addChildren(children: {value: string, text: string}[]) : SelectBuilderClass
+    addListener(listener:keyof HTMLElementEventMap, callback:EventListenerOrEventListenerObject): SelectBuilderClass
+    addValue(value: string): SelectBuilderClass
+    addName(name: string): SelectBuilderClass
+}
+// Builder pattern
+export class SelectBuilderClass implements SelectBuilderInterface{
+    private select : HTMLSelectElement | null = null
+    constructor(){}
+    create(){
+        this.select = null;
+        this.select = document.createElement("select");
+        return this;
+    }
+    addClass(className:string){
+        if(!this.select){throw new Error("No select, start with create method")}
+        this.select.classList.add(className)
+        return this;
+    }
+    addId(id:string){
+        if(!this.select){throw new Error("No select, start with create method")}
+        this.select.id = id;
+        return this;
+    }
+    addListener(listener:keyof HTMLElementEventMap, callback:EventListenerOrEventListenerObject){
+        if(!this.select){throw new Error("No select, start with create method")}
+        this.select.addEventListener(listener, callback);
+        return this;
+    }
+    addChildren(children: {value:string, text: string}[]){
+        if(!this.select){throw new Error("No select, start with create method")}
+        children.forEach(element => {
+            var option = document.createElement('option');
+            option.value = element.value;
+            option.innerHTML = element.text;
+            this.select?.appendChild(option);
+        });
+        return this;
+    }
+    addValue(value: string){
+        if(!this.select){throw new Error("No select, start with create method")}
+        this.select.value = value;
+        return this;
+    }
+    addName(name: string){
+        if(!this.select){throw new Error("No select, start with create method")}
+        this.select.name = name;
+        return this;
+    }
+    end(){
+        if(!this.select){throw new Error("No select, start with create method")}
+        const input = this.select;
+        this.select = null;
         return input;
     }
 }

@@ -22,7 +22,7 @@ export class Timer implements Clocks,SubscriberInterface{
         console.log(this.settings)
     }
 }
-interface Clocks {
+export interface Clocks {
     setTime() : void
     startClock() : void
     stopClock() : void
@@ -35,6 +35,9 @@ export class Work implements Clocks{
     startClock(){}
     stopClock(){}
     resetClock(){}
+    update(settings: SettingsType){
+        console.log(settings)
+    }
     clear(){
         clearInterval(this.interval)
     }
