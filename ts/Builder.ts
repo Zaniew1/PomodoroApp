@@ -6,7 +6,7 @@ export interface BuilderInterface {
     addClass(className:string):BuilderClass
     addId(id:string):BuilderClass
     addListener(listener:keyof HTMLElementEventMap, callback:EventListenerOrEventListenerObject):BuilderClass
-    dataset(datasets: DatasetsType):BuilderClass
+    dataset(datasets: DatasetsType[]):BuilderClass
     append(child: HTMLElement):BuilderClass
     end():HTMLElement
 }
@@ -21,9 +21,13 @@ export class BuilderClass implements BuilderInterface{
         this.element = document.createElement(element);
         return this;
     }
-    addClass(className:string){
+    addClass(className:string| string[]){
         if(!this.element){throw new Error("No element, start with create method")}
-        this.element.classList.add(className)
+        if(Array.isArray(className)){
+            this.element.classList.add(...className)
+        }else{
+            this.element.classList.add(className)
+        }
         return this;
     }
     addId(id:string){
@@ -41,16 +45,19 @@ export class BuilderClass implements BuilderInterface{
         this.element.textContent = text;
         return this;
     }
-    dataset(datasets: DatasetsType ){
-        if(!this.element){throw new Error("No element, start with create method")}
-        for (const [key, value] of Object.entries(datasets)) {
-            this.element.dataset[key] = String(value)
-        }
+    dataset(datasets: DatasetsType[] ){
+        datasets.forEach(dataset=>{
+            if(!this.element){throw new Error("No element, start with create method")}
+            for (const [key, value] of Object.entries(dataset)) {
+                this.element.dataset[key] = String(value)
+            }
+        })
         return this;
     }
-    append(child: HTMLElement){
+    append(child: HTMLElement | undefined){
         if(!this.element){throw new Error("No element, start with create method")}
-        this.element?.appendChild(child);
+        if(!child){throw new Error("Child have to be HTML element")}
+        this.element.appendChild(child);
         return this
     }
     end(){
@@ -88,9 +95,13 @@ export class InputBuilderClass implements InputBuilderInterface{
         this.input = document.createElement("input");
         return this;
     }
-    addClass(className:string){
+    addClass(className:string | string[]){
         if(!this.input){throw new Error("No input, start with create method")}
-        this.input.classList.add(className)
+        if(Array.isArray(className)){
+            this.input.classList.add(...className)
+        }else{
+            this.input.classList.add(className)
+        }
         return this;
     }
     addId(id:string){
@@ -150,9 +161,13 @@ export class SelectBuilderClass implements SelectBuilderInterface{
         this.select = document.createElement("select");
         return this;
     }
-    addClass(className:string){
+    addClass(className:string | string[]){
         if(!this.select){throw new Error("No select, start with create method")}
-        this.select.classList.add(className)
+        if(Array.isArray(className)){
+            this.select.classList.add(...className)
+        }else{
+            this.select.classList.add(className)
+        }
         return this;
     }
     addId(id:string){
